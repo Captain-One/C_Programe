@@ -137,7 +137,6 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 	int mergenodecount=0;
 	char idxfilename[MAX_OPEN_FILE_NAME_LEN];
 	int idxfilenum;
-	FILE *fdidx;
 	merge_node mergenode;
 	int rv;
 	int pkcount;
@@ -175,6 +174,7 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 			printf("read merge dat error !\n");
 			//return -1;
 		}
+		printf("mergenode->pkcount %d\n",mergenode.pkcount);
 		if(rfbn_mark[mergenode.frbn] == 0)
 		{
 			rfbn_mark[mergenode.frbn] = 1;
@@ -187,7 +187,7 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 			}
 			rfbn_idx_file_num[mergenode.frbn] = idxfilenum;
 			
-			sprintf(idxfilename,"%d_0.idx",mergenode.frbn);
+			sprintf(idxfilename,"./%s/%d_0.idx",path,mergenode.frbn);
             rfbn_fd_p[mergenode.frbn] = fopen(idxfilename,"rb+");			
 			if(rfbn_fd_p[mergenode.frbn] == NULL)
 			{
@@ -210,18 +210,18 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 			rfbn_idx_file_count[mergenode.frbn] ++;
 			if(rfbn_idx_file_count[mergenode.frbn] < rfbn_idx_file_num[mergenode.frbn])
 			{
-			  printf(idxfilename,"%d_%d.idx",mergenode.frbn,rfbn_idx_file_count[mergenode.frbn]);
+			  printf(idxfilename,"./%s/%d_%d.idx",path,mergenode.frbn,rfbn_idx_file_count[mergenode.frbn]);
 			  rfbn_fd_p[mergenode.frbn] =  fopen(idxfilename,"rb+");
 			  fseek(rfbn_fd_p[mergenode.frbn],0,SEEK_END);
               rfbn_idx_file_size[mergenode.frbn] = ftell(rfbn_fd_p[mergenode.frbn]);
               fseek(rfbn_fd_p[mergenode.frbn],0,SEEK_SET);
 			  mergenode.pkcount = pkcount - mergenode.pkcount;
-			 rv =  mergedata(&mergenode,list,fdidx,path);
+			 rv =  mergedata(&mergenode,list,rfbn_fd_p[mergenode.frbn],path);
 			}else{
 				printf("no more idx file for %d rfbn\n",mergenode.frbn);
 			}
 		}else{
-			rv = mergedata(&mergenode,list,fdidx,path);
+			rv = mergedata(&mergenode,list,rfbn_fd_p[mergenode.frbn],path);
 		}	    		
 		mergenodecount ++;       		
 	}
@@ -235,14 +235,15 @@ int mergedata(merge_node *mergenode,List *list,FILE * fdidx,char *path)
 	int readsize,rv;
 	void *idxnodebuf;
 	//printf("into mergedata \n");
-	
+	printf("mergenode->pkcount %d\n",mergenode->pkcount);
 	idxnodebuf = malloc(mergenode->pkcount*sizeof(Pnode_t));
 	if(idxnodebuf == NULL)
 	{
 		printf("malloc idxnode buf error \n");
 		return -1;
 	}
-	readsize = fread(idxnodebuf,1,mergenode->pkcount*sizeof(Pnode_t),fdidx);		 
+	readsize = fread(idxnodebuf,1,mergenode->pkcount*sizeof(Pnode_t),fdidx);
+    	
 	if(readsize != mergenode->pkcount*sizeof(Pnode_t))	
 	{
 		printf("read idx data error \n");
