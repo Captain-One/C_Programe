@@ -44,6 +44,7 @@ int Data_File_Handle(void *idxnodebuf, int idxnodenum, uint8_t rfbn,FILE *fdmerg
 int Merge_File_Handle(FILE *fd,List *list,char *path);
 int mergedata(merge_node *mergenode,List *list,FILE * fdidx,char *path);
 int Search_Same_File(List *list,char *str);
+int close_idx_file(FILE *rfbn_fd_p[]);
 
 #define  MAX_PATH_LEN    22
 
@@ -51,12 +52,15 @@ int Search_Same_File(List *list,char *str);
 
 #define  MAX_OPEN_FILE_NAME_LEN    MAX_PATH_LEN + MAX_MERGE_FILENAME_LEN
 
+#define  MERGE_DATA_FILE_NAME_LEN  13
+
 FILE *fdMergedata;
 
 int main(int argc, char *argv[])
 {
 	DIR *datadir;
 	char * path = argv[1];
+	char mergedatafilename[MAX_PATH_LEN + MERGE_DATA_FILE_NAME_LEN];
 	struct dirent *filename;
 	char *dfilename; 
     char merge[] = {"merge_"};
@@ -67,7 +71,8 @@ int main(int argc, char *argv[])
 	char mergefilename[MAX_OPEN_FILE_NAME_LEN];
 	FILE *fd;
 	List fnlist;
-	fdMergedata = fopen("mergedata.dat","wb+");
+	sprintf(mergedatafilename,"./%s/mergedata.dat",path);
+	fdMergedata = fopen(mergedatafilename,"wb+");
 	if(fdMergedata == NULL)
 	{
 		printf("open mergedata.dat file error !\n");
@@ -145,15 +150,15 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 	uint8_t rfbn_idx_file_num[MAX_RFBN_NUM];
 	uint8_t rfbn_idx_file_count[MAX_RFBN_NUM];
 	int rfbn_idx_file_size[MAX_RFBN_NUM];
-	int rfbn_idx_read_count[MAX_RFBN_NUM];
+	uint32_t rfbn_idx_read_count[MAX_RFBN_NUM];
 	FILE *rfbn_fd_p[MAX_RFBN_NUM];
 	
-	memset(rfbn_mark,0,MAX_RFBN_NUM);
-	memset(rfbn_idx_file_num,0,MAX_RFBN_NUM);
-	memset(rfbn_idx_file_count,0,MAX_RFBN_NUM);
-	memset(rfbn_idx_file_size,0,MAX_RFBN_NUM);
-	memset(rfbn_idx_read_count,0,MAX_RFBN_NUM);
-	memset(rfbn_fd_p,0,MAX_RFBN_NUM);
+	memset(rfbn_mark,0,MAX_RFBN_NUM*sizeof(uint8_t));
+	memset(rfbn_idx_file_num,0,MAX_RFBN_NUM*sizeof(uint8_t));
+	memset(rfbn_idx_file_count,0,MAX_RFBN_NUM*sizeof(uint8_t));
+	memset(rfbn_idx_file_size,0,MAX_RFBN_NUM*sizeof(int));
+	memset(rfbn_idx_read_count,0,MAX_RFBN_NUM*sizeof(uint32_t));
+	memset(rfbn_fd_p,0,MAX_RFBN_NUM*sizeof(FILE *));
 	
 	//printf("into Merge_File_Handle \n");
 	fseek(fd,0,SEEK_END);
@@ -172,9 +177,7 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 		if(resize != sizeof(merge_node))
 		{
 			printf("read merge dat error !\n");
-			//return -1;
 		}
-		printf("mergenode->pkcount %d\n",mergenode.pkcount);
 		if(rfbn_mark[mergenode.frbn] == 0)
 		{
 			rfbn_mark[mergenode.frbn] = 1;
@@ -186,6 +189,7 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 				return -1;
 			}
 			rfbn_idx_file_num[mergenode.frbn] = idxfilenum;
+			printf("find %d idx file\n",idxfilenum);
 			
 			sprintf(idxfilename,"./%s/%d_0.idx",path,mergenode.frbn);
             rfbn_fd_p[mergenode.frbn] = fopen(idxfilename,"rb+");			
@@ -195,12 +199,14 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 				//close other file?;
 				return -1;
 			}
+			
             fseek(rfbn_fd_p[mergenode.frbn],0,SEEK_END);
             rfbn_idx_file_size[mergenode.frbn] = ftell(rfbn_fd_p[mergenode.frbn]);
-            fseek(rfbn_fd_p[mergenode.frbn],0,SEEK_SET);			
-		}
-		rfbn_idx_read_count[mergenode.frbn] += mergenode.pkcount;		
-		if(rfbn_idx_read_count[mergenode.frbn] > rfbn_idx_file_size[mergenode.frbn])
+            fseek(rfbn_fd_p[mergenode.frbn],0,SEEK_SET);	
+            printf("%s size is %d, has %d node\n",idxfilename,rfbn_idx_file_size[mergenode.frbn],rfbn_idx_file_size[mergenode.frbn]/16);			
+		}	
+		
+		if((rfbn_idx_read_count[mergenode.frbn]) > rfbn_idx_file_size[mergenode.frbn])
 		{
 			pkcount = mergenode.pkcount;
 			mergenode.pkcount = rfbn_idx_file_size[mergenode.frbn] - ftell(rfbn_fd_p[mergenode.frbn]);
@@ -216,16 +222,32 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
               rfbn_idx_file_size[mergenode.frbn] = ftell(rfbn_fd_p[mergenode.frbn]);
               fseek(rfbn_fd_p[mergenode.frbn],0,SEEK_SET);
 			  mergenode.pkcount = pkcount - mergenode.pkcount;
-			 rv =  mergedata(&mergenode,list,rfbn_fd_p[mergenode.frbn],path);
+			  rv =  mergedata(&mergenode,list,rfbn_fd_p[mergenode.frbn],path);
 			}else{
 				printf("no more idx file for %d rfbn\n",mergenode.frbn);
 			}
 		}else{
 			rv = mergedata(&mergenode,list,rfbn_fd_p[mergenode.frbn],path);
 		}	    		
+		rfbn_idx_read_count[mergenode.frbn] = rfbn_idx_read_count[mergenode.frbn] + mergenode.pkcount*sizeof(Pnode_t);
+        printf("%d rfbn_idx_read_count[%d] %d \n",i,mergenode.frbn,rfbn_idx_read_count[mergenode.frbn]);
 		mergenodecount ++;       		
 	}
+	close_idx_file(rfbn_fd_p);
 	printf("mergenodecount %d\n",mergenodecount);
+}
+
+int close_idx_file(FILE *rfbn_fd_p[])
+{
+	int i;
+	for(i=0;i<MAX_RFBN_NUM;i++)
+	{
+		if(rfbn_fd_p[i] != NULL)
+		{
+			fclose(rfbn_fd_p[i]);
+		}
+	}
+	return 0;
 }
 
 #define MAX_IDX_FILENAME_LEN    10//xx_nnn.idx
@@ -235,15 +257,14 @@ int mergedata(merge_node *mergenode,List *list,FILE * fdidx,char *path)
 	int readsize,rv;
 	void *idxnodebuf;
 	//printf("into mergedata \n");
-	printf("mergenode->pkcount %d\n",mergenode->pkcount);
+	
 	idxnodebuf = malloc(mergenode->pkcount*sizeof(Pnode_t));
 	if(idxnodebuf == NULL)
 	{
 		printf("malloc idxnode buf error \n");
 		return -1;
 	}
-	readsize = fread(idxnodebuf,1,mergenode->pkcount*sizeof(Pnode_t),fdidx);
-    	
+	readsize = fread(idxnodebuf,1,mergenode->pkcount*sizeof(Pnode_t),fdidx);		 
 	if(readsize != mergenode->pkcount*sizeof(Pnode_t))	
 	{
 		printf("read idx data error \n");
@@ -261,7 +282,7 @@ int mergedata(merge_node *mergenode,List *list,FILE * fdidx,char *path)
 int Data_File_Handle(void *idxnodebuf, int idxnodenum, uint8_t rfbn,FILE *fdmerge,char *path)
 {
 	FILE *fd;	
-	int i,rsize,rv;
+	int i,j,rsize,rv;
 	uint8_t *buf;
 	//int8_t *idxbuf = idxnodebuf;
 	char datafilename[MAX_OPEN_FILE_NAME_LEN];
@@ -283,17 +304,57 @@ int Data_File_Handle(void *idxnodebuf, int idxnodenum, uint8_t rfbn,FILE *fdmerg
 			fclose(fd);
 			return -1;			
 		}
+		
 		fseek(fd,((Pnode_t *)idxnodebuf)->offset,SEEK_SET);
 		rsize = fread(buf,1,((Pnode_t *)idxnodebuf)->plen,fd);
+		if(((Pnode_t *)idxnodebuf)->offset == 0x03fffc)
+		{
+			for(j=0;j<((Pnode_t *)idxnodebuf)->plen;j++)
+			{
+				printf("0x%02x ",(uint8_t *)buf[j]);
+				if(j%8 == 0)
+				{
+					printf("\n");
+				}
+			}
+			printf("\n");
+		}
+		if(((Pnode_t *)idxnodebuf)->offset == 0x008efee0)
+		{
+			for(j=0;j<((Pnode_t *)idxnodebuf)->plen;j++)
+			{
+				printf("0x%02x ",(uint8_t *)buf[j]);
+				if(j%8 == 0)
+				{
+					printf("\n");
+				}
+			}
+			printf("\n");
+		}
+		if(((Pnode_t *)idxnodebuf)->offset == 0x040014)
+		{
+			for(j=0;j<((Pnode_t *)idxnodebuf)->plen;j++)
+			{
+				printf("0x%02x ",(uint8_t *)buf[j]);
+				if(j%8 == 0)
+				{
+					printf("\n");
+				}			
+			}
+			printf("\n");
+		}
 		if(rsize != ((Pnode_t *)idxnodebuf)->plen)
 		{
 			printf("read %s file data package error, \npackage len : %d, offset : 0x%04x\n",datafilename,((Pnode_t *)idxnodebuf)->plen,((Pnode_t *)idxnodebuf)->offset);
-		}		
-		rv = fwrite(buf,1,((Pnode_t *)idxnodebuf)->plen,fdmerge);
+		}	
+         fflush(fdmerge);		
+		fwrite(buf,1,((Pnode_t *)idxnodebuf)->plen,fdmerge);
+		
 		idxnodebuf += sizeof(Pnode_t);
 		free(buf);
 		fclose(fd);			
 	}
+	
 }
 
 #define MAX_FILENAME_LEN  13
