@@ -9,8 +9,6 @@
 
 #include "list.h"
 
-
-
 //数据包索引号结构体
 typedef union seqnum_u
 {
@@ -230,7 +228,7 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 			rv = mergedata(&mergenode,list,rfbn_fd_p[mergenode.frbn],path);
 		}	    		
 		rfbn_idx_read_count[mergenode.frbn] = rfbn_idx_read_count[mergenode.frbn] + mergenode.pkcount*sizeof(Pnode_t);
-        printf("%d rfbn_idx_read_count[%d] %d \n",i,mergenode.frbn,rfbn_idx_read_count[mergenode.frbn]);
+       // printf("%d rfbn_idx_read_count[%d] %d \n",i,mergenode.frbn,rfbn_idx_read_count[mergenode.frbn]);
 		mergenodecount ++;       		
 	}
 	close_idx_file(rfbn_fd_p);
