@@ -83,12 +83,16 @@ int data_2_pcap(FILE *fd,uint8_t radiotype,char *filename)
 	fclose(fpcap);
 }
 
+int mib_count = 0;
+int sib_count = 0;
+
 int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 {
 	
 	packet_header packetheader;
 	subpcakage_header *subpackheader;
 	uint16_t subtype;
+	uint8_t pass = 0;
 
 	subpackheader = (subpcakage_header *)buf;
 
@@ -121,6 +125,9 @@ int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 	switch(subtype)
 	{
 	    case 0x0111:packetheader.rntitype = 0;
+			        mib_count++;
+					if(mib_count > 10)
+						pass = 1;
 	                break;//BCCH
 		case 0x0522:break;//PCCH
 		case 0x0853:break;//CCCH UL
@@ -155,6 +162,9 @@ int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 					if(packetheader.rnti == 0xffff)
 					{
 						packetheader.rntitype = 4;
+						sib_count ++;
+						if(sib_count > 10)
+							pass = 1;
 					}else{
 						packetheader.rntitype = 3;
 					}
@@ -172,6 +182,9 @@ int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 					break;//UL-SCH
 		default:break;
 	}	
-	fwrite(&packetheader,1,sizeof(packet_header),fd);
-	fwrite(buf,1,packetheader.len-(sizeof(packet_header)-16),fd);	
+	if(!pass)
+	{
+		fwrite(&packetheader,1,sizeof(packet_header),fd);
+		fwrite(buf,1,packetheader.len-(sizeof(packet_header)-16),fd);
+	}
 }

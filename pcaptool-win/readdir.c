@@ -157,6 +157,7 @@ int main(int argc, char *argv[])
 	fseek(fdMergedata,0,SEEK_SET);
 	data_2_pcap(fdMergedata,radiotype,pcapfilename);
 	fclose(fdMergedata);
+	//system("pause");
 }
 
 #define MAX_RFBN_NUM    11
