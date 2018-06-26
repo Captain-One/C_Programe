@@ -2,6 +2,8 @@
 
 int main(int argc, char *argv[])
 {
+	extern char *optarg;
+	extern int optind, opterr, optopt;
 	int ch;  //getopt()返回值为int型
 	while((ch == getopt(argc,argv,"a:b:c::d:ef:g::")) != -1)
 	{

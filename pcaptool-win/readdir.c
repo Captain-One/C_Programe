@@ -63,6 +63,9 @@ int get_file_size(FILE *fd);
 
 FILE *fdMergedata;
 
+extern char *optarg;
+extern int optind, opterr, optopt;
+
 int main(int argc, char *argv[])
 {
 	struct _finddata_t file;
