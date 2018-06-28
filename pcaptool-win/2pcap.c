@@ -141,7 +141,7 @@ int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 		case 0x0640:packetheader.frame_subframe.u16_frame_subframe_t.subframe = (X_16(*(uint16_t *)buf) & 0x3c00)>>10;
 					packetheader.frame_subframe.u16_frame_subframe_t.systemframe = X_16(*(uint16_t *)buf) & 0x03ff;
 					packetheader.frame_subframe.u16_frame_subframe = X_16(packetheader.frame_subframe.u16_frame_subframe);	
-			        packetheader.rnti = X_16(*((uint16_t *)(buf+2)));
+			        packetheader.rnti = *((uint16_t *)(buf+2));
 					packetheader.ueid = packetheader.rnti;
 					packetheader.len = packetheader.len-4;
 					packetheader.caplen = packetheader.len;
@@ -154,7 +154,7 @@ int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 					packetheader.frame_subframe.u16_frame_subframe_t.systemframe = X_16(*(uint16_t *)buf) & 0x03ff;
 					packetheader.frame_subframe.u16_frame_subframe = X_16(packetheader.frame_subframe.u16_frame_subframe);			
 			        //printf("packetheader.frame_subframe.u16_frame_subframe: 0x%02x\n",packetheader.frame_subframe.u16_frame_subframe_t.systemframe);
-			        packetheader.rnti = X_16(*((uint16_t *)(buf+2)));
+			        packetheader.rnti = *((uint16_t *)(buf+2));
 					//printf("packetheader.rnti 0x%02x\n", X_16(*((uint16_t *)(buf+2))));
 					packetheader.ueid = packetheader.rnti;
 					if(packetheader.rnti == 0xffff)
@@ -170,10 +170,11 @@ int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 					packetheader.caplen = packetheader.len;
 					buf += 4;	
 					break;//DL-SCH
-		case 0x0850:packetheader.frame_subframe.u16_frame_subframe_t.subframe = (X_16(*(uint16_t *)buf) & 0x3c00)>>10;
+		case 0x0850://printf("get up 850,pass is:%d, packetheader.direction: %d\n",pass,packetheader.direction);
+			        packetheader.frame_subframe.u16_frame_subframe_t.subframe = (X_16(*(uint16_t *)buf) & 0x3c00)>>10;
 					packetheader.frame_subframe.u16_frame_subframe_t.systemframe = X_16(*(uint16_t *)buf) & 0x03ff;
 					packetheader.frame_subframe.u16_frame_subframe = X_16(packetheader.frame_subframe.u16_frame_subframe);	
-					packetheader.rnti = X_16(*((uint16_t *)(buf+2)));
+					packetheader.rnti = *((uint16_t *)(buf+2));
 					packetheader.ueid = packetheader.rnti;
 					packetheader.rntitype = 3;
 					packetheader.len = packetheader.len-4;

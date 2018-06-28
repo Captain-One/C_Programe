@@ -257,8 +257,10 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 			printf("merge.rfbn:%d,merge.num:%d\n",mergenode.frbn,mergenode.pkcount);
 			printf("%d rfbn_idx_read_count[%d] %d ,file size:%d\n",i,mergenode.frbn,rfbn_idx_read_count[mergenode.frbn],rfbn_idx_file_size[mergenode.frbn]);
 			pkcount = mergenode.pkcount;
-			mergenode.pkcount = rfbn_idx_file_size[mergenode.frbn] - ftell(rfbn_fd_p[mergenode.frbn]);
+			mergenode.pkcount = (rfbn_idx_file_size[mergenode.frbn] - ftell(rfbn_fd_p[mergenode.frbn]))/sizeof(Pnode_t);
+			//printf("mergenode.pkcount :%d\n",mergenode.pkcount);
 			rv = mergedata(&mergenode,list,rfbn_fd_p[mergenode.frbn],path);
+			//printf("rv :%d\n",rv);
 			//error check;
 			fclose(rfbn_fd_p[mergenode.frbn]);
 			rfbn_idx_file_count[mergenode.frbn] ++;
