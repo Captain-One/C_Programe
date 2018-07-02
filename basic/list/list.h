@@ -7,14 +7,14 @@ typedef struct list_Node_{
 	struct node_t_tag *next;
 	struct node_t_tag *prev;
 	void *data;
-}List_Node_t, pList_Node_t *;
+}List_Node_t;
 
 
 typedef struct list_{
 	int node_num;
 	List_Node_t *head;
 	List_Node_t *tail;
-}List_t, pList_t *;
+}List_t;
 
 #define List_Head(list)					((list)->head)
 #define List_Tail(list)					((list)->tail)
@@ -27,6 +27,6 @@ typedef struct list_{
 void List_Init(List_t *list);
 void List_Destroy(List_t *list);
 int List_Insert_Next(List_t *list, List_Node_t *list_node,void *data);
-
+int List_Remove_Next(List_t *list, List_Node_t *list_node,void *data);
 
 #endif
