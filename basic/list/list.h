@@ -14,6 +14,8 @@ typedef struct list_{
 	int node_num;
 	List_Node_t *head;
 	List_Node_t *tail;
+	int (*match)(const void *key1,const void *key2);
+	void (*destroy)(void *data);
 }List_t;
 
 #define List_Head(list)					((list)->head)

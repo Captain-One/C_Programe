@@ -1,5 +1,14 @@
 #include "list.h"
 
+void List_Init(List_t *lsit)
+{
+	list->node_num = 0;
+	list->head = NULL;
+	list->tail = NULL;
+	list->match = NULL;
+	list->destroy = NULL;
+}
+
 int List_Insert_Next(List_t *list, List_Node_t *list_node,void *data)
 {
 	List_Node_t *new_node;
@@ -69,3 +78,50 @@ int List_Remove_Next(List_t *list, List_Node_t *list_node,void *data)
 	list->node_num --;
     return 0;
 }
+
+void List_Destroy(List_t *list)
+{
+	char *data;
+	if(list == NULL)
+	{
+		return -2;
+	}
+	while(list->node_num)
+	{
+		if(List_Remove_Next(list,NULL,data) && (list->destroy != NULL))
+		{
+			list->destroy(data);
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
