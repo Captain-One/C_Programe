@@ -16,10 +16,10 @@ $(TARGET2):
 $(TARGET):$(OBJS)
 	$(CC) $^ -o $@
 $(TARGET2)/%.o:%.c
-	$(CC) $< -c $@
+	$(CC) -c $< -o $@
 	
 clean:
-    rm -rf $(TARGET2) $(TARGET)
+	rm -rf $(TARGET2) $(TARGET)
 .PHONY:clean
 
 

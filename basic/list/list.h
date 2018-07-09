@@ -4,8 +4,8 @@
 #include <stdint.h>
 
 typedef struct list_Node_{
-	struct node_t_tag *next;
-	struct node_t_tag *prev;
+	struct list_Node_ *next;
+	struct list_Node_ *prev;
 	void *data;
 }List_Node_t;
 

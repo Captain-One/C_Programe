@@ -1,6 +1,7 @@
 #include "list.h"
+#include <stdlib.h>
 
-void List_Init(List_t *lsit)
+void List_Init(List_t *list)
 {
 	list->node_num = 0;
 	list->head = NULL;
@@ -43,8 +44,8 @@ int List_Insert_Next(List_t *list, List_Node_t *list_node,void *data)
 
 int List_Remove_Next(List_t *list, List_Node_t *list_node,void *data)
 {
-	List_Node *old_node;
-	if(list->node_numm)
+	List_Node_t *old_node;
+	if(list->node_num)
 	{
 		if(list_node == NULL)
 		{
