@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "mergedata.h"
 #include "pcap.h"
-
+extern int sib_filter;
 int data_2_pcap(FILE *fd,uint8_t radiotype,char *filename)
 {
 	int fsize;
@@ -16,7 +16,6 @@ int data_2_pcap(FILE *fd,uint8_t radiotype,char *filename)
 	int i = 0;
 	uint8_t t;
 	pcap_header pcapheader;
-
 	fpcap = fopen(filename,"wb");
 	if(fpcap == NULL)
 	{
@@ -62,6 +61,7 @@ int data_2_pcap(FILE *fd,uint8_t radiotype,char *filename)
 			printf("malloc subpkbuf error\n");
 			return -1;
 		}
+		
 		rs = fread(subpkbuf,1,X_16(fpkheader.LEN)-sizeof(fpackheader_t),fd);		
 		if(rs != (X_16(fpkheader.LEN)-sizeof(fpackheader_t)))
 		{
@@ -183,6 +183,10 @@ int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype)
 					break;//UL-SCH
 		default:break;
 	}	
+	if(!sib_filter)
+	{
+		pass = 0;
+	}
 	if(!pass)
 	{
 		fwrite(&packetheader,1,sizeof(packet_header),fd);

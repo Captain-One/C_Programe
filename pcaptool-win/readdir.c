@@ -65,6 +65,7 @@ FILE *fdMergedata;
 
 extern char *optarg;
 extern int optind, opterr, optopt;
+int sib_filter = 1;
 
 int main(int argc, char *argv[])
 {
@@ -81,6 +82,7 @@ int main(int argc, char *argv[])
 	int filenum;
 	int rv;
 	int i;
+	
 	char mergefilename[MAX_OPEN_FILE_NAME_LEN];
 	char *in_pcap_name;
 	char pcapfilename[MAX_OPEN_FILE_NAME_LEN];
@@ -94,6 +96,15 @@ int main(int argc, char *argv[])
 	sprintf(pcapfilename,"%s\\%s",path,in_pcap_name);
 	printf("pcap file :%s \n",pcapfilename);
 
+	if(argc >= 5)
+	{
+		if(*(char *)argv[4] == 'n')
+		{
+			sib_filter = 0;
+		}
+	}
+	//printf("argc :%c \n",*argv[4]);
+	//printf("sib_filter :%d \n",sib_filter);
 	sprintf(mergedatafilename,"%s\\mergedata.dat",path);
 	fdMergedata = fopen(mergedatafilename,"wb+");
 	if(fdMergedata == NULL)
@@ -147,11 +158,46 @@ int main(int argc, char *argv[])
 		    return -1;
 	    }
 		rv = Merge_File_Handle(fd,&fnlist,path);
+		
 		if(rv < 0)
-		{
-			printf("File Handle Error!!!\n");
+		{		
+			if(rv == -2)
+			{
+				int ii;
+				int datfilenum = 0;
+				FILE *pdff;
+				char dat_f_name[1024];
+				for(ii=0;ii<10;ii++)
+				{
+				   //sprintf(dat_f_name,"%s\\%d_*.dat",path,ii);
+				   sprintf(dat_f_name,"%d_*.dat",ii);
+                   datfilenum = Search_Same_File(&fnlist,dat_f_name); 
+				   printf("datfilenum is %d\n",datfilenum);
+				   while(datfilenum)
+				   {
+					   sprintf(dat_f_name,"%s\\%d_%d.dat",path,ii,datfilenum-1);
+					   printf("%s\n",dat_f_name);
+					   pdff = fopen(dat_f_name,"rb+");
+					   if(pdff == NULL)
+					   {
+							printf("open dat file error \n");
+							return -1;
+					   }
+					   if(get_file_size(pdff))
+					   {							
+							sprintf(pcapfilename,"%s\\%d_%d.pcap",path,ii,datfilenum-1);
+							data_2_pcap(pdff,radiotype,pcapfilename);
+					   }
+					   datfilenum --;
+				   }
+				}	
+			}else{
+				printf("File Handle Error!!!\n");
+			}
+			
 			fclose(fdMergedata);
 			fclose(fd);
+			remove(mergedatafilename);
 			return -1;
 		}
         fclose(fd);
@@ -160,6 +206,7 @@ int main(int argc, char *argv[])
 	fseek(fdMergedata,0,SEEK_SET);
 	data_2_pcap(fdMergedata,radiotype,pcapfilename);
 	fclose(fdMergedata);
+	remove(mergedatafilename);
 	//system("pause");
 }
 
@@ -197,11 +244,13 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 	size = get_file_size(fd) - 2;
 	fseek(fd,2,SEEK_SET); //
 	printf("mergeidx size %d\n",size);
-	
+	//char tempname[20];
 	if(size < 0)
 	{
-		printf("get merge_xx file size error !\n");
-		return -1;
+		printf("merge idx size is 0!\n");
+		
+		//printf("get merge_xx file size error !\n");
+		return -2;
 	}
     
 	for(i=0;i<size/2;i++)
@@ -221,7 +270,7 @@ int Merge_File_Handle(FILE *fd,List *list,char *path)
 			z++;
 			if(allcount == 52565)
 			{
-				printf("z %d, 555 mergenode.frbn: %d,mergenode.pkcount %d \n",z,mergenode.frbn,mergenode.pkcount);
+				printf("z %d, mergenode.frbn: %d,mergenode.pkcount %d \n",z,mergenode.frbn,mergenode.pkcount);
 			}
 			
 		}
