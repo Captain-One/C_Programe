@@ -43,7 +43,8 @@
 
 typedef struct RRC_Encode_Result{
 	unsigned char *data;
-	size_t size;
+	//size_t size;
+	long int size;
 }RRC_Encode_Result_t;
 
 int CYDD_EXPORT RRC_sencode(RRC_Sdecode_Result_4_L2 *input, void *output, size_t *size);

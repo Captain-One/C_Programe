@@ -8,6 +8,7 @@
 //#include "testcase.h"
 #include "code/rrc.h"
 #include <stdint.h>
+#include <stdlib.h>
 
 #ifdef  RRC_API_TEST_CASE_XML_PRINT
 #include "code/asn1c/asn_application.h"
@@ -43,6 +44,15 @@
 #include "code/asn1c/PCCH-MessageType.h"
 
 	
+#define ARRY_SIZE(a)  (int)sizeof(a)/sizeof(a[0])
+
+/* Dump the buffer out to the specified FILE */
+static int write_out(const void *buffer, size_t size, void *key) {
+	FILE *fp = (FILE *)key;
+	return (fwrite(buffer, 1, size, fp) == size) ? 0 : -1;
+}
+
+
 //xml打印函数，可以将解码详细信息打印出来
 int XerPrint(RRC_Sdecode_Result_4_L2 *input)
 {
@@ -122,9 +132,11 @@ int XerPrint(RRC_Sdecode_Result_4_L2 *input)
 
 
 //#define RRC_API_TEST_CASE
+void Dcch_Message_Struct_Init(DL_DCCH_MessageType_t *mst);
 
 int main()
 {
+	/*
 	uint8_t dbuf11[203] = {0x20,0x16,0x15,0xa8,0x00,0x10,0x00,0xfa,0x50,
 						0x00,0x80,0x14,0x90,0x4b,0xc7,0x84,0x0a,0x08,
 						0x25,0xe3,0xc2,0x00,0x00,0x20,0x0b,0x32,0x12,
@@ -175,11 +187,17 @@ int main()
 0xc0,0xa0,0x00,0x03,0x27,0xb0,0xda,0x36,0xbd,0x27,0x80,0xa0,0x9d,0xd2,0xf4,0x90,
 0x00,0x00,0x00,0x00}; //si (sib2 sib3)  
 
-    uint8_t dbuf[] = {0x20,0x02,0x81,0x90,0x12,0xcc,0x11,0x01,0xc0,0x82,0x3f,0x0c,0xa1,0x98,0x33,0x86,
+    uint8_t dbuf122[] = {0x20,0x02,0x81,0x90,0x12,0xcc,0x11,0x01,0xc0,0x82,0x3f,0x0c,0xa1,0x98,0x33,0x86,
 0x8c,0x33,0x06,0x70,0xd0,0x1a,0x49,0x43,0x80,0x0c,0xc7,0x70,0xb1,0x5f,0x0b,0xaf,
 0x40,0x20,0x84,0x40};//reconfig 2ca,
+*/
+    uint8_t dbuf[] = {0x22,0x08,0x3d,0x58,0x94,0xd4,0x28,0x26,
+    		0xba,0x5f,0xfe,0xe2,0xc6,0xd2,0xff,0x36,
+    		0x18,0x06,0xab,0x2d,0x03,0x21,0x99,0x01,
+    		0x81,0x69,0x00,0x99,0xdb,0x2d,0x45,0x79,
+    		0x38,0x04,0x04,0xa3,0x40};//dl dcch reconfig;
  
-	int dsize= 36;//52;//12;//108;//39;//203; //解码原始数据的字节数
+	int dsize= ARRY_SIZE(dbuf);//36;//52;//12;//108;//39;//203; //解码原始数据的字节数
 	RRC_Sdecode_Result_4_L2 *dresult = 0; //解码结果
 	ProcH_t ch_info; //解码信道信息及上下行方向，BBData中获取
 
@@ -191,10 +209,20 @@ int main()
 	uint8_t ebuf[1000]; //编码数据存放buffer
 	size_t esize = 0; //编码数据的字节数
 	RRC_Encode_Result_t *eresult = 0;  //编码结果
-
 	int rv = -1; //编解码返回值
-
 	int i = 0;
+	asn_enc_rval_t zz;
+
+	DL_DCCH_MessageType_t Dcch_message_struct;
+	memset(&Dcch_message_struct,0,sizeof(DL_DCCH_MessageType_t));
+
+	RRC_Encode_Result_t xxxEnRe;
+	uint8_t *xxxebuf;
+	xxxebuf = malloc(1024);
+	memset(xxxebuf,0,1024);
+
+	xxxEnRe.data = xxxebuf;
+	xxxEnRe.size = 0;
 
 	dresult = malloc(sizeof(RRC_Sdecode_Result_4_L2));
 	memset(dresult,0,sizeof(RRC_Sdecode_Result_4_L2));
@@ -204,8 +232,10 @@ int main()
 	memset(ebuf,0,1000);
 	eresult->data = ebuf;  //
 	
+	//Dcch_Message_Struct_Init(&dresult->ulInformationTransfer.DL_DCCH_msg);
     printf("Decode Message is DL_DCCH\nStart Decode...\n");
-    
+   // dresult->uMsgType = eDL_DCCH;
+
 	rv = rrc_decode(&ch_info, dbuf, dsize, dresult);  //解码
 	if(rv < 0) //解码失败
 	{
@@ -246,6 +276,192 @@ int main()
 	}
 	printf("\n");
 
+/*
+    FILE *fder;
+    fder = fopen("aaa.dat","wb+");
+    if(fder == NULL)
+    {
+    	printf("open file error\n");
+    	return -1;
+    }
+    static asn_TYPE_descriptor_t *pduType = &asn_DEF_DL_DCCH_Message;
+    void *structure = &Dcch_message_struct;
+  //  xer_fprint(stdout, pduType, structure);
+   // zz = der_encode(pduType, structure, write_out, fder);
+    zz = uper_encode(pduType, structure, write_out, fder);
+	if(zz.encoded < 0) {
+		printf("error %d\n",zz.encoded);
+		exit(EX_UNAVAILABLE);
+	}
+	fclose(fder);
+	printf("encode OK!\n");
+*/
+/*
+    xxxEnRe.size = uper_encode_to_new_buffer(&asn_DEF_DL_DCCH_Message, 0, &Dcch_message_struct,(void **)&xxxebuf);
+    printf("enxode xxx size : %d\n",xxxEnRe.size);
+    if(xxxEnRe.size < 0)
+    {
+      printf("encode xxx error: %d\n",xxxEnRe.size);
+	  return -1;
+    }
+    printf("enxode xxx ok\n");
+    //printf("enxode xxx size : %d\n",xxxEnRe.size);
+    for(i = 0; i<xxxEnRe.size;i++)
+	{
+		printf("0x%02x ",*(xxxEnRe.data + i));
+		if((i+1)%8 == 0)
+		printf("\n");
+	}
+	printf("\n");
+*/
 	return 0;
 }
+
+void Dcch_Message_Struct_Init(DL_DCCH_MessageType_t *mst)
+{
+	printf("init message\n");
+	C_RNTI_t c_rnti;
+	uint16_t rnti = 0x4bd7;
+	c_rnti.size = 2;
+	c_rnti.buf = (void *)&rnti;
+	c_rnti.bits_unused = 0;
+	long additi = 1;
+	long pmax = 23;
+
+	P_Max_t	*p_Max;
+	p_Max = &pmax;
+	AdditionalSpectrumEmission_t	*additionalSpectrumEmission;
+	additionalSpectrumEmission = &additi;
+
+	struct MobilityControlInfo	*mobilityControlInfo;
+	struct CarrierFreqEUTRA	*carrierFreq; //16;
+	struct CarrierBandwidthEUTRA	*carrierBandwidth; //16
+	struct AntennaInfoCommon	*antennaInfoCommon;//8
+	struct PDSCH_ConfigCommon	*pdsch_ConfigCommon;//8
+	struct PHICH_Config	*phich_Config;//8
+	struct PRACH_ConfigInfo	*prach_ConfigInfo;
+	struct PUCCH_ConfigCommon	*pucch_ConfigCommon;
+	struct RACH_ConfigCommon	*rach_ConfigCommon;
+	struct RACH_ConfigCommon__preambleInfo__preamblesGroupAConfig *preamblesGroupAConfig;
+	struct SoundingRS_UL_ConfigCommon	*soundingRS_UL_ConfigCommon;
+	struct TDD_Config	*tdd_Config;
+	struct UplinkPowerControlCommon	*uplinkPowerControlCommon;
+	struct UplinkPowerControlCommon_v1020	*uplinkPowerControlCommon_v1020;
+	struct RACH_ConfigDedicated	*rach_ConfigDedicated;
+
+	mobilityControlInfo = malloc(sizeof(struct MobilityControlInfo));
+	carrierFreq = malloc(sizeof(struct CarrierFreqEUTRA));
+	carrierBandwidth = malloc(sizeof(struct CarrierBandwidthEUTRA));
+	antennaInfoCommon = malloc(sizeof(struct AntennaInfoCommon));
+	pdsch_ConfigCommon = malloc(sizeof(struct PDSCH_ConfigCommon));
+	phich_Config = malloc(sizeof(struct PHICH_Config));
+	prach_ConfigInfo = malloc(sizeof(struct PRACH_ConfigInfo));
+	pucch_ConfigCommon = malloc(sizeof(struct PUCCH_ConfigCommon));
+	rach_ConfigCommon = malloc(sizeof(struct RACH_ConfigCommon));
+	preamblesGroupAConfig = malloc(sizeof(struct RACH_ConfigCommon__preambleInfo__preamblesGroupAConfig));
+	soundingRS_UL_ConfigCommon = malloc(sizeof(struct SoundingRS_UL_ConfigCommon));
+	tdd_Config = malloc(sizeof(struct TDD_Config));
+	uplinkPowerControlCommon = malloc(sizeof(struct UplinkPowerControlCommon));
+	uplinkPowerControlCommon_v1020 = malloc(sizeof(struct UplinkPowerControlCommon_v1020));
+	rach_ConfigDedicated = malloc(sizeof(struct RACH_ConfigDedicated));
+
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo = mobilityControlInfo;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierFreq = carrierFreq;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierBandwidth = carrierBandwidth;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.antennaInfoCommon = antennaInfoCommon;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pdsch_ConfigCommon = pdsch_ConfigCommon;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.phich_Config = phich_Config;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.prach_Config.prach_ConfigInfo = prach_ConfigInfo;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pucch_ConfigCommon = pucch_ConfigCommon;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon = rach_ConfigCommon;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->preambleInfo.preamblesGroupAConfig = preamblesGroupAConfig;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.soundingRS_UL_ConfigCommon = soundingRS_UL_ConfigCommon;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.tdd_Config = tdd_Config;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon = uplinkPowerControlCommon;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon_v1020 = uplinkPowerControlCommon_v1020;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->rach_ConfigDedicated = rach_ConfigDedicated;
+
+	mst->present = DL_DCCH_MessageType_PR_c1;
+	mst->choice.c1.present = DL_DCCH_MessageType__c1_PR_rrcConnectionReconfiguration;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.rrc_TransactionIdentifier = 1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.present = RRCConnectionReconfiguration__criticalExtensions_PR_c1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.present = RRCConnectionReconfiguration__criticalExtensions__c1_PR_rrcConnectionReconfiguration_r8;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.dedicatedInfoNASList = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.measConfig = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.nonCriticalExtension = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.radioResourceConfigDedicated = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.securityConfigHO = NULL;
+
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->targetPhysCellId = 172;
+	//mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierFreq = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierFreq->dl_CarrierFreq = 38100;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierFreq->ul_CarrierFreq = NULL;
+	//mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierBandwidth = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierBandwidth->dl_Bandwidth = CarrierBandwidthEUTRA__dl_Bandwidth_n100;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->carrierBandwidth->ul_Bandwidth = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->additionalSpectrumEmission = additionalSpectrumEmission;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->t304 = MobilityControlInfo__t304_ms500;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->newUE_Identity = c_rnti;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.antennaInfoCommon->antennaPortsCount = AntennaInfoCommon__antennaPortsCount_an2;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.p_Max = p_Max;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pdsch_ConfigCommon->p_b = 1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pdsch_ConfigCommon->referenceSignalPower = 15;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.phich_Config->phich_Duration = PHICH_Config__phich_Duration_normal;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.phich_Config->phich_Resource = PHICH_Config__phich_Resource_half;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.prach_Config.rootSequenceIndex = 707;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.prach_Config.prach_ConfigInfo->highSpeedFlag = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.prach_Config.prach_ConfigInfo->prach_ConfigIndex = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.prach_Config.prach_ConfigInfo->prach_FreqOffset = 85;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.prach_Config.prach_ConfigInfo->zeroCorrelationZoneConfig = 6;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pucch_ConfigCommon->deltaPUCCH_Shift = PUCCH_ConfigCommon__deltaPUCCH_Shift_ds1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pucch_ConfigCommon->n1PUCCH_AN = 180;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pucch_ConfigCommon->nCS_AN = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pucch_ConfigCommon->nRB_CQI = 3;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.pusch_ConfigBasic.enable64QAM = 1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.pusch_ConfigBasic.hoppingMode = PUSCH_ConfigCommon__pusch_ConfigBasic__hoppingMode_interSubFrame;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.pusch_ConfigBasic.n_SB = 1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.pusch_ConfigBasic.pusch_HoppingOffset = 12;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.ul_ReferenceSignalsPUSCH.cyclicShift = 3;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.ul_ReferenceSignalsPUSCH.groupAssignmentPUSCH = 3;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.ul_ReferenceSignalsPUSCH.groupHoppingEnabled = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.pusch_ConfigCommon.ul_ReferenceSignalsPUSCH.sequenceHoppingEnabled = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->maxHARQ_Msg3Tx = 5;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->powerRampingParameters.powerRampingStep = RACH_ConfigCommon__powerRampingParameters__powerRampingStep_dB2;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->powerRampingParameters.preambleInitialReceivedTargetPower = RACH_ConfigCommon__powerRampingParameters__preambleInitialReceivedTargetPower_dBm_100;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->preambleInfo.numberOfRA_Preambles = RACH_ConfigCommon__preambleInfo__numberOfRA_Preambles_n52;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->preambleInfo.preamblesGroupAConfig->messagePowerOffsetGroupB = RACH_ConfigCommon__preambleInfo__preamblesGroupAConfig__messagePowerOffsetGroupB_dB8;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->preambleInfo.preamblesGroupAConfig->messageSizeGroupA = RACH_ConfigCommon__preambleInfo__preamblesGroupAConfig__messageSizeGroupA_b56;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->preambleInfo.preamblesGroupAConfig->sizeOfRA_PreamblesGroupA = RACH_ConfigCommon__preambleInfo__preamblesGroupAConfig__sizeOfRA_PreamblesGroupA_n48;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->ra_SupervisionInfo.mac_ContentionResolutionTimer = RACH_ConfigCommon__ra_SupervisionInfo__mac_ContentionResolutionTimer_sf64;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->ra_SupervisionInfo.preambleTransMax = RACH_ConfigCommon__ra_SupervisionInfo__preambleTransMax_n8;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.rach_ConfigCommon->ra_SupervisionInfo.ra_ResponseWindowSize = RACH_ConfigCommon__ra_SupervisionInfo__ra_ResponseWindowSize_sf10;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.soundingRS_UL_ConfigCommon->present = SoundingRS_UL_ConfigCommon_PR_setup;
+	//mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.soundingRS_UL_ConfigCommon->choice.release = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.soundingRS_UL_ConfigCommon->choice.setup.ackNackSRS_SimultaneousTransmission = 1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.soundingRS_UL_ConfigCommon->choice.setup.srs_BandwidthConfig = SoundingRS_UL_ConfigCommon__setup__srs_BandwidthConfig_bw0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.soundingRS_UL_ConfigCommon->choice.setup.srs_MaxUpPts = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.soundingRS_UL_ConfigCommon->choice.setup.srs_SubframeConfig = SoundingRS_UL_ConfigCommon__setup__srs_SubframeConfig_sc0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.tdd_Config->specialSubframePatterns = TDD_Config__specialSubframePatterns_ssp7;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.tdd_Config->subframeAssignment = TDD_Config__subframeAssignment_sa2;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.ul_CyclicPrefixLength = UL_CyclicPrefixLength_len1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->alpha = UplinkPowerControlCommon__alpha_al08;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->deltaFList_PUCCH.deltaF_PUCCH_Format1 = DeltaFList_PUCCH__deltaF_PUCCH_Format1_deltaF0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->deltaFList_PUCCH.deltaF_PUCCH_Format1b = DeltaFList_PUCCH__deltaF_PUCCH_Format1b_deltaF3;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->deltaFList_PUCCH.deltaF_PUCCH_Format2 = DeltaFList_PUCCH__deltaF_PUCCH_Format2_deltaF1;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->deltaFList_PUCCH.deltaF_PUCCH_Format2a = DeltaFList_PUCCH__deltaF_PUCCH_Format2a_deltaF2;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->deltaFList_PUCCH.deltaF_PUCCH_Format2b = DeltaFList_PUCCH__deltaF_PUCCH_Format2b_deltaF2;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->deltaPreambleMsg3 = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->p0_NominalPUCCH = -105;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon->p0_NominalPUSCH = -75;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon_v1020->deltaF_PUCCH_Format1bCS_r10 = UplinkPowerControlCommon_v1020__deltaF_PUCCH_Format1bCS_r10_deltaF2;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->radioResourceConfigCommon.uplinkPowerControlCommon_v1020->deltaF_PUCCH_Format3_r10 = UplinkPowerControlCommon_v1020__deltaF_PUCCH_Format3_r10_deltaF0;
+	//mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->rach_ConfigDedicated = NULL;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->rach_ConfigDedicated->ra_PRACH_MaskIndex = 0;
+	mst->choice.c1.choice.rrcConnectionReconfiguration.criticalExtensions.choice.c1.choice.rrcConnectionReconfiguration_r8.mobilityControlInfo->rach_ConfigDedicated->ra_PreambleIndex = 52;
+}
+
+
+
+
+
 

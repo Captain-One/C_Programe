@@ -82,7 +82,10 @@ typedef struct packet_header_t{
 	uint32_t   timestampl;
 	uint32_t   caplen;
 	uint32_t   len;
-#define FDD 1
+}packet_header;
+
+/*
+ * #define FDD 1
 #define TDD 2
 	uint8_t     radiotype;  //1:fdd,2:tdd
 #define UPLINK 0
@@ -117,7 +120,7 @@ typedef struct packet_header_t{
 	uint8_t     crc_status_tag; //0x07
 	uint8_t     crc_status;  //
 	uint8_t     lte_payload_tag; //0x01
-}packet_header;
+ */
 #pragma pack() 
 
 int data_pro(uint8_t *buf,FILE *fd,uint8_t direction,uint8_t radiotype);
