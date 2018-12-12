@@ -8,6 +8,7 @@
 #include <xdc/runtime/System.h>
 
 #include <xdc/runtime/Timestamp.h>
+#include <xdc/runtime/Startup.h>
 
 #include <ti/sysbios/BIOS.h>
 
@@ -15,6 +16,10 @@
 
 #include <ti/sysbios/hal/Timer.h>
 #include <ti/sysbios/hal/Hwi.h>
+
+#include <ti/ipc/Ipc.h>
+
+#include <myStartConfig.h>
 
 extern Timer_Handle myTimer;
 
@@ -127,6 +132,11 @@ Void myIdleFunc()
     System_exit(0);
 }
 
+Void myInit(Void)
+{
+
+}
+
 /*
  *  ======== main ========
  */
@@ -134,6 +144,10 @@ Int main()
 { 
     //Task_Handle task;
     //Error_Block eb;
+    myPLLInit(MAIN_PLL_REF_CLK_MHZ, MAIN_PLL_MULTIPLIER, MAIN_PLL_DIVISOR);
+    //myDDRInit();
+    TSC_init();
+
 
     System_printf("enter main(),start HwiHookExample...\n");
 

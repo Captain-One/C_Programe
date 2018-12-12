@@ -99,6 +99,10 @@ main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/package/Timestamp_
 main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/ITimestampProvider.h
 main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/package/Timestamp_SupportProxy.h
+main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Startup.h
+main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h
+main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/IModule.h
+main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/BIOS.h
 main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/BIOS__prologue.h
@@ -206,6 +210,43 @@ main.obj: C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/IInstance.h
 main.obj: C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/interfaces/IHwi.h
 main.obj: C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/hal/Hwi__epilogue.h
 main.obj: C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h
+main.obj: C:/ti/ipc_3_50_02_02/packages/ti/ipc/Ipc.h
+main.obj: D:/pxqwork/project/app-n/Template-SysBios/myStartConfig.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/soc/k2h/src/cslr_device.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_pllc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/pllc/V0/cslr_pllc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_bootcfg.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/bootcfg/V0/cslr_bootcfg.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/bootcfg/V0/csl_bootcfgAux.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_bootcfg.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_types.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_error.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/bootcfg/V0/csl_bootcfg.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/soc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_pllc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/pllc/V0/csl_pllc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_xmc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/emif4/V0/cslr_emif4f.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/cgem/V0/cslr_cgem.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/tpcc/V0/cslr_tpcc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_edma3.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_tpcc.h
+main.obj: C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h
 
 ../main.c: 
 C:/ti/xdctools_3_50_08_24_core/packages/xdc/std.h: 
@@ -306,6 +347,10 @@ C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/package/Timestamp_SupportPro
 C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/ITimestampProvider.h: 
 C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/package/Timestamp_SupportProxy.h: 
+C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Startup.h: 
+C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/IModule.h: 
+C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h: 
 C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/BIOS.h: 
 C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/Types.h: 
 C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/BIOS__prologue.h: 
@@ -413,3 +458,40 @@ C:/ti/xdctools_3_50_08_24_core/packages/xdc/runtime/IInstance.h:
 C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/interfaces/IHwi.h: 
 C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/hal/Hwi__epilogue.h: 
 C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h: 
+C:/ti/ipc_3_50_02_02/packages/ti/ipc/Ipc.h: 
+D:/pxqwork/project/app-n/Template-SysBios/myStartConfig.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/soc/k2h/src/cslr_device.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_pllc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/pllc/V0/cslr_pllc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_bootcfg.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/bootcfg/V0/cslr_bootcfg.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/bootcfg/V0/csl_bootcfgAux.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_bootcfg.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_types.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_error.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/bootcfg/V0/csl_bootcfg.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/soc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_pllc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/pllc/V0/csl_pllc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_xmc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/emif4/V0/cslr_emif4f.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/cgem/V0/cslr_cgem.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/src/ip/tpcc/V0/cslr_tpcc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/csl_edma3.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/cslr_tpcc.h: 
+C:/ti/66ak-rtos-sdk/pdk_k2hk_4_0_11/packages/ti/csl/tistdtypes.h: 

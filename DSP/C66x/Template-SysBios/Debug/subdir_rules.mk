@@ -22,7 +22,7 @@ configPkg/: build-861293679
 %.obj: ../%.c $(GEN_OPTS) | $(GEN_FILES)
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: C6000 Compiler'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/bin/cl6x" --include_path="D:/pxqwork/project/app-n/Template-SysBios" --include_path="C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/posix/ccs" --include_path="C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="$(basename $(<F)).d_raw" $(GEN_OPTS__FLAG) "$<"
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/bin/cl6x" --include_path="D:/pxqwork/project/app-n/Template-SysBios" --include_path="C:/ti/BIOS_Install/bios_6_73_01_01/packages/ti/posix/ccs" --include_path="C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include" --define=SOC_K2H -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="$(basename $(<F)).d_raw" $(GEN_OPTS__FLAG) "$<"
 	@echo 'Finished building: "$<"'
 	@echo ' '
 

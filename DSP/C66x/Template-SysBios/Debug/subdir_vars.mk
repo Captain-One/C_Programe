@@ -9,7 +9,8 @@ CFG_SRCS += \
 ../app.cfg 
 
 C_SRCS += \
-../main.c 
+../main.c \
+../myStartConfig.c 
 
 GEN_CMDS += \
 ./configPkg/linker.cmd 
@@ -22,28 +23,33 @@ GEN_MISC_DIRS += \
 ./configPkg/ 
 
 C_DEPS += \
-./main.d 
+./main.d \
+./myStartConfig.d 
 
 GEN_OPTS += \
 ./configPkg/compiler.opt 
 
 OBJS += \
-./main.obj 
+./main.obj \
+./myStartConfig.obj 
 
 GEN_MISC_DIRS__QUOTED += \
 "configPkg\" 
 
 OBJS__QUOTED += \
-"main.obj" 
+"main.obj" \
+"myStartConfig.obj" 
 
 C_DEPS__QUOTED += \
-"main.d" 
+"main.d" \
+"myStartConfig.d" 
 
 GEN_FILES__QUOTED += \
 "configPkg\linker.cmd" \
 "configPkg\compiler.opt" 
 
 C_SRCS__QUOTED += \
-"../main.c" 
+"../main.c" \
+"../myStartConfig.c" 
 
 

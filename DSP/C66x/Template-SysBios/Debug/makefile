@@ -11,6 +11,7 @@ GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
 
 ORDERED_OBJS += \
 "./main.obj" \
+"./myStartConfig.obj" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -139,7 +140,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Template-SysBios.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/bin/cl6x" -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Template-SysBios.map" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Template-SysBios_linkInfo.xml" --rom_model -o "Template-SysBios.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/bin/cl6x" --define=SOC_K2H -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Template-SysBios.map" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Template-SysBios_linkInfo.xml" --rom_model -o "Template-SysBios.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
@@ -153,8 +154,8 @@ Template-SysBios.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" 
-	-$(RM) "main.d" 
+	-$(RM) "main.obj" "myStartConfig.obj" 
+	-$(RM) "main.d" "myStartConfig.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '
