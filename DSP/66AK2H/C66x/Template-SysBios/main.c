@@ -78,11 +78,12 @@
 #include <ti/csl/csl_chip.h>
 #include <ti/csl/csl_cacheAux.h>
 
-#define RM 1
+#define RM 0
 
 #define SYSINIT                     0
-
+#ifndef NUM_CORES
 #define NUM_CORES                   4
+#endif
 
 #define MAPPED_VIRTUAL_ADDRESS      0x81000000
 
@@ -125,13 +126,6 @@ volatile uint32_t       isLocInitDone = 0;
 #pragma DATA_SECTION (isTestDone, ".qmss");
 volatile uint32_t       isTestDone = 0;
 
-/* RM initialization sync point */
-#pragma DATA_SECTION (isRmInitialized, ".rm");
-volatile uint32_t       isRmInitialized;
-
-/* RM instance handle */
-Rm_Handle               rmHandle = NULL;
-
 
 /************************ EXTERN VARIABLES ********************/
 
@@ -140,12 +134,6 @@ extern Qmss_GlobalConfigParams  qmssGblCfgParams;
 /* CPPI device specific configuration */
 extern Cppi_GlobalConfigParams  cppiGblCfgParams;
 
-/* RM test Global Resource List (GRL) */
-extern const char rmGlobalResourceList[];
-/* RM test Global Policy provided to RM Server */
-extern const char rmDspOnlyPolicy[];
-
-extern int setupRmTransConfig(uint32_t numTestCores, uint32_t systemInitCore, Task_FuncPtr testTask);
 
 /*************************** FUNCTIONS ************************/
 
@@ -190,7 +178,6 @@ Void myStartupFxn (Void)
     MultiProc_setLocalId (corenum);
 }
 
-
 void usageTsk(UArg arg0, UArg arg1);
 
 /**
@@ -208,10 +195,7 @@ void usageTsk(UArg arg0, UArg arg1);
  */
 void main (void)
 {
-    /* RM configuration */
-    Rm_InitCfg              rmInitCfg;
-    char                    rmInstName[RM_NAME_MAX_CHARS];
-    int32_t                 rmResult;
+    Task_Params             taskParams;
 
     uint32_t                corenum = 0; // Not used on linux
 
@@ -219,9 +203,7 @@ void main (void)
     System_printf ("*************** CPPI LLD usage example ***********\n");
     System_printf ("**************************************************\n");
 
-    /* Reset the variable to indicate to other cores RM init is not yet done */
-    isRmInitialized = 0;
-
+    /* Get the core number. */
     corenum = CSL_chipReadReg (CSL_CHIP_DNUM);
 
     /* Initialize the heap in shared memory. Using IPC module to do that */
@@ -232,50 +214,14 @@ void main (void)
     if (corenum == SYSINIT)
     {
         System_printf ("Core %d : L1D cache size %d. L2 cache size %d.\n", corenum, CACHE_getL1DSize(), CACHE_getL2Size());
-        /* Create the Server instance */
-        memset((void *)&rmInitCfg, 0, sizeof(Rm_InitCfg));
-        System_sprintf (rmInstName, "RM_Server");
-        rmInitCfg.instName = rmInstName;
-        rmInitCfg.instType = Rm_instType_SERVER;
-        rmInitCfg.instCfg.serverCfg.globalResourceList = (void *)rmGlobalResourceList;
-        rmInitCfg.instCfg.serverCfg.globalPolicy = (void *)rmDspOnlyPolicy;
-        rmHandle = Rm_init(&rmInitCfg, &rmResult);
-        if (rmResult != RM_OK)
-        {
-            System_printf ("Error Core %d : Initializing Resource Manager error code : %d\n", corenum, rmResult);
-            return;
-        }
-
-        isRmInitialized = 1;
-        /* Writeback L1D */
-        CACHE_wbL1d ((void *) &isRmInitialized, 4, CACHE_WAIT);
-    }
-    else
-    {
-        /* Create a RM Client instance */
-        memset((void *)&rmInitCfg, 0, sizeof(Rm_InitCfg));
-        System_sprintf (rmInstName, "RM_Client%d", corenum);
-        rmInitCfg.instName = rmInstName;
-        rmInitCfg.instType = Rm_instType_CLIENT;
-        rmHandle = Rm_init(&rmInitCfg, &rmResult);
-        if (rmResult != RM_OK)
-        {
-            System_printf ("Error Core %d : Initializing Resource Manager error code : %d\n", corenum, rmResult);
-            return;
-        }
-
-        do{
-            CACHE_invL1d ((void *) &isRmInitialized, 4, CACHE_WAIT);
-        } while (isRmInitialized == 0);
     }
 
-    if (setupRmTransConfig(NUM_CORES, SYSINIT, usageTsk) < 0)
-    {
-        System_printf ("Error core %d : Transport setup for RM error\n", corenum);
-        return;
-    }
+    /* Create the RM transport configuration task */
+    Task_Params_init (&taskParams);
+    taskParams.priority = 1;
+    Task_create (usageTsk, &taskParams, NULL);
+
     System_printf("Core %d : Starting BIOS...\n", corenum);
-
     BIOS_start();
 }
 
@@ -310,12 +256,6 @@ void usageTsk(UArg arg0, UArg arg1)
 
     Cppi_Handle             cppiHnd;
 
-    int32_t                 rmResult;
-    Rm_ServiceHandle        *rmServiceHandle = NULL;
-    Qmss_StartCfg           qmssStartCfg;
-    Cppi_StartCfg           cppiStartCfg;
-
-
     Cppi_ChHnd              rxChHnd, txChHnd;
     Qmss_QueueHnd           txQueHnd, rxQueHnd, freeQueHnd;
     Cppi_DescCfg            descCfg;
@@ -325,15 +265,6 @@ void usageTsk(UArg arg0, UArg arg1)
 
     /* Get the core number. */
     corenum = CSL_chipReadReg (CSL_CHIP_DNUM);
-
-
-    rmServiceHandle = Rm_serviceOpenHandle(rmHandle, &rmResult);
-    if (rmResult != RM_OK)
-    {
-        System_printf ("Error Core %d : Creating RM service handle error code : %d\n", corenum, rmResult);
-        return;
-    }
-
 
     if (corenum == SYSINIT)
     {
@@ -345,13 +276,10 @@ void usageTsk(UArg arg0, UArg arg1)
         /* Set up the linking RAM. Use the internal Linking RAM.
          * LLD will configure the internal linking RAM address and default size if a value of zero is specified.
          * Linking RAM1 is not used */
-
         qmssInitConfig.linkingRAM0Base = l2_global_address ((uint32_t) linkingRAM0);
         qmssInitConfig.linkingRAM0Size = (NUM_HOST_DESC + NUM_MONOLITHIC_DESC) * NUM_CORES;
         qmssInitConfig.linkingRAM1Base = 0;
         qmssInitConfig.maxDescNum      = (NUM_HOST_DESC + NUM_MONOLITHIC_DESC) * NUM_CORES;
-
-        qmssGblCfgParams.qmRmServiceHandle = rmServiceHandle;
 
         /* Initialize Queue Manager SubSystem */
         result = Qmss_init (&qmssInitConfig, &qmssGblCfgParams);
@@ -400,10 +328,8 @@ void usageTsk(UArg arg0, UArg arg1)
             CACHE_invL1d ((void *) &isSysInitialized, 4, CACHE_WAIT);
         } while (isSysInitialized == 0);
 
-        /* Start Queue Manager SubSystem with RM */
-        qmssStartCfg.rmServiceHandle = rmServiceHandle;
-        qmssStartCfg.pQmssGblCfgParams = &qmssGblCfgParams;
-        result = Qmss_startCfg (&qmssStartCfg);
+        /* Start Queue Manager SubSystem */
+        result = Qmss_start ();
 
         if (result != QMSS_SOK)
         {
@@ -431,10 +357,6 @@ void usageTsk(UArg arg0, UArg arg1)
     /* Set up QMSS CPDMA configuration */
     memset ((void *) &cpdmaCfg, 0, sizeof (Cppi_CpDmaInitCfg));
     cpdmaCfg.dmaNum = Cppi_CpDma_QMSS_CPDMA;
-
-    /* Register RM with CPPI */
-    cppiStartCfg.rmServiceHandle = rmServiceHandle;
-    Cppi_startCfg(&cppiStartCfg);
 
 
     /* Open QMSS CPDMA */
@@ -733,14 +655,6 @@ void usageTsk(UArg arg0, UArg arg1)
     {
         System_printf ("Core %d: exit QMSS\n", corenum);
         while ((result = Qmss_exit()) != QMSS_SOK);
-    }
-
-    if (corenum == SYSINIT)
-    {
-        if ((rmResult = Rm_resourceStatus(rmHandle, FALSE)) != 0)
-            System_printf ("Error Core %d : Number of unfreed resources : %d\n", corenum, rmResult);
-        else
-            System_printf ("Core %d : All resources freed successfully\n", corenum);
     }
 
     System_printf ("*******************************************************\n");
