@@ -1,0 +1,18 @@
+package/cfg/build_pe66.oe66: package/cfg/build_pe66.c C:/ti/xdctools_3_51_01_18_core/packages/xdc/std.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/stdarg.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/stddef.h C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/std.h C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/select.h C:/ti/sdk-k2h/bios_6_73_01_01/packages/iar/targets/select.h C:/ti/sdk-k2h/bios_6_73_01_01/packages/gnu/targets/select.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/_types.h C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/std.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/cdefs.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/machine/_types.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/stdint.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/_stdint40.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/stdint.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/machine/_stdint.h C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/_stdint.h 
+package/cfg/build_pe66.c:
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/std.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/stdarg.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/stddef.h:
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/std.h:
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/select.h:
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/iar/targets/select.h:
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/gnu/targets/select.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/_types.h:
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/std.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/cdefs.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/machine/_types.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/stdint.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/_stdint40.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/stdint.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/machine/_stdint.h:
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.1/include/sys/_stdint.h:
