@@ -10,6 +10,8 @@
 #define NAND_ONE_BLOCK_PAGE_COUNT       32
 #define NAND_BLOCK_SIZE                 NAND_PAGE_SIZE*NAND_ONE_BLOCK_PAGE_COUNT
 
+#define BOOT_TABLE_OK                   -1
+
 #define X32(x)                          (((x) & 0x000000FF) << 24) | (((x) & 0x0000FF00) << 8) |\
                                         (((x) & 0x00FF0000) >> 8) | (((x) & 0xFF000000) >> 24)
 
@@ -19,104 +21,124 @@ typedef struct boottble{
     uint8_t     data[0];
 }Boot_table_s;
 
+uint32_t c_int00_addr[8] = {0};
 
-int Boot_Table_Parse(uint8_t *data_buf, uint32_t data_size)
+int ext_buf_flag = 0;
+uint8_t ext_buf[8] = {0};
+
+int Boot_Table_Parse(uint8_t *data_buf, int data_size, int *const isheader, int *const remain_section_size)
 {
     Boot_table_s *boot_table;
+    int section_size;
+    int copy_size;
+    int boot_table_head_size;
+    int i;
 
-    boot_table = (Boot_table_s *)(data_buf);
-    boot_table->len = X32(boot_table->len);
-    boot_table->addr = X32(boot_table->addr);
 
-    if(boot_table->len == 0){
-        printf("read boot table over\n");
-        return 0;
-    }
-
-    data_buf += 4;
-
-    if((boot_table->len) < data_size)
-    {
-        memcpy((void *)boot_table->addr, (void *)data_buf, boot_table->len);
-        data_buf += boot_table->len;
-        data_size -= boot_table->len;
-        if(Boot_Table_Parse(data_buf, data_size) == 0){
+    if(*isheader){
+        if(data_size <= 8){
+            for(i = 0; i < data_size; i++){
+                ext_buf[i] = data_buf[NAND_BLOCK_SIZE - data_size + i];
+            }
+            ext_buf_flag = data_size;
             return 0;
         }
+
+        if(ext_buf_flag){
+            for(i = 0; i < (8 - ext_buf_flag); i++){
+                ext_buf[ext_buf_flag + i] = data_buf[i];
+            }
+            boot_table = (Boot_table_s *)(ext_buf);
+            data_buf += (8 - ext_buf_flag);
+            boot_table_head_size = 8 - ext_buf_flag;
+            ext_buf_flag = 0;
+        }else{
+            boot_table = (Boot_table_s *)(data_buf);
+            data_buf += 8;
+            boot_table_head_size = 8;
+        }
+
+        boot_table->len = X32(boot_table->len);
+        boot_table->addr = X32(boot_table->addr);
+        if(boot_table->len == 0){
+            printf("read boot table over\n");
+            return BOOT_TABLE_OK;
+        }
+        section_size = boot_table->len;
+    }else{
+        boot_table_head_size = 0;
+        section_size = *remain_section_size;
+    }
+
+    data_size -= boot_table_head_size;
+
+    if(section_size <= data_size)
+    {
+        memcpy((void *)boot_table->addr, (void *)data_buf, section_size);
+        copy_size = section_size;
+        *isheader = 1;
     }else{
         memcpy((void *)boot_table->addr, (void *)data_buf, data_size);
-        return 0;
+        copy_size = data_size;
+        *remain_section_size = section_size - copy_size;
+        *isheader = 0;
     }
+
+    return copy_size + boot_table_head_size;
 }
 
 int Data_Parse(PLATFORM_DEVHANDLE handle)
 {
     uint8_t *nand_data_buf;
-    uint32_t c_int00_addr;
     Platform_STATUS status;
     uint32_t offset = 0;
-    Boot_table_s  *boot_table;
-    uint32_t remain_block_count;
-    uint32_t remian_data_size;
+    int read_block_count = 0;
+    int remian_data_size;
+    int remain_section_size;
+    int isheader;
+    int data_copy_size = 0;;
+    int total_copy_size = 0;
 
-    nand_data_buf = (uint8_t *)malloc(NAND_BLOCK_SIZE);
+    nand_data_buf = (uint8_t *)malloc(NAND_BLOCK_SIZE + 8);
     if(nand_data_buf == NULL){
         printf("malloc nand_data_buf error\n");
         return -1;
     }
 
-    status = platform_device_read(handle, BIN_FILE_START_ADDR + offset, nand_data_buf, NAND_BLOCK_SIZE);
+    status = platform_device_read(handle, BIN_FILE_START_ADDR + read_block_count * NAND_BLOCK_SIZE, nand_data_buf, NAND_BLOCK_SIZE);
     if(status != Platform_EOK){
        printf("platform_device_read Error: %d\n", status);
        return -1;
     }
 
-    c_int00_addr = X32(*(uint32_t *)nand_data_buf);
+    remian_data_size = NAND_BLOCK_SIZE;
+    c_int00_addr[0] = X32(*(uint32_t *)nand_data_buf);
+    offset = 4;
+    read_block_count = 1;
+    remain_section_size = 0;
+    isheader = 1;
+    remian_data_size -= offset;
 
-    boot_table = (Boot_table_s *)(nand_data_buf + 4);
-    boot_table->len = X32(boot_table->len);
-    boot_table->addr = X32(boot_table->addr);
-
-    remian_data_size = NAND_BLOCK_SIZE -12;
-
-    if(boot_table->len < remian_data_size)
+    do
     {
-        x
-
-        boot_table = (Boot_table_s *)(nand_data_buf + boot_table->len);
-        boot_table->len = X32(boot_table->len);
-        boot_table->addr = X32(boot_table->addr);
-    }
-
-    if(boot_table->len > (NAND_BLOCK_SIZE - 12)){
-        memcpy((void *)boot_table->addr, (void *)(nand_data_buf + 12), NAND_BLOCK_SIZE - 12);
-
-        while(remain_block_count){
-            status = platform_device_read(handle, BIN_FILE_START_ADDR + NAND_BLOCK_SIZE, nand_data_buf, NAND_BLOCK_SIZE);
+        data_copy_size = Boot_Table_Parse(nand_data_buf + offset, remian_data_size, &isheader, &remain_section_size);
+        offset += data_copy_size;
+        remian_data_size -= data_copy_size;
+        total_copy_size += data_copy_size;
+        if((!isheader) || (offset == NAND_BLOCK_SIZE))
+        {
+            status = platform_device_read(handle, BIN_FILE_START_ADDR + read_block_count * NAND_BLOCK_SIZE, nand_data_buf, NAND_BLOCK_SIZE);
             if(status != Platform_EOK){
                printf("platform_device_read Error: %d\n", status);
                return -1;
             }
-
-            remain_block_count --;
+            read_block_count ++;
+            remian_data_size = NAND_BLOCK_SIZE;
+            offset = 0;
         }
+    }while(data_copy_size != BOOT_TABLE_OK);
 
-        memcpy((void *)boot_table->addr + NAND_BLOCK_SIZE - 12, (void *)nand_data_buf, NAND_BLOCK_SIZE - 12);
-    }else{
-
-    }
-
-    remain_block_count = 1;
-    if((boot_table->len + 12)/NAND_BLOCK_SIZE > 1){
-        remain_block_count += (boot_table->len + 12)/NAND_BLOCK_SIZE + 1;
-    }
-
- boot_table = (Boot_table_s *)malloc(sizeof(Boot_table_s) + boot_table->len);
-    if(boot_table == NULL){
-        printf("malloc boot table buf error\n");
-        return -1;
-    }
-
+    free(nand_data_buf);
     return 0;
 }
 
