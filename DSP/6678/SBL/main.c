@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ti/platform/platform.h>
+#include <ti/csl/csl_bootcfgAux.h>
 
 #define MAGIC_ADDR                      0x0087FFFC
 #define BIN_FILE_START_ADDR             0x4000
@@ -11,6 +12,7 @@
 #define NAND_BLOCK_SIZE                 NAND_PAGE_SIZE*NAND_ONE_BLOCK_PAGE_COUNT
 
 #define BOOT_TABLE_OK                   -1
+#define CORE_NUM                        8
 
 #define X32(x)                          (((x) & 0x000000FF) << 24) | (((x) & 0x0000FF00) << 8) |\
                                         (((x) & 0x00FF0000) >> 8) | (((x) & 0xFF000000) >> 24)
@@ -21,10 +23,23 @@ typedef struct boottble{
     uint8_t     data[0];
 }Boot_table_s;
 
-uint32_t c_int00_addr[8] = {0};
+typedef struct core_info{
+    uint32_t    file_size;
+    uint32_t    entry_point;
+}Core_info_s;
+
+typedef struct my_boot_head{
+    uint32_t   all_size;
+    uint32_t    core_count;
+    Core_info_s core_info[0];
+}My_Boot_Head_s;
+
+My_Boot_Head_s *my_boot_head;
 
 int ext_buf_flag = 0;
 uint8_t ext_buf[8] = {0};
+uint32_t Magic_Addr[8] = {0x108FFFFC, 0x118FFFFC, 0x128FFFFC, 0x138FFFFC, 0x148FFFFC, 0x158FFFFC, 0x168FFFFC, 0x178FFFFC};
+uint32_t IPCGR[8] = {0x02620240, 0x02620244, 0x02620248, 0x0262024C, 0x02620250, 0x02620254, 0x02620258, 0x0262025C};
 
 int Boot_Table_Parse(uint8_t *data_buf, int data_size, int *const isheader, int *const remain_section_size)
 {
@@ -58,13 +73,17 @@ int Boot_Table_Parse(uint8_t *data_buf, int data_size, int *const isheader, int 
             boot_table_head_size = 8;
         }
 
-        boot_table->len = X32(boot_table->len);
-        boot_table->addr = X32(boot_table->addr);
+        //boot_table->len = X32(boot_table->len);
+        //boot_table->addr = X32(boot_table->addr);
         if(boot_table->len == 0){
             printf("read boot table over\n");
             return BOOT_TABLE_OK;
         }
         section_size = boot_table->len;
+        if((section_size%4) != 0)
+        {
+            section_size += section_size%4;
+        }
     }else{
         boot_table_head_size = 0;
         section_size = *remain_section_size;
@@ -98,6 +117,9 @@ int Data_Parse(PLATFORM_DEVHANDLE handle)
     int isheader;
     int data_copy_size = 0;;
     int total_copy_size = 0;
+    int core_count;
+    //int all_file_len;
+    int i;
 
     nand_data_buf = (uint8_t *)malloc(NAND_BLOCK_SIZE + 8);
     if(nand_data_buf == NULL){
@@ -112,8 +134,24 @@ int Data_Parse(PLATFORM_DEVHANDLE handle)
     }
 
     remian_data_size = NAND_BLOCK_SIZE;
-    c_int00_addr[0] = X32(*(uint32_t *)nand_data_buf);
-    offset = 4;
+    my_boot_head = (My_Boot_Head_s *)nand_data_buf;
+    core_count = my_boot_head->core_count;
+
+    my_boot_head = (My_Boot_Head_s *)malloc(sizeof(My_Boot_Head_s) + core_count * sizeof(Core_info_s));
+    if(my_boot_head == NULL){
+        printf("malloc my_boot_head error\n");
+        return -1;
+    }
+
+    my_boot_head->all_size =  ((My_Boot_Head_s *)nand_data_buf)->all_size;
+    my_boot_head->core_count = ((My_Boot_Head_s *)nand_data_buf)->core_count;
+    for(i = 0; i < my_boot_head->core_count; i++)
+    {
+        my_boot_head->core_info[i].file_size = ((My_Boot_Head_s *)nand_data_buf)->core_info[i].file_size;
+        my_boot_head->core_info[i].entry_point = ((My_Boot_Head_s *)nand_data_buf)->core_info[i].entry_point;
+    }
+
+    offset = sizeof(My_Boot_Head_s) + sizeof(Core_info_s) * (my_boot_head->core_count);
     read_block_count = 1;
     remain_section_size = 0;
     isheader = 1;
@@ -150,9 +188,12 @@ int main(void)
     platform_info  platform_info;
     CPU_info  *cpu_info;
     PLATFORM_DEVICE_info *device_info;
-    //uint8_t nand_data_buf[1024] = {0};
-    //int i;
+
     int re;
+    int i;
+    void   (*exit)();
+    uint32_t * maigic_addr;
+    uint32_t * ipgr_reg;
 
     memset(&platform_info, 0, sizeof(platform_info));
 
@@ -217,6 +258,22 @@ int main(void)
     }
     printf("platform_device_close OK!\n");
 
+    CSL_BootCfgUnlockKicker();
 
+    for(i = 1; i < my_boot_head->core_count; i++){
+
+        CSL_BootCfgSetDSPBootAddress(i, my_boot_head->core_info[i].entry_point);
+       // maigic_addr =  (uint32_t *)(Magic_Addr[i]);
+        //*maigic_addr = X32();
+        CSL_BootCfgGenerateInterDSPInterrupt(i,1);
+        //ipgr_reg = (uint32_t *)(IPCGR[i]);
+        //*ipgr_reg = (*ipgr_reg) | 0x00000001;
+        platform_delay(100000);
+    }
+
+    CSL_BootCfgLockKicker();
+
+    exit = (void (*)())(my_boot_head->core_info[0].entry_point);
+    (*exit)();
 	return 0;
 }
