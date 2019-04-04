@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ti/platform/platform.h>
 #include <ti/csl/csl_bootcfgAux.h>
+#include <ti/csl/csl_ipcAux.h>
+#include <ti/csl/csl_cacheAux.h>
 
 #define MAGIC_ADDR                      0x0087FFFC
 #define BIN_FILE_START_ADDR             0x4000
@@ -16,6 +18,9 @@
 
 #define X32(x)                          (((x) & 0x000000FF) << 24) | (((x) & 0x0000FF00) << 8) |\
                                         (((x) & 0x00FF0000) >> 8) | (((x) & 0xFF000000) >> 24)
+
+#define ALIGN(x, a)                     (((x) + ((a) - 1)) & (~((a) - 1)))
+
 
 typedef struct boottble{
     uint32_t    len;
@@ -34,21 +39,36 @@ typedef struct my_boot_head{
     Core_info_s core_info[0];
 }My_Boot_Head_s;
 
+
 My_Boot_Head_s *my_boot_head;
+
+Boot_table_s boot_table;
 
 int ext_buf_flag = 0;
 uint8_t ext_buf[8] = {0};
-uint32_t Magic_Addr[8] = {0x108FFFFC, 0x118FFFFC, 0x128FFFFC, 0x138FFFFC, 0x148FFFFC, 0x158FFFFC, 0x168FFFFC, 0x178FFFFC};
-uint32_t IPCGR[8] = {0x02620240, 0x02620244, 0x02620248, 0x0262024C, 0x02620250, 0x02620254, 0x02620258, 0x0262025C};
+
+
+void Copy_To_DDR(void *dst, void *src, int len)
+{
+    int i;
+    uint8_t *i_dst = (uint8_t *)dst;
+    uint8_t *i_src = (uint8_t *)src;
+
+    for(i = 0; i < len; i++)
+    {
+        i_dst[i] = i_src[i];
+    }
+    CACHE_wbL1d ((void *)i_dst, len, CACHE_WAIT);
+}
+
 
 int Boot_Table_Parse(uint8_t *data_buf, int data_size, int *const isheader, int *const remain_section_size)
 {
-    Boot_table_s *boot_table;
     int section_size;
     int copy_size;
     int boot_table_head_size;
     int i;
-
+    uint32_t *dst_addr;
 
     if(*isheader){
         if(data_size <= 8){
@@ -63,41 +83,48 @@ int Boot_Table_Parse(uint8_t *data_buf, int data_size, int *const isheader, int 
             for(i = 0; i < (8 - ext_buf_flag); i++){
                 ext_buf[ext_buf_flag + i] = data_buf[i];
             }
-            boot_table = (Boot_table_s *)(ext_buf);
+            boot_table.addr = ((Boot_table_s *)ext_buf)->addr;
+            boot_table.len = ((Boot_table_s *)ext_buf)->len;
             data_buf += (8 - ext_buf_flag);
             boot_table_head_size = 8 - ext_buf_flag;
             ext_buf_flag = 0;
         }else{
-            boot_table = (Boot_table_s *)(data_buf);
+            boot_table.addr = ((Boot_table_s *)data_buf)->addr;
+            boot_table.len = ((Boot_table_s *)data_buf)->len;
             data_buf += 8;
             boot_table_head_size = 8;
         }
 
-        //boot_table->len = X32(boot_table->len);
-        //boot_table->addr = X32(boot_table->addr);
-        if(boot_table->len == 0){
+        if(boot_table.len == 0){
             printf("read boot table over\n");
             return BOOT_TABLE_OK;
         }
-        section_size = boot_table->len;
-        if((section_size%4) != 0)
-        {
-            section_size += section_size%4;
-        }
+        section_size = ALIGN(boot_table.len, 4);
+
     }else{
         boot_table_head_size = 0;
         section_size = *remain_section_size;
     }
 
     data_size -= boot_table_head_size;
+    dst_addr = (uint32_t *)(boot_table.addr + (boot_table.len - section_size));
 
     if(section_size <= data_size)
     {
-        memcpy((void *)boot_table->addr, (void *)data_buf, section_size);
+
+        memcpy((void *)dst_addr, (void *)data_buf, section_size);
+        //CACHE_wbL1d ((void *)dst_addr, section_size, CACHE_WAIT);
+#if 0
+        Copy_To_DDR((void *)dst_addr, (void *)data_buf, section_size);
+#endif
         copy_size = section_size;
         *isheader = 1;
     }else{
-        memcpy((void *)boot_table->addr, (void *)data_buf, data_size);
+        memcpy((void *)dst_addr, (void *)data_buf, data_size);
+        //CACHE_wbL1d ((void *)dst_addr, data_size, CACHE_WAIT);
+#if 0
+        Copy_To_DDR((void *)dst_addr, (void *)data_buf, data_size);
+#endif
         copy_size = data_size;
         *remain_section_size = section_size - copy_size;
         *isheader = 0;
@@ -121,7 +148,7 @@ int Data_Parse(PLATFORM_DEVHANDLE handle)
     //int all_file_len;
     int i;
 
-    nand_data_buf = (uint8_t *)malloc(NAND_BLOCK_SIZE + 8);
+    nand_data_buf = (uint8_t *)malloc(NAND_BLOCK_SIZE + 512);
     if(nand_data_buf == NULL){
         printf("malloc nand_data_buf error\n");
         return -1;
@@ -193,7 +220,7 @@ int main(void)
     int i;
     void   (*exit)();
     uint32_t * maigic_addr;
-    uint32_t * ipgr_reg;
+
 
     memset(&platform_info, 0, sizeof(platform_info));
 
@@ -261,7 +288,7 @@ int main(void)
     CSL_BootCfgUnlockKicker();
 
     for(i = 1; i < my_boot_head->core_count; i++){
-
+#if 0
         CSL_BootCfgSetDSPBootAddress(i, my_boot_head->core_info[i].entry_point);
        // maigic_addr =  (uint32_t *)(Magic_Addr[i]);
         //*maigic_addr = X32();
@@ -269,11 +296,30 @@ int main(void)
         //ipgr_reg = (uint32_t *)(IPCGR[i]);
         //*ipgr_reg = (*ipgr_reg) | 0x00000001;
         platform_delay(100000);
+#endif
+#if 1
+        CSL_IPC_clearGEMInterruptSource(i, 0);
+        maigic_addr = (unsigned int*)(0x108FFFFC + (i * 0x01000000));
+        //set the boot magic address of the slave cores
+        while(1)
+        {
+            *maigic_addr = my_boot_head->core_info[i].entry_point;
+            //platform_delaycycles(1000000);
+            if(*maigic_addr == my_boot_head->core_info[i].entry_point)
+                break;
+        }
+        //interrupt the cores to wake them up
+        CSL_IPC_genGEMInterrupt(i, 0);
+#endif
     }
 
     CSL_BootCfgLockKicker();
 
-    exit = (void (*)())(my_boot_head->core_info[0].entry_point);
-    (*exit)();
-	return 0;
+    if(my_boot_head->core_info[0].entry_point != 0){
+        exit = (void (*)())(my_boot_head->core_info[0].entry_point);
+        (*exit)();
+    }else{
+        printf("core 0 entry point is null\n");
+    }
+    return 0;
 }
