@@ -27,7 +27,7 @@
  * offset 26: rest available to store Yaffs tags etc.
  */
 
-#include "yaffs_nand_drv.h"
+//#include "yaffs_nand_drv.h"
 #include "yportenv.h"
 #include "yaffs_trace.h"
 
@@ -38,11 +38,64 @@
 #include "yaffs_ecc.h"
 
 #include <ti/platform/platform.h>
+//#include "nand_drv.h"
+
+//extern PLATFORM_DEVICE_info gDeviceNand;
+
+PLATFORM_DEVICE_info *device_info;
 
 struct nand_context {
 	struct nand_chip *chip;
 	u8 *buffer;
 };
+
+/******************************************************************************
+ * Function:    checkBadBlockMark
+ *
+ *              Checks for the bad block mark. Returns TRUE if a block is marked bad.
+ ******************************************************************************/
+uint32_t checkBadBlockMark(PLATFORM_DEVICE_info  *p_device, uint32_t block)
+{
+    if (p_device->bblist[block] != 0xff)
+    {
+        return 1;  //bad
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+
+Platform_STATUS markBlockBad
+(
+    PLATFORM_DEVICE_info        *p_device,
+    uint32_t                    block
+)
+{
+    uint8_t       *spare_data;
+
+    spare_data = malloc(p_device->spare_size);
+    if (spare_data == NULL)
+    {
+        printf ("Can not allocate spare_data memory!\n");
+        return Platform_EFAIL;
+    }
+
+    platform_device_read_spare_data(p_device->handle, block, 0, spare_data);
+
+    /* Set all data bytes to 0xff, only set the user defined bad block mark value */
+    spare_data[p_device->bboffset] = 0xA5;
+
+    /* Write the data to page */
+    platform_device_write_spare_data(p_device->handle, block, 0, spare_data);
+
+    /* Save the user defined bad block mark in bblist */
+    p_device->bblist[block] = 0xA5;
+
+    free (spare_data);
+    return Platform_EOK;
+}
 
 #if 0
 static inline struct nand_chip *dev_to_chip(struct yaffs_dev *dev)
@@ -65,8 +118,18 @@ static int yaffs_nand_drv_WriteChunk(struct yaffs_dev *dev, int nand_chunk,
 				   const u8 *oob, int oob_len)
 {
 
+    uint32_t   offset;
+    Platform_STATUS ret;
 
-    //writeNandPage(&gDeviceNand, 0, data);
+    offset = nand_chunk * 2048;
+
+    ret = platform_device_write(device_info->handle, offset, data, data_len);
+    if(ret != Platform_EOK){
+        return YAFFS_FAIL;
+    }else{
+        return YAFFS_OK;
+    }
+
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);
 	u8 *buffer = dev_to_buffer(dev);
@@ -102,8 +165,6 @@ static int yaffs_nand_drv_WriteChunk(struct yaffs_dev *dev, int nand_chunk,
 	else
 		return YAFFS_FAIL;
 #endif
-	return YAFFS_OK;
-
 }
 
 static int yaffs_nand_drv_ReadChunk(struct yaffs_dev *dev, int nand_chunk,
@@ -111,6 +172,24 @@ static int yaffs_nand_drv_ReadChunk(struct yaffs_dev *dev, int nand_chunk,
 				   u8 *oob, int oob_len,
 				   enum yaffs_ecc_result *ecc_result_out)
 {
+    uint32_t   offset;
+    Platform_STATUS ret;
+
+    offset = nand_chunk * 2048;
+
+    ret = platform_device_read(device_info->handle, offset, data, data_len);
+
+    if(ret != Platform_EOK) {
+        if (ecc_result_out)
+            *ecc_result_out = YAFFS_ECC_RESULT_UNKNOWN;
+        return YAFFS_FAIL;
+    }else{
+        if (ecc_result_out)
+                *ecc_result_out = YAFFS_ECC_RESULT_NO_ERROR;
+        return YAFFS_OK;
+    }
+
+
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);
 	u8 *buffer = dev_to_buffer(dev);
@@ -167,11 +246,20 @@ static int yaffs_nand_drv_ReadChunk(struct yaffs_dev *dev, int nand_chunk,
 	if (ecc_result_out)
 		*ecc_result_out = ecc_result;
 #endif
-	return YAFFS_OK;
+
 }
 
 static int yaffs_nand_drv_EraseBlock(struct yaffs_dev *dev, int block_no)
 {
+    Platform_STATUS ret;
+
+    ret = platform_device_erase_block(device_info->handle, block_no);
+    if(ret != Platform_EOK){
+        return YAFFS_OK;
+    }else{
+        return YAFFS_FAIL;
+    }
+
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);
 
@@ -180,11 +268,20 @@ static int yaffs_nand_drv_EraseBlock(struct yaffs_dev *dev, int block_no)
 	else
 		return YAFFS_FAIL;
 #endif
-	return YAFFS_OK;
+	//return YAFFS_OK;
 }
 
 static int yaffs_nand_drv_MarkBad(struct yaffs_dev *dev, int block_no)
 {
+    Platform_STATUS ret;
+
+    ret = markBlockBad(&device_info, block_no);
+
+    if(ret != Platform_EOK){
+        return YAFFS_OK;
+    }else{
+        return YAFFS_FAIL;
+    }
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);
 	u8 *buffer = dev_to_buffer(dev);
@@ -204,11 +301,19 @@ static int yaffs_nand_drv_MarkBad(struct yaffs_dev *dev, int block_no)
 	else
 		return YAFFS_FAIL;
 #endif
-    return YAFFS_OK;
 }
 
 static int yaffs_nand_drv_CheckBad(struct yaffs_dev *dev, int block_no)
 {
+    uint32_t ret;
+
+    ret = checkBadBlockMark(device_info, block_no);
+    if(ret){
+        return  YAFFS_FAIL;  //bad
+    }else{
+        return YAFFS_OK;
+    }
+
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);
 	u8 *buffer = dev_to_buffer(dev);
@@ -229,29 +334,44 @@ static int yaffs_nand_drv_CheckBad(struct yaffs_dev *dev, int block_no)
 	else
 		return YAFFS_OK;
 #endif
-    return YAFFS_OK;
+    //return YAFFS_OK;
 }
 
 static int yaffs_nand_drv_Initialise(struct yaffs_dev *dev)
 {
+
+    device_info = platform_device_open(PLATFORM_DEVID_MT29F1G08ABCHC, 0);
+    if(device_info == NULL){
+        return YAFFS_FAIL;
+    }else{
+        return YAFFS_OK;
+    }
+
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);
 
 	(void)chip;
 	return YAFFS_OK;
 #endif
-    return YAFFS_OK;
 }
 
 static int yaffs_nand_drv_Deinitialise(struct yaffs_dev *dev)
 {
+    Platform_STATUS status;
+    status = platform_device_close(device_info->handle);
+    if(status != Platform_EOK){
+        return YAFFS_FAIL;
+    }else{
+        return YAFFS_OK;
+    }
+
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);
 
 	(void) chip;
 	return YAFFS_OK;
 #endif
-    return YAFFS_OK;
+
 }
 
 
@@ -278,7 +398,15 @@ int yaffs_nand_install_drv(struct yaffs_dev *dev, struct nand_chip *chip)
 	//ctxt->chip = chip;
 	//ctxt->buffer = buffer;
 	dev->driver_context = (void *) 1;
-	return YAFFS_OK;
+
+	device_info = platform_device_open(PLATFORM_DEVID_MT29F1G08ABCHC, 0);
+    if(device_info == NULL){
+        return YAFFS_FAIL;
+    }else{
+        return YAFFS_OK;
+    }
+
+	//return YAFFS_OK;
 
 //fail:
 	//free(ctxt);

@@ -46,8 +46,8 @@ struct yaffs_dev *yaffs_nandsim_install_drv(const char *dev_name,
 
 	param->name = name_copy;
 
-	param->total_bytes_per_chunk = 512;//chip->data_bytes_per_page;
-	param->chunks_per_block = 32;//chip->pages_per_block;
+	param->total_bytes_per_chunk = 2048;//chip->data_bytes_per_page;
+	param->chunks_per_block = 64;//chip->pages_per_block;
 	param->n_reserved_blocks = 5;
 	param->start_block = 0; // First block
 	param->end_block = n_blocks - 1; // Last block
@@ -55,6 +55,7 @@ struct yaffs_dev *yaffs_nandsim_install_drv(const char *dev_name,
 	param->use_nand_ecc = 1;
 	param->n_caches = 10;
 	param->stored_endian = 2;
+	param->spare_bytes_per_chunk = 64;
 
 	if(yaffs_nand_install_drv(dev, chip) != YAFFS_OK)
 		goto fail;

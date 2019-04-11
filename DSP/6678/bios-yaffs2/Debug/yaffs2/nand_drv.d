@@ -32,6 +32,7 @@ yaffs2/nand_drv.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/vect.
 yaffs2/nand_drv.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc.h
 yaffs2/nand_drv.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
 yaffs2/nand_drv.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc/k2h/src/cslr_device.h
+yaffs2/nand_drv.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/csl_tsc.h
 yaffs2/nand_drv.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_emif16.h
 yaffs2/nand_drv.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
 yaffs2/nand_drv.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h
@@ -70,6 +71,7 @@ C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/vect.h:
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc/k2h/src/cslr_device.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/csl_tsc.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_emif16.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h: 

@@ -9,7 +9,8 @@ CFG_SRCS += \
 ../app.cfg 
 
 C_SRCS += \
-../main.c 
+../main.c \
+../platform_osal_function.c 
 
 GEN_CMDS += \
 ./configPkg/linker.cmd 
@@ -22,28 +23,33 @@ GEN_MISC_DIRS += \
 ./configPkg/ 
 
 C_DEPS += \
-./main.d 
+./main.d \
+./platform_osal_function.d 
 
 GEN_OPTS += \
 ./configPkg/compiler.opt 
 
 OBJS += \
-./main.obj 
+./main.obj \
+./platform_osal_function.obj 
 
 GEN_MISC_DIRS__QUOTED += \
 "configPkg\" 
 
 OBJS__QUOTED += \
-"main.obj" 
+"main.obj" \
+"platform_osal_function.obj" 
 
 C_DEPS__QUOTED += \
-"main.d" 
+"main.d" \
+"platform_osal_function.d" 
 
 GEN_FILES__QUOTED += \
 "configPkg\linker.cmd" \
 "configPkg\compiler.opt" 
 
 C_SRCS__QUOTED += \
-"../main.c" 
+"../main.c" \
+"../platform_osal_function.c" 
 
 

@@ -6,7 +6,6 @@ SHELL = cmd.exe
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../yaffs2/nand_drv.c \
 ../yaffs2/yaffs_allocator.c \
 ../yaffs2/yaffs_attribs.c \
 ../yaffs2/yaffs_bitmap.c \
@@ -33,7 +32,6 @@ C_SRCS += \
 ../yaffs2/yaffsfs.c 
 
 C_DEPS += \
-./yaffs2/nand_drv.d \
 ./yaffs2/yaffs_allocator.d \
 ./yaffs2/yaffs_attribs.d \
 ./yaffs2/yaffs_bitmap.d \
@@ -60,7 +58,6 @@ C_DEPS += \
 ./yaffs2/yaffsfs.d 
 
 OBJS += \
-./yaffs2/nand_drv.obj \
 ./yaffs2/yaffs_allocator.obj \
 ./yaffs2/yaffs_attribs.obj \
 ./yaffs2/yaffs_bitmap.obj \
@@ -87,7 +84,6 @@ OBJS += \
 ./yaffs2/yaffsfs.obj 
 
 OBJS__QUOTED += \
-"yaffs2\nand_drv.obj" \
 "yaffs2\yaffs_allocator.obj" \
 "yaffs2\yaffs_attribs.obj" \
 "yaffs2\yaffs_bitmap.obj" \
@@ -114,7 +110,6 @@ OBJS__QUOTED += \
 "yaffs2\yaffsfs.obj" 
 
 C_DEPS__QUOTED += \
-"yaffs2\nand_drv.d" \
 "yaffs2\yaffs_allocator.d" \
 "yaffs2\yaffs_attribs.d" \
 "yaffs2\yaffs_bitmap.d" \
@@ -141,7 +136,6 @@ C_DEPS__QUOTED += \
 "yaffs2\yaffsfs.d" 
 
 C_SRCS__QUOTED += \
-"../yaffs2/nand_drv.c" \
 "../yaffs2/yaffs_allocator.c" \
 "../yaffs2/yaffs_attribs.c" \
 "../yaffs2/yaffs_bitmap.c" \

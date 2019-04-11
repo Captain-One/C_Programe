@@ -11,7 +11,7 @@ GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
 
 ORDERED_OBJS += \
 "./main.obj" \
-"./yaffs2/nand_drv.obj" \
+"./platform_osal_function.obj" \
 "./yaffs2/yaffs_allocator.obj" \
 "./yaffs2/yaffs_attribs.obj" \
 "./yaffs2/yaffs_bitmap.obj" \
@@ -40,6 +40,7 @@ $(GEN_CMDS__FLAG) \
 -llibc.a \
 -l"C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/platform/evmk2h/platform_lib/lib/release/ti.platform.evmk2h.ae66" \
 -l"C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/lib/k2h/c66/release/ti.csl.intc.ae66" \
+-l"C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/lib/k2h/c66/release/ti.csl.ae66" \
 
 -include ../makefile.init
 
@@ -168,7 +169,7 @@ all: $(OBJS) $(GEN_CMDS)
 bios-yaffs2.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x" --define=YAFFS_CURRENT --define=CONFIG_YAFFS_DIRECT --define=CONFIG_YAFFS_DEFINES_TYPES --define=CONFIG_YAFFS_PROVIDE_DEFS --define=CONFIG_YAFFSFS_PROVIDE_VALUES --define=SOC_K2H --define=DEVICE_K2H -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"bios-yaffs2.map" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="bios-yaffs2_linkInfo.xml" --rom_model -o "bios-yaffs2.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x" --define=YAFFS_CURRENT --define=CONFIG_YAFFS_DIRECT --define=CONFIG_YAFFS_DEFINES_TYPES --define=CONFIG_YAFFS_PROVIDE_DEFS --define=CONFIG_YAFFSFS_PROVIDE_VALUES --define=CONFIG_YAFFS_YAFFS2 --define=SOC_K2H --define=DEVICE_K2H --define=evmK2H -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"bios-yaffs2.map" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="bios-yaffs2_linkInfo.xml" --rom_model -o "bios-yaffs2.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
@@ -182,8 +183,8 @@ bios-yaffs2.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "yaffs2\nand_drv.obj" "yaffs2\yaffs_allocator.obj" "yaffs2\yaffs_attribs.obj" "yaffs2\yaffs_bitmap.obj" "yaffs2\yaffs_checkptrw.obj" "yaffs2\yaffs_ecc.obj" "yaffs2\yaffs_endian.obj" "yaffs2\yaffs_error.obj" "yaffs2\yaffs_guts.obj" "yaffs2\yaffs_hweight.obj" "yaffs2\yaffs_nameval.obj" "yaffs2\yaffs_nand.obj" "yaffs2\yaffs_nand_drv.obj" "yaffs2\yaffs_nandsim_file.obj" "yaffs2\yaffs_osglue.obj" "yaffs2\yaffs_packedtags1.obj" "yaffs2\yaffs_packedtags2.obj" "yaffs2\yaffs_summary.obj" "yaffs2\yaffs_tagscompat.obj" "yaffs2\yaffs_tagsmarshall.obj" "yaffs2\yaffs_verify.obj" "yaffs2\yaffs_yaffs1.obj" "yaffs2\yaffs_yaffs2.obj" "yaffs2\yaffscfg2k.obj" "yaffs2\yaffsfs.obj" 
-	-$(RM) "main.d" "yaffs2\nand_drv.d" "yaffs2\yaffs_allocator.d" "yaffs2\yaffs_attribs.d" "yaffs2\yaffs_bitmap.d" "yaffs2\yaffs_checkptrw.d" "yaffs2\yaffs_ecc.d" "yaffs2\yaffs_endian.d" "yaffs2\yaffs_error.d" "yaffs2\yaffs_guts.d" "yaffs2\yaffs_hweight.d" "yaffs2\yaffs_nameval.d" "yaffs2\yaffs_nand.d" "yaffs2\yaffs_nand_drv.d" "yaffs2\yaffs_nandsim_file.d" "yaffs2\yaffs_osglue.d" "yaffs2\yaffs_packedtags1.d" "yaffs2\yaffs_packedtags2.d" "yaffs2\yaffs_summary.d" "yaffs2\yaffs_tagscompat.d" "yaffs2\yaffs_tagsmarshall.d" "yaffs2\yaffs_verify.d" "yaffs2\yaffs_yaffs1.d" "yaffs2\yaffs_yaffs2.d" "yaffs2\yaffscfg2k.d" "yaffs2\yaffsfs.d" 
+	-$(RM) "main.obj" "platform_osal_function.obj" "yaffs2\yaffs_allocator.obj" "yaffs2\yaffs_attribs.obj" "yaffs2\yaffs_bitmap.obj" "yaffs2\yaffs_checkptrw.obj" "yaffs2\yaffs_ecc.obj" "yaffs2\yaffs_endian.obj" "yaffs2\yaffs_error.obj" "yaffs2\yaffs_guts.obj" "yaffs2\yaffs_hweight.obj" "yaffs2\yaffs_nameval.obj" "yaffs2\yaffs_nand.obj" "yaffs2\yaffs_nand_drv.obj" "yaffs2\yaffs_nandsim_file.obj" "yaffs2\yaffs_osglue.obj" "yaffs2\yaffs_packedtags1.obj" "yaffs2\yaffs_packedtags2.obj" "yaffs2\yaffs_summary.obj" "yaffs2\yaffs_tagscompat.obj" "yaffs2\yaffs_tagsmarshall.obj" "yaffs2\yaffs_verify.obj" "yaffs2\yaffs_yaffs1.obj" "yaffs2\yaffs_yaffs2.obj" "yaffs2\yaffscfg2k.obj" "yaffs2\yaffsfs.obj" 
+	-$(RM) "main.d" "platform_osal_function.d" "yaffs2\yaffs_allocator.d" "yaffs2\yaffs_attribs.d" "yaffs2\yaffs_bitmap.d" "yaffs2\yaffs_checkptrw.d" "yaffs2\yaffs_ecc.d" "yaffs2\yaffs_endian.d" "yaffs2\yaffs_error.d" "yaffs2\yaffs_guts.d" "yaffs2\yaffs_hweight.d" "yaffs2\yaffs_nameval.d" "yaffs2\yaffs_nand.d" "yaffs2\yaffs_nand_drv.d" "yaffs2\yaffs_nandsim_file.d" "yaffs2\yaffs_osglue.d" "yaffs2\yaffs_packedtags1.d" "yaffs2\yaffs_packedtags2.d" "yaffs2\yaffs_summary.d" "yaffs2\yaffs_tagscompat.d" "yaffs2\yaffs_tagsmarshall.d" "yaffs2\yaffs_verify.d" "yaffs2\yaffs_yaffs1.d" "yaffs2\yaffs_yaffs2.d" "yaffs2\yaffscfg2k.d" "yaffs2\yaffsfs.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

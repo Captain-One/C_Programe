@@ -49,8 +49,10 @@
 									<listOptionValue builtIn="false" value="CONFIG_YAFFS_DEFINES_TYPES"/>
 									<listOptionValue builtIn="false" value="CONFIG_YAFFS_PROVIDE_DEFS"/>
 									<listOptionValue builtIn="false" value="CONFIG_YAFFSFS_PROVIDE_VALUES"/>
+									<listOptionValue builtIn="false" value="CONFIG_YAFFS_YAFFS2"/>
 									<listOptionValue builtIn="false" value="SOC_K2H"/>
 									<listOptionValue builtIn="false" value="DEVICE_K2H"/>
+									<listOptionValue builtIn="false" value="evmK2H"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_8.3.compilerID.DEBUGGING_MODEL.1477510172" name="Debugging model" superClass="com.ti.ccstudio.buildDefinitions.C6000_8.3.compilerID.DEBUGGING_MODEL" value="com.ti.ccstudio.buildDefinitions.C6000_8.3.compilerID.DEBUGGING_MODEL.SYMDEBUG__DWARF" valueType="enumerated"/>
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_8.3.compilerID.DIAG_WARNING.845341958" name="Treat diagnostic &lt;id&gt; as warning (--diag_warning, -pdsw)" superClass="com.ti.ccstudio.buildDefinitions.C6000_8.3.compilerID.DIAG_WARNING" valueType="stringList">
@@ -71,6 +73,7 @@
 									<listOptionValue builtIn="false" value="libc.a"/>
 									<listOptionValue builtIn="false" value="${PDK}\ti\platform\evmk2h\platform_lib\lib\release\ti.platform.evmk2h.ae66"/>
 									<listOptionValue builtIn="false" value="${PDK}\ti\csl\lib\k2h\c66\release\ti.csl.intc.ae66"/>
+									<listOptionValue builtIn="false" value="${PDK}\ti\csl\lib\k2h\c66\release\ti.csl.ae66"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.C6000_8.3.linkerID.SEARCH_PATH.393192342" name="Add &lt;dir&gt; to library search path (--search_path, -i)" superClass="com.ti.ccstudio.buildDefinitions.C6000_8.3.linkerID.SEARCH_PATH" valueType="libPaths">
 									<listOptionValue builtIn="false" value="${BIOS_LIBRARY_PATH}"/>
@@ -88,10 +91,11 @@
 							<tool id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.943487218" name="XDCtools" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool">
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH.839771948" name="Package repositories (--xdcpath)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.XDC_PATH" valueType="stringList">
 									<listOptionValue builtIn="false" value="${BIOS_CG_ROOT}/packages"/>
+									<listOptionValue builtIn="false" value="F:\myPlatform"/>
 								</option>
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.TARGET.770097800" name="Target (-t)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.TARGET" value="ti.targets.elf.C66" valueType="string"/>
-								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM.1894774475" name="Platform (-p)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM" value="ti.platforms.evm6670" valueType="string"/>
-								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM_RAW.1668858299" name="Platform (-p)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM_RAW" value="ti.platforms.evm6670" valueType="string"/>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM.1894774475" name="Platform (-p)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM" value="cyhc.test2.k2h" valueType="string"/>
+								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM_RAW.1668858299" name="Platform (-p)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.PLATFORM_RAW" value="cyhc.test2.k2h" valueType="string"/>
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.BUILD_PROFILE.1384378941" name="Build-profile (-r)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.BUILD_PROFILE" value="release" valueType="string"/>
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.CODEGEN_TOOL_DIR.1686003621" name="Compiler tools directory (-c)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.CODEGEN_TOOL_DIR" value="${CG_TOOL_ROOT}" valueType="string"/>
 								<option id="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.COMPILE_OPTIONS.228923918" name="Additional compiler options (--compileOptions)" superClass="com.ti.rtsc.buildDefinitions.XDC_3.16.tool.COMPILE_OPTIONS" value="&quot;-g&quot;" valueType="string"/>

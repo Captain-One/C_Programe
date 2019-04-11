@@ -78,12 +78,12 @@ static pthread_t bc_gc_thread;
 
 void yaffsfs_Lock(void)
 {
-	pthread_mutex_lock( &mutex1 );
+	//pthread_mutex_lock( &mutex1 );
 }
 
 void yaffsfs_Unlock(void)
 {
-	pthread_mutex_unlock( &mutex1 );
+	//pthread_mutex_unlock( &mutex1 );
 }
 
 static void *bg_gc_func(void *dummy)
@@ -125,10 +125,10 @@ static void *bg_gc_func(void *dummy)
 void yaffsfs_LockInit(void)
 {
 	/* Initialise lock */
-	pthread_mutex_init(&mutex1, NULL);
+	//pthread_mutex_init(&mutex1, NULL);
 
 	/* Sneak in starting a background gc thread too */
-	pthread_create(&bc_gc_thread, NULL, bg_gc_func, NULL);
+	//pthread_create(&bc_gc_thread, NULL, bg_gc_func, NULL);
 }
 
 #else
