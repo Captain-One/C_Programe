@@ -20,20 +20,12 @@
 Void taskFxn(UArg a0, UArg a1)
 {
 
-    int handle;
-    char test[] = {"aaaaa"};
+
 
     System_printf("enter taskFxn()\n");
 
-    handle = yaffs_open("/test.txt", O_CREAT|O_WRONLY|O_APPEND, S_IREAD|S_IWRITE);
-    if (handle == -1) {
-        System_printf("Create test.txt failed\n");
-        goto ttt;
-    }
-    yaffs_write(handle, test, strlen(test));
-    yaffs_close(handle);
-    System_printf("Create test.txt OKKKKK\n");
-ttt:
+  //  System_printf("Create test.txt OKKKKK\n");
+//ttt:
     Task_sleep(10);
 
     System_printf("exit taskFxn()\n");
@@ -49,6 +41,8 @@ Int main()
     Task_Handle task;
     Error_Block eb;
     int re;
+    int handle;
+    char test[] = {"aaaaa"};
 
     Platform_STATUS status;
 
@@ -83,16 +77,18 @@ Int main()
     System_flush();
 
     yaffs_start_up();
-    re = yaffs_mount("nand/user");
+
+    re = yaffs_mount("/a");
     if(re != 0){
         System_printf("yaffs_mount error\n");
     }
 
-    re=yaffs_mkdir("/test",S_IFDIR);
-    if(re != 0)
-    {
-        System_printf("yaffs mkdir error\r\n");
+    handle = yaffs_open("/a/test", O_CREAT | O_RDWR , S_IREAD | S_IWRITE);
+    if (handle == -1) {
+        System_printf("Create test.txt failed\n");
     }
+    yaffs_write(handle, test, strlen(test));
+    yaffs_close(handle);
 
     BIOS_start();    /* does not return */
     return(0);

@@ -32,7 +32,7 @@
 #include "yaffs_trace.h"
 
 //#include "nand_store.h"
-#include "yaffs_flashif.h"
+//#include "yaffs_flashif.h"
 #include "yaffs_guts.h"
 //#include "nanddrv.h"
 #include "yaffs_ecc.h"
@@ -56,7 +56,8 @@ struct nand_context {
  ******************************************************************************/
 uint32_t checkBadBlockMark(PLATFORM_DEVICE_info  *p_device, uint32_t block)
 {
-    if (p_device->bblist[block] != 0xff)
+    //printf("p_device->bblist[block] 0x%02x\n",p_device->bblist[block]);
+    if (p_device->bblist[block] != 0xFF)
     {
         return 1;  //bad
     }
@@ -74,6 +75,10 @@ Platform_STATUS markBlockBad
 )
 {
     uint8_t       *spare_data;
+
+    if(p_device == NULL){
+        return Platform_EFAIL;
+    }
 
     spare_data = malloc(p_device->spare_size);
     if (spare_data == NULL)
@@ -123,48 +128,12 @@ static int yaffs_nand_drv_WriteChunk(struct yaffs_dev *dev, int nand_chunk,
 
     offset = nand_chunk * 2048;
 
-    ret = platform_device_write(device_info->handle, offset, data, data_len);
+    ret = platform_device_write(device_info->handle, offset, (uint8_t *)data, data_len);
     if(ret != Platform_EOK){
         return YAFFS_FAIL;
     }else{
         return YAFFS_OK;
     }
-
-#if 0
-	struct nand_chip *chip = dev_to_chip(dev);
-	u8 *buffer = dev_to_buffer(dev);
-	u8 *e;
-	struct nanddrv_transfer tr[2];
-	int i;
-
-	if(!data || !oob)
-		return YAFFS_FAIL;
-
-
-	/* Calc ECC and marshall the oob bytes into the buffer */
-
-	memset(buffer, 0xff, chip->spare_bytes_per_page);
-
-	for(i = 0, e = buffer + 2; i < chip->data_bytes_per_page; i+=256, e+=3)
-		yaffs_ecc_calc(data + i, e);
-
-	memcpy(buffer + 26, oob, oob_len);
-
-	/* Set up and execute transfer */
-
-	tr[0].buffer = (u8 *)data;
-	tr[0].offset = 0;
-	tr[0].nbytes = data_len;
-
-	tr[1].buffer = buffer;
-	tr[1].offset = chip->data_bytes_per_page;
-	tr[1].nbytes = chip->spare_bytes_per_page;
-
-	if(nanddrv_write_tr(chip, nand_chunk, tr, 2) == 0)
-		return YAFFS_OK;
-	else
-		return YAFFS_FAIL;
-#endif
 }
 
 static int yaffs_nand_drv_ReadChunk(struct yaffs_dev *dev, int nand_chunk,
@@ -188,65 +157,6 @@ static int yaffs_nand_drv_ReadChunk(struct yaffs_dev *dev, int nand_chunk,
                 *ecc_result_out = YAFFS_ECC_RESULT_NO_ERROR;
         return YAFFS_OK;
     }
-
-
-#if 0
-	struct nand_chip *chip = dev_to_chip(dev);
-	u8 *buffer = dev_to_buffer(dev);
-	struct nanddrv_transfer tr[2];
-	struct nanddrv_transfer *trp = tr;
-	int n_tr = 0;
-	int ret;
-	enum yaffs_ecc_result ecc_result;
-	int i;
-	u8 *e;
-	u8 read_ecc[3];
-
-	if(data) {
-		trp->buffer = data;
-		trp->offset = 0;
-		trp->nbytes = data_len;
-		n_tr++;
-		trp++;
-	}
-
-
-	trp->buffer = buffer;
-	trp->offset = chip->data_bytes_per_page;
-	trp->nbytes = chip->spare_bytes_per_page;
-	n_tr++;
-	trp++;
-
-
-	ret = nanddrv_read_tr(chip, nand_chunk, tr, n_tr);
-
-	if(ret < 0) {
-		if (ecc_result_out)
-			*ecc_result_out = YAFFS_ECC_RESULT_UNKNOWN;
-		return YAFFS_FAIL;
-	}
-
-	/* Do ECC and marshalling */
-	if(oob)
-		memcpy(oob, buffer + 26, oob_len);
-
-	ecc_result = YAFFS_ECC_RESULT_NO_ERROR;
-
-	if(data) {
-		for(i = 0, e = buffer + 2; i < chip->data_bytes_per_page; i+=256, e+=3) {
-			yaffs_ecc_calc(data + i, read_ecc);
-			ret = yaffs_ecc_correct(data + i, e, read_ecc);
-			if (ret < 0)
-				ecc_result = YAFFS_ECC_RESULT_UNFIXED;
-			else if( ret > 0 && ecc_result == YAFFS_ECC_RESULT_NO_ERROR)
-				ecc_result = YAFFS_ECC_RESULT_FIXED;
-		}
-	}
-
-	if (ecc_result_out)
-		*ecc_result_out = ecc_result;
-#endif
-
 }
 
 static int yaffs_nand_drv_EraseBlock(struct yaffs_dev *dev, int block_no)
@@ -259,60 +169,49 @@ static int yaffs_nand_drv_EraseBlock(struct yaffs_dev *dev, int block_no)
     }else{
         return YAFFS_FAIL;
     }
-
-#if 0
-	struct nand_chip *chip = dev_to_chip(dev);
-
-	if(nanddrv_erase(chip, block_no) == 0)
-		return YAFFS_OK;
-	else
-		return YAFFS_FAIL;
-#endif
-	//return YAFFS_OK;
 }
 
 static int yaffs_nand_drv_MarkBad(struct yaffs_dev *dev, int block_no)
 {
     Platform_STATUS ret;
 
-    ret = markBlockBad(&device_info, block_no);
+    ret = platform_device_mark_block_bad(device_info->handle,block_no);
+    //ret = markBlockBad(device_info, block_no);
 
     if(ret != Platform_EOK){
         return YAFFS_OK;
     }else{
         return YAFFS_FAIL;
     }
-#if 0
-	struct nand_chip *chip = dev_to_chip(dev);
-	u8 *buffer = dev_to_buffer(dev);
-	int nand_chunk = block_no * chip->pages_per_block;
-	struct nanddrv_transfer tr[1];
-
-	memset(buffer, 0xff, chip->spare_bytes_per_page);
-	buffer[0] = 'Y';
-	buffer[1] = 'Y';
-
-	tr[0].buffer = buffer;
-	tr[0].offset = chip->data_bytes_per_page;
-	tr[0].nbytes = chip->spare_bytes_per_page;
-
-	if(nanddrv_write_tr(chip, nand_chunk, tr, 1) == 0)
-		return YAFFS_OK;
-	else
-		return YAFFS_FAIL;
-#endif
 }
 
 static int yaffs_nand_drv_CheckBad(struct yaffs_dev *dev, int block_no)
 {
-    uint32_t ret;
+    Platform_STATUS ret;
+    uint8_t *buf;
 
-    ret = checkBadBlockMark(device_info, block_no);
-    if(ret){
+    buf = malloc(device_info->spare_size);
+    if(buf == NULL){
+        printf("malloc buf error\n");
+        return YAFFS_FAIL;
+    }
+
+    ret = platform_device_read_spare_data(device_info->handle, block_no, 0, buf);
+    if(ret != Platform_EOK){
+            return YAFFS_FAIL;
+    }
+    //printf("buf[device_info->bboffset]  0x%02x\n", buf[device_info->bboffset]);
+    if(buf[device_info->bboffset] != 0xff){
         return  YAFFS_FAIL;  //bad
     }else{
         return YAFFS_OK;
     }
+    //ret = checkBadBlockMark(device_info, block_no);
+   // if(ret){
+   //     return  YAFFS_FAIL;  //bad
+   // }else{
+   //     return YAFFS_OK;
+  //  }
 
 #if 0
 	struct nand_chip *chip = dev_to_chip(dev);

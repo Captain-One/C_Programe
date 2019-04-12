@@ -110,11 +110,14 @@ static struct yaffsfs_Handle yaffsfs_handle[YAFFSFS_N_HANDLES];
 
 static int yaffsfs_handlesInitialised;
 
+
+unsigned int yaffs_trace_mask = 0;
+
 unsigned int strnlen(const char *s, unsigned int max) {
         register const char *p;
         for(p = s; *p && max--; ++p);
         return(p - s);
-}
+    }
 
 unsigned yaffs_set_trace(unsigned tm)
 {
