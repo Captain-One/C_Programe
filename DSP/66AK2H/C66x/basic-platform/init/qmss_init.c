@@ -15,7 +15,10 @@
 
 //IPC
 #include <ti/ipc/Ipc.h>
-#include <ti/sdo/ipc/Notify.h>
+#include <ti/ipc/Notify.h>
+#include <ti/ipc/GateMP.h>
+#include <ti/ipc/MessageQ.h>
+#include <ti/ipc/SharedRegion.h>
 
 extern Qmss_GlobalConfigParams qmssGblCfgParams;
 extern Cppi_GlobalConfigParams cppiGblCfgParams;
@@ -33,13 +36,51 @@ uint8_t             monolithicDesc[SIZE_MONOLITHIC_DESC * NUM_MONOLITHIC_DESC];
 #pragma DATA_ALIGN (dataBuff, 16)
 uint8_t             dataBuff[SIZE_DATA_BUFFER * NUM_DATA_BUFFER];
 
+typedef struct mymsg{
+    MessageQ_MsgHeader header;
+    uint32_t masterInitDone;
+    uint32_t allCoreInitDone;
+}notify_Mymsg;
 
+static notify_Mymsg *notMymsg;
 
 Int cppiInit(Void)
 {
     Qmss_Result  re_qmss;
     Cppi_Result  re_cppi;
     Qmss_InitCfg cfg;
+    MessageQ_QueueId  queId;
+    Ptr  heap;
+    Int  re;
+
+    char msgName[] = "qmssInitMsg";
+
+    MessageQ_Params params;
+    MessageQ_Handle msg;
+
+    MessageQ_Params_init(&params);
+    msg = MessageQ_create(msgName, &params);
+    if(msg == NULL){
+        System_printf("MessageQ create error\n");
+        return -1;
+    }
+
+    heap = SharedRegion_getHeap(0);
+
+    re = MessageQ_registerHeap(heap, 0);
+    if(re != MessageQ_S_SUCCESS){
+        System_printf("MessageQ_registerHeap error\n");
+        return re;
+    }
+
+    notMymsg = (notify_Mymsg *)MessageQ_alloc(0, sizeof(notify_Mymsg));
+    if(notMymsg == NULL){
+        System_printf("MessageQ_alloc error\n");
+        return -1;
+    }
+
+    notMymsg->allCoreInitDone = 0;
+    notMymsg->masterInitDone = 0;
 
     cfg.linkingRAM0Base = 0;
     cfg.linkingRAM0Size = 0;
@@ -68,7 +109,27 @@ Int cppiInit(Void)
         return re_cppi;
     }
 
+    notMymsg->masterInitDone = 1;
+    notMymsg->allCoreInitDone = 1;
 
+    do{
+        re = MessageQ_open(msgName, &queId);
+    }while(re != MessageQ_S_SUCCESS);
+
+    re = MessageQ_put(queId, (MessageQ_Msg)notMymsg);
+    if(re != MessageQ_S_SUCCESS){
+        System_printf("MessageQ_put error\n");
+        return -1;
+    }
+
+    while(notMymsg->allCoreInitDone ==  2)
+    {
+        re = MessageQ_get(msg, (MessageQ_Msg *)notMymsg, MessageQ_FOREVER);
+        if(re != MessageQ_S_SUCCESS){
+            System_printf("MessageQ_get erro \n");
+            return -1;
+        }
+    }
 
     return 0;
 }
