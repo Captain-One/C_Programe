@@ -6,7 +6,11 @@
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_PROJECT.D:\pxqwork\project\app-n\basic-platform\targetConfigs\66AK2H12.ccxml.Texas Instruments XDS2xx USB Onboard Debug Probe/C66xx_0" value="basic-platform"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.ATTR_TARGET_CONFIG" value="${target_config_active_default:basic-platform}"/>
 <stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.D:\pxqwork\project\app-n\basic-platform\targetConfigs\66AK2H12.ccxml.Texas Instruments XDS2xx USB Onboard Debug Probe/C66xx_0" value="D:/pxqwork\project\app-n\basic-platform\Debug\basic-platform.out"/>
-<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.D:\pxqwork\project\app-n\basic-platform\targetConfigs\66AK2H12.ccxml.Texas Instruments XDS2xx USB Onboard Debug Probe/C66xx_1" value="D:/pxqwork\project\app-n\basic-platform\Debug\basic-platform.out"/>
+<stringAttribute key="com.ti.ccstudio.debug.debugModel.MRU_PROGRAM.D:\pxqwork\project\app-n\basic-platform\targetConfigs\66AK2H12.ccxml.Texas Instruments XDS2xx USB Onboard Debug Probe/C66xx_1" value="D:/pxqwork\project\app-n\basic-platform-slave\Debug\basic-platform-slave.out"/>
+<mapAttribute key="com.ti.ccstudio.debug.ui.displayFormats">
+<mapEntry key="Texas Instruments XDS2xx USB Onboard Debug Probe/C66xx_0@##separator##@0" value="32-Bit Hex - TI Style"/>
+<mapEntry key="Texas Instruments XDS2xx USB Onboard Debug Probe/C66xx_1@##separator##@0" value="32-Bit Hex - TI Style"/>
+</mapAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/basic-platform"/>
 </listAttribute>

@@ -28,13 +28,14 @@
 
 --args 0x0
 -heap  0x0
--stack 0x2000
+-stack 0x4000
 
 MEMORY
 {
-    L2SRAM (RWX) : org = 0x800000, len = 0x80000
-    MSMCSRAM (RWX) : org = 0xc000000, len = 0x400000
+    L2SRAM (RWX) : org = 0x800000, len = 0x100000
+    MSMCSRAM (RWX) : org = 0xc000000, len = 0x600000
     DDR (RWX) : org = 0x80000000, len = 0x8000000
+    CORE1DDR (RX) : org = 0x88000000, len = 0x8000000
 }
 
 /*
@@ -113,22 +114,22 @@ MEMORY
 
 /* Content from ti.sysbios.hal (null): */
 
-/* Content from ti.sysbios (null): */
-
-/* Content from ti.sysbios.rts (ti/sysbios/rts/linkcmd.xdt): */
-
-/* Content from ti.sysbios.rts.ti (ti/sysbios/rts/ti/linkcmd.xdt): */
-
-/* Content from ti.sysbios.knl (null): */
-
-/* Content from ti.sysbios.timers.timer64 (null): */
-
 /* Content from ti.sysbios.family.c64p (ti/sysbios/family/c64p/linkcmd.xdt): */
 
 /* Content from ti.sysbios.family.c66 (ti/sysbios/family/c66/linkcmd.xdt): */
 ti_sysbios_family_c66_Cache_l1dSize = 32768;
 ti_sysbios_family_c66_Cache_l1pSize = 32768;
 ti_sysbios_family_c66_Cache_l2Size = 0;
+
+/* Content from ti.sysbios.knl (null): */
+
+/* Content from ti.sysbios.timers.timer64 (null): */
+
+/* Content from ti.sysbios (null): */
+
+/* Content from ti.sysbios.rts (ti/sysbios/rts/linkcmd.xdt): */
+
+/* Content from ti.sysbios.rts.ti (ti/sysbios/rts/ti/linkcmd.xdt): */
 
 /* Content from ti.sysbios.gates (null): */
 
@@ -150,16 +151,16 @@ ti_sysbios_family_c66_Cache_l2Size = 0;
 
 SECTIONS
 {
-    ti.sdo.ipc.SharedRegion_0:  { . += 0x20000;} run > 0xc000000, type = NOLOAD
+    ti.sdo.ipc.SharedRegion_0:  { . += 0x200000;} run > 0xc000000, type = NOLOAD
 }
 
 /* Content from ti.sdo.ipc.transports (null): */
 
-/* Content from ti.sdo.ipc.family.c647x (null): */
-
-/* Content from ti.sdo.ipc.nsremote (null): */
+/* Content from ti.sdo.ipc.family.tci663x (null): */
 
 /* Content from ti.sdo.ipc.heaps (null): */
+
+/* Content from ti.sdo.ipc.nsremote (null): */
 
 /* Content from configPkg (null): */
 

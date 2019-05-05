@@ -9,6 +9,7 @@
 #define INIT_QMSS_INIT_H_
 
 #include <xdc/std.h>
+#include "../common/common.h"
 
 #define NUM_HOST_DESC           32
 #define NUM_MONOLITHIC_DESC     32
@@ -19,7 +20,14 @@
 #define SIZE_DATA_BUFFER        128
 #define NUM_DATA_BUFFER         128
 
+#define CORE_NUM                2
+#define MASTER_CORE             0
+#define CORE_ID                 1
+#define MASTER_INIT_DONE        (1 << MASTER_CORE)
+#define INIT_DONE               (1 << CORE_ID)
+#define ALL_CORE_INIT_DONE      0x03   //8 core all init done
+
 Int cppiInit(Void);
-static Void cbFxn(UInt16 procId, UInt16 lineId, UInt32 eventId, UArg arg, UInt32 payload);
+Int ipcInit(Void);
 
 #endif /* INIT_QMSS_INIT_H_ */

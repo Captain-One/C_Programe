@@ -19,6 +19,11 @@
                                 <property Type="filepathfield" Value="..\..\emulation\boards\xtcievmk2x\gel\xtcievmk2x.gel" id="GEL File"/>
                             </cpu>
                         </subpath>
+                    <subpath id="subpath_2">
+                            <cpu HW_revision="1.0" XML_version="1.2" description="C66xx CGEM+FP CPU" id="C66xx_1" isa="TMS320C66XX">
+                                <property Type="filepathfield" Value="..\..\emulation\boards\xtcievmk2x\gel\xtcievmk2x.gel" id="GEL File"/>
+                            </cpu>
+                        </subpath>
                     </router>
                 </device>
             </platform>

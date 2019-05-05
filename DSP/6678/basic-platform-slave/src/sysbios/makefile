@@ -66,7 +66,7 @@ timer64_Timer_asm.obj: timers/timer64/Timer_asm.s64P makefile
 	$(ASSEMBLE) --output_file=timer64_Timer_asm.obj
 
 
-BIOS.obj: BIOS.c family/c64p/Exception.c family/c64p/Hwi.c family/c64p/Hwi_startup.c family/c64p/TimestampProvider.c knl/Clock.c knl/Idle.c knl/Intrinsics.c knl/Queue.c knl/Semaphore.c knl/Swi.c knl/Task.c hal/Cache.c hal/Hwi.c hal/Hwi_stack.c hal/Hwi_startup.c gates/GateHwi.c gates/GateAll.c gates/GateSwi.c gates/GateMutexPri.c gates/GateMutex.c syncs/SyncSem.c family/c66/Cache.c rts/ti/ThreadLocalStorage.c family/c62/TaskSupport.c family/c62/IntrinsicsSupport.c xdcruntime/GateThreadSupport.c heaps/HeapMem.c timers/timer64/Timer.c family/c64p/tci6488/TimerSupport.c makefile
+BIOS.obj: BIOS.c family/c64p/Exception.c family/c64p/Hwi.c family/c64p/Hwi_startup.c family/c64p/TimestampProvider.c knl/Clock.c knl/Idle.c knl/Intrinsics.c knl/Queue.c knl/Semaphore.c knl/Swi.c knl/Task.c hal/Cache.c hal/Hwi.c hal/Hwi_stack.c hal/Hwi_startup.c heaps/HeapBuf.c heaps/HeapMem.c gates/GateHwi.c gates/GateAll.c gates/GateSwi.c gates/GateMutexPri.c gates/GateMutex.c syncs/SyncSem.c family/c66/Cache.c rts/ti/ThreadLocalStorage.c family/c62/TaskSupport.c family/c62/IntrinsicsSupport.c xdcruntime/GateThreadSupport.c timers/timer64/Timer.c family/c64p/tci6488/TimerSupport.c makefile
 	@-$(call RM, $@)
 	@echo cle66 $< ...
 	@$(CC) $(BIOS_DEFS) $(XOPTS) $(INCS) $(subst makefile,,$^)

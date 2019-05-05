@@ -11,7 +11,7 @@
 
 #include <ti/drv/srio/srio_drv.h>
 
-#if 0
+
 Int srioInit(Void)
 {
     if (enable_srio () < 0)
@@ -343,5 +343,38 @@ int32_t SrioDevice_init (void)
     /* Initialization has been completed. */
     return 0;
 }
-#endif
+
+
+static int32_t enable_srio (void)
+{
+    /* Set SRIO Power domain to ON */
+    CSL_PSC_enablePowerDomain (CSL_PSC_PD_SRIO);
+
+    /* Enable the clocks too for SRIO */
+    CSL_PSC_setModuleNextState (CSL_PSC_LPSC_SRIO, PSC_MODSTATE_ENABLE);
+
+    /* Start the state transition */
+    CSL_PSC_startStateTransition (CSL_PSC_PD_SRIO);
+
+    /* Wait until the state transition process is completed. */
+    while (!CSL_PSC_isStateTransitionDone (CSL_PSC_PD_SRIO));
+
+    /* Return SRIO PSC status */
+    if ((CSL_PSC_getPowerDomainState(CSL_PSC_PD_SRIO) == PSC_PDSTATE_ON) &&
+        (CSL_PSC_getModuleState (CSL_PSC_LPSC_SRIO) == PSC_MODSTATE_ENABLE))
+    {
+        /* SRIO ON. Ready for use */
+        return 0;
+    }
+    else
+    {
+        /* SRIO Power on failed. Return error */
+        return -1;
+    }
+}
+
+
+
+
+
 

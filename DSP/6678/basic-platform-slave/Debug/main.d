@@ -1,10 +1,13 @@
 # FIXED
 
 main.obj: ../main.c
+main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h
+main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h
+main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h
+main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/cdefs.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/std.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/stdarg.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/_types.h
-main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/cdefs.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/machine/_types.h
 main.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/stddef.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/std.h
@@ -86,6 +89,9 @@ main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Memory.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/Memory_HeapProxy.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/BIOS.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/BIOS__prologue.h
@@ -101,11 +107,23 @@ main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/BIOS__epilogue.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
+main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/heaps/HeapBuf.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
+main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/heaps/package/package.defs.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Memory.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
+main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
+main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/package/package.defs.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task__prologue.h
-main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/package/package.defs.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
@@ -125,9 +143,6 @@ main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Log__epilogue.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h
-main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITaskSupport.h
 main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
@@ -168,6 +183,17 @@ main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task__epilogue.h
 main.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/package/Task_SupportProxy.h
 main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/Ipc.h
 main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MultiProc.h
+main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MessageQ.h
+main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
+main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/package/package.defs.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
+main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/IMessageQTransport.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
+main.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
+main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h
+main.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/SharedRegion.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/CPPI/CPPI_drv.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_global_config.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr.h
@@ -215,13 +241,16 @@ main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc/k2h/src/cslr_device.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_osal.h
-main.obj: ../init/qmss_init.h
+main.obj: ../init/init.h
 
 ../main.c: 
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h: 
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h: 
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h: 
+C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/cdefs.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/std.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/stdarg.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/_types.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/cdefs.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/machine/_types.h: 
 C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include/stddef.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/std.h: 
@@ -303,6 +332,9 @@ C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h:
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Memory.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/Memory_HeapProxy.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/BIOS.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/BIOS__prologue.h: 
@@ -318,11 +350,23 @@ C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h:
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/BIOS__epilogue.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/heaps/HeapBuf.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/heaps/package/package.defs.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Memory.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/package/package.defs.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task__prologue.h: 
-C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/package/package.defs.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
@@ -342,9 +386,6 @@ C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h:
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Log__epilogue.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h: 
-C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITaskSupport.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
@@ -385,6 +426,17 @@ C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task__epilogue.h:
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/package/Task_SupportProxy.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/Ipc.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MultiProc.h: 
+C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MessageQ.h: 
+C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/package/package.defs.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
+C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/IMessageQTransport.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
+C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h: 
+C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/SharedRegion.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/CPPI/CPPI_drv.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_global_config.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr.h: 
@@ -432,4 +484,4 @@ C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc.h:
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc/k2h/src/cslr_device.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_osal.h: 
-../init/qmss_init.h: 
+../init/init.h: 

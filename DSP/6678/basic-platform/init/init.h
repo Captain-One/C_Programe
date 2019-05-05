@@ -8,6 +8,6 @@
 #ifndef INIT_INIT_H_
 #define INIT_INIT_H_
 
-
+Int sysInit(Void);
 
 #endif /* INIT_INIT_H_ */

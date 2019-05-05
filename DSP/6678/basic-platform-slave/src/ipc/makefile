@@ -32,7 +32,7 @@ endef
 all: ipc.ae66
 
 
-Ipc.obj: ti/sdo/utils/NameServer.c ti/sdo/utils/NameServerRemoteNull.c ti/sdo/utils/MultiProc.c ti/sdo/utils/List.c ti/sdo/ipc/GateMP.c ti/sdo/ipc/MessageQ.c ti/sdo/ipc/SharedRegion.c ti/sdo/ipc/ListMP.c ti/sdo/ipc/Ipc.c ti/sdo/ipc/Notify.c ti/sdo/ipc/transports/TransportShm.c ti/sdo/ipc/transports/TransportShmSetup.c ti/sdo/ipc/notifyDrivers/NotifyDriverShm.c ti/sdo/ipc/family/c647x/Interrupt.c ti/sdo/ipc/family/c647x/MultiProcSetup.c ti/sdo/ipc/family/c647x/NotifySetup.c ti/sdo/ipc/nsremote/NameServerRemoteNotify.c ti/sdo/ipc/heaps/HeapMemMP.c ti/sdo/ipc/gates/GateHWSem.c ti/sdo/ipc/gates/GatePeterson.c ti/sdo/ipc/gates/GateMPSupportNull.c makefile
+Ipc.obj: ti/sdo/utils/NameServer.c ti/sdo/utils/NameServerRemoteNull.c ti/sdo/utils/MultiProc.c ti/sdo/utils/List.c ti/sdo/ipc/GateMP.c ti/sdo/ipc/MessageQ.c ti/sdo/ipc/SharedRegion.c ti/sdo/ipc/Ipc.c ti/sdo/ipc/Notify.c ti/sdo/ipc/transports/TransportShmNotify.c ti/sdo/ipc/transports/TransportShmNotifySetup.c ti/sdo/ipc/notifyDrivers/NotifyDriverCirc.c ti/sdo/ipc/family/tci663x/Interrupt.c ti/sdo/ipc/family/tci663x/MultiProcSetup.c ti/sdo/ipc/family/tci663x/NotifyCircSetup.c ti/sdo/ipc/gates/GateHWSem.c ti/sdo/ipc/gates/GatePeterson.c ti/sdo/ipc/gates/GateMPSupportNull.c ti/sdo/ipc/heaps/HeapMemMP.c ti/sdo/ipc/nsremote/NameServerRemoteNotify.c makefile
 	@-$(call RM, $@)
 	@echo cle66 $< ...
 	@$(CC) $(BUILD_DEFS) $(XOPTS) $(INCS) \
@@ -43,20 +43,19 @@ Ipc.obj: ti/sdo/utils/NameServer.c ti/sdo/utils/NameServerRemoteNull.c ti/sdo/ut
 	$(IPC_ROOT)ti/sdo/ipc/GateMP.c \
 	$(IPC_ROOT)ti/sdo/ipc/MessageQ.c \
 	$(IPC_ROOT)ti/sdo/ipc/SharedRegion.c \
-	$(IPC_ROOT)ti/sdo/ipc/ListMP.c \
 	$(IPC_ROOT)ti/sdo/ipc/Ipc.c \
 	$(IPC_ROOT)ti/sdo/ipc/Notify.c \
-	$(IPC_ROOT)ti/sdo/ipc/transports/TransportShm.c \
-	$(IPC_ROOT)ti/sdo/ipc/transports/TransportShmSetup.c \
-	$(IPC_ROOT)ti/sdo/ipc/notifyDrivers/NotifyDriverShm.c \
-	$(IPC_ROOT)ti/sdo/ipc/family/c647x/Interrupt.c \
-	$(IPC_ROOT)ti/sdo/ipc/family/c647x/MultiProcSetup.c \
-	$(IPC_ROOT)ti/sdo/ipc/family/c647x/NotifySetup.c \
-	$(IPC_ROOT)ti/sdo/ipc/nsremote/NameServerRemoteNotify.c \
-	$(IPC_ROOT)ti/sdo/ipc/heaps/HeapMemMP.c \
+	$(IPC_ROOT)ti/sdo/ipc/transports/TransportShmNotify.c \
+	$(IPC_ROOT)ti/sdo/ipc/transports/TransportShmNotifySetup.c \
+	$(IPC_ROOT)ti/sdo/ipc/notifyDrivers/NotifyDriverCirc.c \
+	$(IPC_ROOT)ti/sdo/ipc/family/tci663x/Interrupt.c \
+	$(IPC_ROOT)ti/sdo/ipc/family/tci663x/MultiProcSetup.c \
+	$(IPC_ROOT)ti/sdo/ipc/family/tci663x/NotifyCircSetup.c \
 	$(IPC_ROOT)ti/sdo/ipc/gates/GateHWSem.c \
 	$(IPC_ROOT)ti/sdo/ipc/gates/GatePeterson.c \
-	$(IPC_ROOT)ti/sdo/ipc/gates/GateMPSupportNull.c
+	$(IPC_ROOT)ti/sdo/ipc/gates/GateMPSupportNull.c \
+	$(IPC_ROOT)ti/sdo/ipc/heaps/HeapMemMP.c \
+	$(IPC_ROOT)ti/sdo/ipc/nsremote/NameServerRemoteNotify.c
 
 ipc.ae66: Ipc.obj 
 	@-$(call RM, $@)

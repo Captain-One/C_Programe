@@ -8,6 +8,8 @@
 #include "qmss_init.h"
 #include <string.h>
 
+#include <ti/sysbios/knl/Task.h>
+
 #include <ti/csl/csl_cacheAux.h>
 
 #include <xdc/runtime/System.h>
@@ -18,13 +20,8 @@
 
 //IPC
 #include <ti/ipc/Ipc.h>
-#include <ti/ipc/Notify.h>
-#include <ti/ipc/GateMP.h>
 #include <ti/ipc/MessageQ.h>
 #include <ti/ipc/SharedRegion.h>
-
-#define INTERRUPT_LINE      0
-#define EVENT_ID            10
 
 extern Qmss_GlobalConfigParams qmssGblCfgParams;
 extern Cppi_GlobalConfigParams cppiGblCfgParams;
@@ -43,15 +40,21 @@ uint8_t             monolithicDesc[SIZE_MONOLITHIC_DESC * NUM_MONOLITHIC_DESC];
 uint8_t             dataBuff[SIZE_DATA_BUFFER * NUM_DATA_BUFFER];
 
 
-uint8_t qmssInitDone = 0;
-
-
-Void cbFxn(UInt16 procId, UInt16 lineId, UInt32 eventId, UArg arg, UInt32 payload)
+Int ipcInit(Void)
 {
-    System_printf("cbfxn, payload is: %d!\n", payload);
-    qmssInitDone ++;
-    CACHE_wbL1d ((void *) &qmssInitDone, 4, CACHE_WAIT);
+    Int status;
+
+    status = Ipc_start();
+    if(status < 0){
+        System_printf("Core %d Ipc start error, code: %d\n", core_id, status);
+        return -1;
+    }
+
+    System_printf("Core %d IPC ready\n", core_id);
+    return 0;
 }
+
+
 
 Int cppiInit(Void)
 {
@@ -59,9 +62,17 @@ Int cppiInit(Void)
     Cppi_Result  re_cppi;
     Qmss_InitCfg cfg;
 
-    Int re;
-    Int i;
+    MessageQ_QueueId qid;
+    Notifye_Msg *notifyMsg;
+    MessageQ_Params msgQ_params;
+    MessageQ_Handle msg;
 
+    Int initDone;
+    Int re;
+
+    String masterMsgQName = MASTER_MSGQ_NAME;
+
+    core_id = MultiProc_self();
 
     memset ((void *) &cfg, 0, sizeof (Qmss_InitCfg));
 
@@ -74,13 +85,12 @@ Int cppiInit(Void)
     //cfg.qmssHwStatus = 0;
     //cfg.splitLinkingRAMs = 1;
 
-    for(i = 1; i < 2; i++)
-    {
-        re = Notify_registerEvent(i, INTERRUPT_LINE, EVENT_ID, (Notify_FnNotifyCbck)cbFxn, NULL);
-        if(re != Notify_S_SUCCESS){
-            System_printf("Notify_registerEvent for core %d error\n", i);
-            return -1;
-        }
+    MessageQ_Params_init(&msgQ_params);
+    msg = MessageQ_create(masterMsgQName, &msgQ_params);
+    if(msg == NULL){
+        System_printf("MessageQ_create Error\n");
+        System_flush();
+        return -1;
     }
 
     re_qmss = Qmss_init(&cfg, &qmssGblCfgParams);
@@ -101,29 +111,23 @@ Int cppiInit(Void)
         return re_cppi;
     }
 
-    for(i = 1; i < 2; i++)
+    initDone = MASTER_INIT_DONE;
+    while(1)
     {
-        re = Notify_sendEvent(i, INTERRUPT_LINE, EVENT_ID, 0, TRUE);
-        if(re != Notify_S_SUCCESS){
-            System_printf("Notify_sendEvent for core %d error\n", i);
-            return -1;
-        }
+        re = MessageQ_get(msg, (MessageQ_Msg *)&notifyMsg, MessageQ_FOREVER);
+        //set flag;
+        initDone |= notifyMsg->initDone;
+        notifyMsg->initDone = initDone;
+        qid = MessageQ_getReplyQueue(notifyMsg);
+        do{
+            re = MessageQ_put(qid, (MessageQ_Msg)notifyMsg);
+        }while(re < 0);
+
+        //if all core init done break;
+        if((initDone & ALL_CORE_INIT_DONE) == ALL_CORE_INIT_DONE)
+            break;
     }
 
-    do{
-        CACHE_invL1d ((void *) &qmssInitDone, 4, CACHE_WAIT);
-    }while(qmssInitDone != 1);
-
-    for(i = 1; i < 2; i++)
-    {
-        re = Notify_sendEvent(i, INTERRUPT_LINE, EVENT_ID, 8, TRUE);  //
-        if(re != Notify_S_SUCCESS){
-            System_printf("Notify_sendEvent for core %d error\n", i);
-            return -1;
-        }
-    }
-
-    System_printf("core %d qmss init done!\n", core_id);
-
+    System_printf("core %d cppi init done! \n", core_id);
     return 0;
 }

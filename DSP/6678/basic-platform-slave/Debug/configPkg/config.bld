@@ -1,5 +1,7 @@
 /* THIS IS A GENERATED FILE -- DO NOT EDIT */
 
+/* configuro was passed a config.bld file */
+xdc.includeFile("D:/pxqwork/project/app-n/basic-platform-slave/Debug/configPkg/config.bld");
 var target;    /* the target used for this build */
 
 /* configuro was passed the target's name explicitly */

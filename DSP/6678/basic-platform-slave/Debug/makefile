@@ -16,6 +16,7 @@ ORDERED_OBJS += \
 "./init/qmss_device.obj" \
 "./init/qmss_init.obj" \
 "./init/sample_osal.obj" \
+"./init/srio_init.obj" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -160,8 +161,8 @@ basic-platform-slave.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "init\cppi_device.obj" "init\init.obj" "init\qmss_device.obj" "init\qmss_init.obj" "init\sample_osal.obj" 
-	-$(RM) "main.d" "init\cppi_device.d" "init\init.d" "init\qmss_device.d" "init\qmss_init.d" "init\sample_osal.d" 
+	-$(RM) "main.obj" "init\cppi_device.obj" "init\init.obj" "init\qmss_device.obj" "init\qmss_init.obj" "init\sample_osal.obj" "init\srio_init.obj" 
+	-$(RM) "main.d" "init\cppi_device.d" "init\init.d" "init\qmss_device.d" "init\qmss_init.d" "init\sample_osal.d" "init\srio_init.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

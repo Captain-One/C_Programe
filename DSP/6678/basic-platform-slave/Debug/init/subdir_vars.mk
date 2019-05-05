@@ -10,41 +10,47 @@ C_SRCS += \
 ../init/init.c \
 ../init/qmss_device.c \
 ../init/qmss_init.c \
-../init/sample_osal.c 
+../init/sample_osal.c \
+../init/srio_init.c 
 
 C_DEPS += \
 ./init/cppi_device.d \
 ./init/init.d \
 ./init/qmss_device.d \
 ./init/qmss_init.d \
-./init/sample_osal.d 
+./init/sample_osal.d \
+./init/srio_init.d 
 
 OBJS += \
 ./init/cppi_device.obj \
 ./init/init.obj \
 ./init/qmss_device.obj \
 ./init/qmss_init.obj \
-./init/sample_osal.obj 
+./init/sample_osal.obj \
+./init/srio_init.obj 
 
 OBJS__QUOTED += \
 "init\cppi_device.obj" \
 "init\init.obj" \
 "init\qmss_device.obj" \
 "init\qmss_init.obj" \
-"init\sample_osal.obj" 
+"init\sample_osal.obj" \
+"init\srio_init.obj" 
 
 C_DEPS__QUOTED += \
 "init\cppi_device.d" \
 "init\init.d" \
 "init\qmss_device.d" \
 "init\qmss_init.d" \
-"init\sample_osal.d" 
+"init\sample_osal.d" \
+"init\srio_init.d" 
 
 C_SRCS__QUOTED += \
 "../init/cppi_device.c" \
 "../init/init.c" \
 "../init/qmss_device.c" \
 "../init/qmss_init.c" \
-"../init/sample_osal.c" 
+"../init/sample_osal.c" \
+"../init/srio_init.c" 
 
 
