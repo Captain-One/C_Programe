@@ -653,6 +653,6 @@ digraph configuration {
     ti_sysbios_utils__bot -> ti_targets_elf_C66__1_0_8__1_2 [ltail=cluster49];
     ti_targets_elf_C66__1_0_8__2_2 [shape=record,label="ti.targets.elf.C66|1,0,8.2,2",style=filled, fillcolor=lightgrey];
     ti_sdo_ipc__bot -> ti_targets_elf_C66__1_0_8__2_2 [ltail=cluster52];
-    ti_targets_elf_C66__1_0_8__3_3 [shape=record,label="ti.targets.elf.C66|1,0,8.3,3",style=filled, fillcolor=lightgrey];
-    configPkg__top -> ti_targets_elf_C66__1_0_8__3_3 [ltail=cluster57];
+    ti_targets_elf_C66__1_0_8__3_2 [shape=record,label="ti.targets.elf.C66|1,0,8.3,2",style=filled, fillcolor=lightgrey];
+    configPkg__top -> ti_targets_elf_C66__1_0_8__3_2 [ltail=cluster57];
 }

@@ -17,11 +17,11 @@ CCOPTS = -mv6600 --abi=eabi -q -mi10 -mo -pdr -pden -pds=238 -pds=880 -pds1110  
 
 BIOS_INC = -I"C:/ti/sdk-k2h/bios_6_73_01_01/packages/"
 ANNEX_INCS = 
-INCS = $(BIOS_INC) $(ANNEX_INCS) -I"C:/ti/sdk-k2h/bios_6_73_01_01/packages/" -I"C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/" -I"C:/ti/sdk-k2h/ndk_3_40_01_01/packages/" -I"C:/ti/sdk-k2h/ipc_3_50_03_04/packages/" -I"F:/myPlatform/" -I"C:/ti/xdctools_3_51_01_18_core/packages/" -I"../" -I"/packages//"  -IC:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include
+INCS = $(BIOS_INC) $(ANNEX_INCS) -I"C:/ti/sdk-k2h/bios_6_73_01_01/packages/" -I"C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/" -I"C:/ti/sdk-k2h/ndk_3_40_01_01/packages/" -I"C:/ti/sdk-k2h/ipc_3_50_03_04/packages/" -I"F:/myPlatform/" -I"C:/ti/xdctools_3_51_01_18_core/packages/" -I"../" -I"/packages//"  -IC:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include
 
-CC = C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS)
-ASM = C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS)
-AR = C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/ar6x rq
+CC = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/cl6x -c $(CCOPTS)
+ASM = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/cl6x -c $(CCOPTS)
+AR = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/ar6x rq
 
 DEL = C:/ti/xdctools_3_51_01_18_core/packages/../bin/rm -f
 CP = C:/ti/xdctools_3_51_01_18_core/packages/../bin/cp -f

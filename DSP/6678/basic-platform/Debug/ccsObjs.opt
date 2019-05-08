@@ -1,1 +1,1 @@
-"./main.obj" "./init/cppi_device.obj" "./init/init.obj" "./init/qmss_device.obj" "./init/qmss_init.obj" "./init/sample_osal.obj" "./init/srio_init.obj" -l"configPkg/linker.cmd" -llibc.a 
+"./main.obj" "./driver-interface/bb_interface.obj" "./init/cppi_device.obj" "./init/init.obj" "./init/qmss_device.obj" "./init/qmss_init.obj" "./init/qmss_osal.obj" "./init/srio_init.obj" "./init/srio_laneconfig.obj" "./init/srio_osal.obj" -l"configPkg/linker.cmd" -llibc.a 

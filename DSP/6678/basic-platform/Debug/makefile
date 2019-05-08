@@ -4,19 +4,22 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3
+CG_TOOL_ROOT := C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3
 
 GEN_OPTS__FLAG := --cmd_file="configPkg/compiler.opt"
 GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
 
 ORDERED_OBJS += \
 "./main.obj" \
+"./driver-interface/bb_interface.obj" \
 "./init/cppi_device.obj" \
 "./init/init.obj" \
 "./init/qmss_device.obj" \
 "./init/qmss_init.obj" \
-"./init/sample_osal.obj" \
+"./init/qmss_osal.obj" \
 "./init/srio_init.obj" \
+"./init/srio_laneconfig.obj" \
+"./init/srio_osal.obj" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -28,8 +31,10 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include driver-interface/subdir_vars.mk
 -include init/subdir_vars.mk
 -include subdir_rules.mk
+-include driver-interface/subdir_rules.mk
 -include init/subdir_rules.mk
 -include objects.mk
 
@@ -147,22 +152,22 @@ all: $(OBJS) $(GEN_CMDS)
 basic-platform.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C6000 Linker'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x" --define=SOC_K2H -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"basic-platform.map" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="basic-platform_linkInfo.xml" --rom_model -o "basic-platform.out" $(ORDERED_OBJS)
+	"C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x" --define=SOC_K2H --define=DEVICE_K2H --define=evm_K2H -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"basic-platform.map" -i"C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/lib" -i"C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="basic-platform_linkInfo.xml" --rom_model -o "basic-platform.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 basic-platform.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C6000 Hex Utility'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/hex6x"  -o "basic-platform.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/hex6x"  -o "basic-platform.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "init\cppi_device.obj" "init\init.obj" "init\qmss_device.obj" "init\qmss_init.obj" "init\sample_osal.obj" "init\srio_init.obj" 
-	-$(RM) "main.d" "init\cppi_device.d" "init\init.d" "init\qmss_device.d" "init\qmss_init.d" "init\sample_osal.d" "init\srio_init.d" 
+	-$(RM) "main.obj" "driver-interface\bb_interface.obj" "init\cppi_device.obj" "init\init.obj" "init\qmss_device.obj" "init\qmss_init.obj" "init\qmss_osal.obj" "init\srio_init.obj" "init\srio_laneconfig.obj" "init\srio_osal.obj" 
+	-$(RM) "main.d" "driver-interface\bb_interface.d" "init\cppi_device.d" "init\init.d" "init\qmss_device.d" "init\qmss_init.d" "init\qmss_osal.d" "init\srio_init.d" "init\srio_laneconfig.d" "init\srio_osal.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

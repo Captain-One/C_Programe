@@ -40,7 +40,6 @@ Void taskFxn(UArg a0, UArg a1)
     Int status;
 
     System_printf("enter taskFxn()\n");
-
     status = sysInit();
     if(status < 0){
         System_printf("Core %d sysInit error\n", core_id);
@@ -52,6 +51,7 @@ Void taskFxn(UArg a0, UArg a1)
     System_printf("exit taskFxn()\n");
 
     System_flush(); /* force SysMin output to console */
+
 }
 
 

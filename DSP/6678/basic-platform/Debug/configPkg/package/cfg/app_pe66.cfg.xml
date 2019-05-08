@@ -64,7 +64,7 @@
             version="1,0,8.2,2"
             usedby="ti.sdo.ipc"/>
     <target name="ti.targets.elf.C66"
-            version="1,0,8.3,3"
+            version="1,0,8.3,2"
             usedby="configPkg"/>
 </targets>
 <imports>

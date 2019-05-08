@@ -1,7 +1,7 @@
 ******************************************************************************
                TMS320C6x Linker PC v8.3.3                      
 ******************************************************************************
->> Linked Sun May  5 15:06:26 2019
+>> Linked Wed May  8 15:10:47 2019
 
 OUTPUT FILE NAME:   <basic-platform.out>
 ENTRY POINT SYMBOL: "_c_int00"  address: 80019c00
@@ -64,7 +64,7 @@ ti.sdo.ipc.SharedRegion_0
 
 .neardata 
 *          0    800382b8    00000018     UNINITIALIZED
-                  800382b8    00000018     sample_osal.obj (.neardata)
+                  800382b8    00000018     qmss_osal.obj (.neardata)
 
 .rodata    0    800382d0    00000000     UNINITIALIZED
 
@@ -104,7 +104,7 @@ xdc.meta   0    80000000    000000e8     COPY SECTION
                   80002600    00000740     ipc.ae66 : Ipc.obj (.text:MessageQ_put)
                   80002d40    00000740     sysbios.ae66 : BIOS.obj (.text:ti_sysbios_knl_Semaphore_pend__E)
                   80003480    00000700                  : BIOS.obj (.text:ti_sysbios_timers_timer64_Timer_Module_startup__E)
-                  80003b80    000006c0     sample_osal.obj (.text)
+                  80003b80    000006c0     qmss_osal.obj (.text)
                   80004240    00000640     ipc.ae66 : Ipc.obj (.text:Ipc_attach)
                   80004880    00000620              : Ipc.obj (.text:ti_sdo_ipc_heaps_HeapMemMP_alloc__E)
                   80004ea0    00000620     sysbios.ae66 : BIOS.obj (.text:ti_sysbios_heaps_HeapMem_allocUnprotected__E)
@@ -1301,7 +1301,7 @@ MODULE SUMMARY
     .\init\
        cppi_device.obj              0        0         2540   
        qmss_device.obj              0        0         2128   
-       sample_osal.obj              1728     0         24     
+       qmss_osal.obj                1728     0         24     
        qmss_init.obj                608      176       0      
        init.obj                     96       36        0      
     +--+----------------------------+--------+---------+---------+
@@ -1312,7 +1312,7 @@ MODULE SUMMARY
     +--+----------------------------+--------+---------+---------+
        Total:                       13856    17547     73676  
                                                               
-    C:\ti\ccsv8\tools\compiler\ti-cgt-c6000_8.3.3\lib\rts6600_elf.lib
+    C:\ti\ccs901\ccs\tools\compiler\ti-cgt-c6000_8.3.3\lib\rts6600_elf.lib
        imath64.c.obj                672      0         0      
        trgmsg.c.obj                 224      0         288    
        copy_decompress_rle.c.obj    288      0         0      

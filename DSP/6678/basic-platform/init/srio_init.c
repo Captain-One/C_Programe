@@ -9,22 +9,110 @@
 
 #include <xdc/runtime/System.h>
 
+#include <ti/sysbios/family/c64p/EventCombiner.h>
+#include <ti/sysbios/family/c66/tci66xx/CpIntc.h>
+
+/* CSL BootCfg Module */
+#include <ti/csl/csl_bootcfg.h>
+#include <ti/csl/csl_bootcfgAux.h>
+
+/* CSL Chip Functional Layer */
+#include <ti/csl/csl_chip.h>
+
+/* CSL Cache Functional Layer */
+#include <ti/csl/csl_cacheAux.h>
+
+/* CSL PSC Include Files */
+#include <ti/csl/csl_psc.h>
+#include <ti/csl/csl_pscAux.h>
+
+/* CSL Cache Functional Layer */
+#include <ti/csl/csl_cacheAux.h>
+
+/* CSL PSC Include Files */
+#include <ti/csl/csl_psc.h>
+#include <ti/csl/csl_pscAux.h>
+
+/* CSL SRIO Functional Layer */
+#include <ti/csl/csl_srio.h>
+#include <ti/csl/csl_srioAux.h>
+#include <ti/csl/csl_device_interrupt.h>
+#include <ti/csl/csl_srioAuxPhyLayer.h>
+
+/* SRIO Driver Include File. */
+#include <srio_osal.h>
 #include <ti/drv/srio/srio_drv.h>
+
+#include <srio_laneconfig.h>
+
+
+uint32_t srio_device_ID1 = CONSUMER_8BIT_DEVICE_ID;           /* DSP */
+uint32_t srio_device_ID2 = PRODUCER_8BIT_DEVICE_ID;           /* FPGA0  */
+uint32_t srio_device_ID3 = PRODUCER_8BIT_DEVICE_ID;           /* FPGA1 */
+
+uint32_t srio_work_mode = srio_Loopback_mode;
+srioRefClockMhz_e srio_refClockMhz = srio_ref_clock_156p25Mhz;
+srioLaneRateGbps_e  srio_laneSpeedGbps = srio_lane_rate_5p000Gbps;
+srioLanesMode_e     srio_lanesMode = srio_lanes_form_two_2x_ports;
+Int                srio_isBoardToBoard = 0;
+Int                srio_usePolledMode = 0;
+
+/* Consumer Management Socket. */
+Srio_SockHandle     mgmtSocket;
+
+/* Global SRIO Driver Handle. */
+Srio_DrvHandle      hAppManagedSrioDrv;
 
 
 Int srioInit(Void)
 {
+    int32_t             eventId;
+
     if (enable_srio () < 0)
     {
         System_printf ("Error: SRIO PSC Initialization Failed\n");
-        return;
+        return -1;
     }
 
     if (SrioDevice_init () < 0)
-        return;
+        return -1;
 
     if (Srio_init () < 0)
-        return;
+        return -1;
+
+    if(!srio_usePolledMode)
+    {
+        /* Hook up the SRIO interrupts with the core. */
+        EventCombiner_dispatchPlug (48, (EventCombiner_FuncPtr)Srio_rxCompletionIsr, (UArg)hAppManagedSrioDrv, TRUE);
+        EventCombiner_enableEvent (48);
+
+        /* SRIO DIO: Interrupts need to be routed from the CPINTC0 to GEM Event.
+         *  - We have configured DIO Interrupts to get routed to Interrupt Destination 0
+         *    (Refer to the CSL_SRIO_SetDoorbellRoute API configuration in the SRIO Initialization)
+         *  - We want this to mapped to Host Interrupt 8
+         *
+         *  Map the System Interrupt i.e. the Interrupt Destination 0 interrupt to the DIO ISR Handler. */
+        CpIntc_dispatchPlug(CSL_CIC0_SRIO_INTDST0, myDIOIsr, (UArg)hAppManagedSrioDrv, TRUE);
+
+        /* SRIO DIO: Configuration is for CPINTC0. We map system interrupt 112 to Host Interrupt 8. */
+        CpIntc_mapSysIntToHostInt(0, CSL_CIC0_SRIO_INTDST0, 8);
+
+        /* SRIO DIO: Enable the Host Interrupt. */
+        CpIntc_enableHostInt(0, 8);
+
+        /* SRIO DIO: Get the event id associated with the host interrupt. */
+        eventId = CpIntc_getEventId(8);
+
+        /* SRIO DIO: Plug the CPINTC Dispatcher. */
+        EventCombiner_dispatchPlug (eventId, CpIntc_dispatch, 8, TRUE);
+    }else{
+        ;
+    }
+
+    /* Create the DIO Management Socket. */
+    //mgmtSocket = createMgmtSocket ();
+
+    return 0;
 }
 
 
@@ -39,32 +127,10 @@ int32_t SrioDevice_init (void)
     uint32_t            gargbageQueue[] = { GARBAGE_LEN_QUEUE,  GARBAGE_TOUT_QUEUE,
                                             GARBAGE_RETRY_QUEUE,GARBAGE_TRANS_ERR_QUEUE,
                                             GARBAGE_PROG_QUEUE, GARBAGE_SSIZE_QUEUE };
-    uint32_t            srioIDMask = (testControl.srio_isDeviceID16Bit ? 0xFFFF : 0xFF);
+    uint32_t            srioIDMask =  0xFF;  //8bit ID
     uint32_t            srio_primary_ID = srio_device_ID1;
     uint32_t            srio_secondary_ID = srio_device_ID2;
 
-    /* Set primary port ID based on whether going board to board and the
-     * initialization core number */
-    if (testControl.srio_isBoardToBoard && (testControl.srio_initCorenum != CONSUMER_CORE) )
-    {
-        srio_primary_ID = srio_device_ID2;
-        srio_secondary_ID = srio_device_ID1;
-    }
-
-
-#ifndef SIMULATOR_SUPPORT
-    /* Disable SRIO reset isolation */
-    if (CSL_PSC_isModuleResetIsolationEnabled(CSL_PSC_LPSC_SRIO))
-        CSL_PSC_disableModuleResetIsolation(CSL_PSC_LPSC_SRIO);
-
-    /* Reset SRIO module and wait for the reset to complete */
-    CSL_PSC_setModuleLocalReset (CSL_PSC_LPSC_SRIO,PSC_MDLRST_ASSERTED);
-    CSL_PSC_setModuleNextState (CSL_PSC_LPSC_SRIO,PSC_MODSTATE_ENABLE);
-    System_printf ("Debug: Waiting for module reset...\n");
-    while (!CSL_PSC_isModuleResetDone(CSL_PSC_LPSC_SRIO));
-    System_printf ("Debug: Waiting for module local reset...\n");
-    while (!CSL_PSC_isModuleLocalResetDone (CSL_PSC_LPSC_SRIO));
-#endif
 
     /* Get the CSL SRIO Handle. */
     hSrio = CSL_SRIO_Open (0);
@@ -92,7 +158,7 @@ int32_t SrioDevice_init (void)
     for (i = 0; i <= 9; i++)
         CSL_SRIO_EnableBlock (hSrio,i);
 
-    if (testControl.srio_isLoopbackMode)
+    if (srio_work_mode == srio_Loopback_mode)
     {
         /* Configure SRIO to operate in Loopback mode. */
         CSL_SRIO_SetLoopbackMode (hSrio,0);
@@ -118,7 +184,7 @@ int32_t SrioDevice_init (void)
     /* Unlock the Boot Configuration Kicker */
     CSL_BootCfgUnlockKicker ();
 
-    if (setEnableSrioPllRxTx(hSrio, srio_refClockMhz, testControl.srio_laneSpeedGbps, testControl.srio_isLoopbackMode) < 0)
+    if (setEnableSrioPllRxTx(hSrio, srio_refClockMhz, srio_laneSpeedGbps, srio_work_mode) < 0)
         return -1;
 #if !defined(DEVICE_K2K) && !defined(DEVICE_K2H) && !defined(SOC_K2K) && !defined(SOC_K2H)
     /* Loop around until the SERDES PLL is locked. */
@@ -188,20 +254,20 @@ int32_t SrioDevice_init (void)
     CSL_SRIO_SetDestOperationCAR (hSrio, &opCar);
 
     /* Set the 16 bit and 8 bit identifier for the SRIO Device. */
-    CSL_SRIO_SetDeviceIDCSR (hSrio, DEVICE_ID1_8BIT, DEVICE_ID1_16BIT);
+    CSL_SRIO_SetDeviceIDCSR (hSrio, CONSUMER_8BIT_DEVICE_ID, CONSUMER_16BIT_DEVICE_ID);
 
     /* Enable TLM Base Routing Information for Maintainance Requests & ensure that
      * the BRR's can be used by all the ports. */
     CSL_SRIO_SetTLMPortBaseRoutingInfo (hSrio, 0, 1, 1, 1, 0);
     /* Only add additional route if doing core to core on the same board */
-    if (!testControl.srio_isBoardToBoard)
+    if (!srio_isBoardToBoard)
     CSL_SRIO_SetTLMPortBaseRoutingInfo (hSrio, 0, 2, 1, 1, 0);
 
     /* Configure the Base Routing Register to ensure that all packets matching the
      * Device Identifier & the Secondary Device Id are admitted. */
     CSL_SRIO_SetTLMPortBaseRoutingPatternMatch (hSrio, 0, 1, srio_primary_ID, srioIDMask);
     /* Only add additional route if doing core to core on the same board */
-    if (!testControl.srio_isBoardToBoard)
+    if (!srio_isBoardToBoard)
        CSL_SRIO_SetTLMPortBaseRoutingPatternMatch (hSrio, 0, 2, srio_secondary_ID, srioIDMask);
 
     /* We need to open the Garbage collection queues in the QMSS. This is done to ensure that
@@ -268,7 +334,7 @@ int32_t SrioDevice_init (void)
     CSL_SRIO_SetDataStreamingMTU (hSrio, 64);
 
     /* Configure the path mode for the ports. */
-    if (setSrioLanes(hSrio, testControl.srio_lanesMode) < 0)
+    if (setSrioLanes(hSrio, srio_lanesMode) < 0)
         return -1;
 
     /* Set the LLM Port IP Prescalar. */
@@ -331,11 +397,6 @@ int32_t SrioDevice_init (void)
     /* Configuration has been completed. */
     CSL_SRIO_SetBootComplete (hSrio, 1);
 
-#ifndef SIMULATOR_SUPPORT
-    /* Check Ports and make sure they are operational. */
-    if (waitAllSrioPortsOperational(hSrio, testControl.srio_lanesMode) < 0)
-        return -1;
-#endif
 
     if (displaySrioLanesStatus(hSrio) < 0)
         return -1;
@@ -374,7 +435,29 @@ static int32_t enable_srio (void)
 }
 
 
+/**
+ *  @b Description
+ *  @n
+ *      Application registered DIO ISR.
+ *
+ *  @retval
+ *      Not Applicable.
+ */
+void myDIOIsr(UArg argument)
+{
+    uint8_t     intDstDoorbell[4];
 
+    /* The Interrupt Destination Decode registers which need to be looked into.
+     * Please refer to the SRIO Device Initialization code. */
+    intDstDoorbell[0] = 0x0;
+    intDstDoorbell[1] = 0x1;
+    intDstDoorbell[2] = 0x2;
+    intDstDoorbell[3] = 0x3;
+
+    /* Pass the control to the driver DIO ISR handler. */
+    Srio_dioCompletionIsr ((Srio_DrvHandle)argument, intDstDoorbell);
+    return;
+}
 
 
 
