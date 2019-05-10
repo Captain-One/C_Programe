@@ -3,19 +3,19 @@
 init/qmss_init.obj: ../init/qmss_init.c
 init/qmss_init.obj: ../init/qmss_init.h
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/std.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdarg.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/_types.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/cdefs.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/machine/_types.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stddef.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stdarg.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/_types.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/cdefs.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/machine/_types.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stddef.h
 init/qmss_init.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/std.h
 init/qmss_init.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/C66.h
 init/qmss_init.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/std.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdint.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/_stdint40.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/stdint.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/machine/_stdint.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/_stdint.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stdint.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_stdint40.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/stdint.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/machine/_stdint.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/_stdint.h
 init/qmss_init.obj: ../init/../common/common.h
 init/qmss_init.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MessageQ.h
 init/qmss_init.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MultiProc.h
@@ -66,9 +66,9 @@ init/qmss_init.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
 init/qmss_init.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/string.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/_ti_config.h
-init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/linkage.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h
+init/qmss_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h
 init/qmss_init.obj: C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
@@ -185,18 +185,6 @@ init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstanc
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h
 init/qmss_init.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/CPPI/CPPI_drv.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_global_config.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_channel_config.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_flow_config.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_channel_config.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_scheduler_config.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
-init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/CPPI/cppiver.h
 init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/QMSS/QMSS_drv.h
 init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmssver.h
 init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_qm.h
@@ -227,25 +215,39 @@ init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/rm/rm.h
 init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_device.h
 init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
 init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_osal.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_drv.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_global_config.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_channel_config.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_flow_config.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_channel_config.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_scheduler_config.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppiver.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_desc.h
+init/qmss_init.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_osal.h
 init/qmss_init.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/Ipc.h
 init/qmss_init.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/SharedRegion.h
 
 ../init/qmss_init.c: 
 ../init/qmss_init.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/std.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdarg.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/_types.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/cdefs.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/machine/_types.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stddef.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stdarg.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/_types.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/cdefs.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/machine/_types.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stddef.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/std.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/C66.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/std.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdint.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/_stdint40.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/stdint.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/machine/_stdint.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/_stdint.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stdint.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_stdint40.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/stdint.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/machine/_stdint.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/sys/_stdint.h: 
 ../init/../common/common.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MessageQ.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/MultiProc.h: 
@@ -296,9 +298,9 @@ C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/IMessageQTransport.h
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/string.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/_ti_config.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/linkage.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h: 
 C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
@@ -415,18 +417,6 @@ C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h:
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/CPPI/CPPI_drv.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_global_config.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_channel_config.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_flow_config.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_channel_config.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_scheduler_config.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
-C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/CPPI/cppiver.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/QMSS/QMSS_drv.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmssver.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_qm.h: 
@@ -457,5 +447,19 @@ C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/rm/rm.h:
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_device.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_osal.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_drv.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_global_config.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_channel_config.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_rx_flow_config.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_channel_config.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/cslr_cppidma_tx_scheduler_config.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppiver.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_desc.h: 
+C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_osal.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/Ipc.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/ipc/SharedRegion.h: 

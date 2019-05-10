@@ -11,15 +11,23 @@
 #include <xdc/std.h>
 #include "../common/common.h"
 
-#define NUM_HOST_DESC           32
-#define NUM_MONOLITHIC_DESC     32
+//#define NUM_MONOLITHIC_DESC     32
+//#define SIZE_MONOLITHIC_DESC    64
 
+//#define SIZE_DATA_BUFFER        128
+//#define NUM_DATA_BUFFER         128
+
+#define FREE_DSC_QUEUE          500
+#define TX_QUEUE                800
+#define RX_QUEUE                704
+
+#define NUM_HOST_DESC           128
 #define SIZE_HOST_DESC          64
-#define SIZE_MONOLITHIC_DESC    64
 
-#define SIZE_DATA_BUFFER        128
-#define NUM_DATA_BUFFER         128
+#define TX_CHANNEL              0
 
+#define SIZE_RX_DATA_BUFFER     1024
+#define NUM_RX_DATA_BUFFER      NUM_HOST_DESC
 
 #define CORE_ID                 0
 #define MASTER_INIT_DONE        (1 << MASTER_CORE)

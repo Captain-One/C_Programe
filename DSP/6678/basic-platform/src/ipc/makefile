@@ -11,9 +11,9 @@ BUILD_DEFS =  -Dti_sdo_ipc_MessageQ_traceFlag__D=FALSE -Dti_sdo_ipc_family_ti81x
 
 INCS = -IC:/ti/sdk-k2h/ipc_3_50_03_04/packages -IC:/ti/sdk-k2h/bios_6_73_01_01/packages -IC:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages -IC:/ti/sdk-k2h/ndk_3_40_01_01/packages -IF:/myPlatform
 
-CC = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/cl6x -c $(CCOPTS) --output_file=$@ -I C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include
-ASM = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/cl6x -c $(CCOPTS) -I C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include
-AR = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/ar6x rq
+CC = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS) --output_file=$@ -I C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include
+ASM = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS) -I C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include
+AR = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/ar6x rq
 
 DEL = cmd.exe /q /c del /f
 CP = cmd.exe /q /c copy /Y

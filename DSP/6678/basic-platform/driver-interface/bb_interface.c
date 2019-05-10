@@ -6,22 +6,48 @@
  */
 
 #include <bb_interface.h>
+#include <srio_init.h>
+#include <xdc/runtime/System.h>
+#include <common.h>
 
+uint32_t writeIndex;
+uint32_t readIndex;
+uint32_t eerorPktCount = 0;
 
-Int getBbData(Int bbfpgaNo, Void *bufu, Int len)
+Int getBbData(Int bbfpgaNo, Void *buf, Int len)
 {
-    //read srio buf;
+    FpkH_t  *fpkt;
+    uint32_t  dataBlockCount;
 
+    if(writeIndex == readIndex){
+        return 0;
+    }
+  //cach
+    dataBlockCount = writeIndex - readIndex;
+
+    fpkt = (FpkH_t  *)(SRIO_DATA_BUF_ADDR + DATA_ALIGN * readIndex) ;
+
+    if(fpkt->mark != 0xDCBA){
+        eerorPktCount ++;
+        readIndex ++;
+        goto de;
+    }else{
+        //fpkt->flen
+        memcpy(buf, fpkt, fpkt->flen);
+    }
+    //xie
+de:
+    writeBbReg(bbfpgaNo, &readIndex);
     return 0;
 }
 
-Int sendDataToBb(Int bbfpgaNo, Void *bufu, Int len)
+Int sendDataToBb(Int bbfpgaNo, Void *buf, Int len)
 {
     Int  re;
 
     switch(bbfpgaNo){
-    case BB_FPGA_NO_0: re = srioSendData(0, bufu, len);break;
-    case BB_FPGA_NO_1: re = srioSendData(1, bufu, len);break;
+    case BB_FPGA_NO_0: re = srioSendData(0, buf, len);break;
+    case BB_FPGA_NO_1: re = srioSendData(1, buf, len);break;
     default : break;
     }
 
@@ -34,63 +60,19 @@ Int sendDataToBb(Int bbfpgaNo, Void *bufu, Int len)
 }
 
 
-Int srioSendData(uint8_t port, Void *bufu, Int len)
+Int writeBbReg(Int bbfpgaNo, Void *buf)
 {
-    Srio_SockHandle         controlSocket;
-    Srio_SockBindAddrInfo   bindInfo;
-    Srio_SockAddrInfo       to;
+    Int re;
 
-
-    if(!port){
-        to.dio.rapidIOLSB    = 0;
-        to.dio.dstID         = srio_device_ID2;
-        bindInfo.dio.outPortID      = SRIO_PORT_NUM;
-    }else{
-        to.dio.rapidIOLSB    = 0;
-        to.dio.dstID         = srio_device_ID3;
-        bindInfo.dio.outPortID      = SRIO_PORT_NUM;
+    switch(bbfpgaNo){
+    case BB_FPGA_NO_0:  re = srioSendData(0, buf, 256);break;
+    case BB_FPGA_NO_1:  re = srioSendData(1, buf, 256);break;
+    default : break;
     }
-
-    to.dio.rapidIOMSB    = 0x0;
-    to.dio.ttype         = Srio_Ttype_Write_NWRITE;
-    to.dio.ftype         = Srio_Ftype_WRITE;
-
-    /* DIO Binding Information: */
-    bindInfo.dio.doorbellValid  = 0;
-    bindInfo.dio.intrRequest    = 0;
-    bindInfo.dio.supInt         = 0;
-    bindInfo.dio.xambs          = 0;
-    bindInfo.dio.priority       = 0;
-    bindInfo.dio.idSize         = 0;
-    bindInfo.dio.srcIDMap       = 0;
-    bindInfo.dio.hopCount       = 0;
-    bindInfo.dio.doorbellReg    = 0;
-    bindInfo.dio.doorbellBit    = 0;
-
-    controlSocket = Srio_sockOpen (hAppManagedSrioDrv, Srio_SocketType_DIO, TRUE);
-    if (controlSocket == NULL)
-    {
-        System_printf ("Error: DIO Control Socket open failed\n");
+    if(re < 0){
         return -1;
     }
-
-
-    /* Bind the DIO socket. */
-    if (Srio_sockBind (controlSocket, &bindInfo) < 0)
-    {
-       System_printf ("Error: Binding the DIO Control Socket failed.\n");
-       return -1;
-    }
-
-    if (Srio_sockSend (controlSocket, buf, len, &to) < 0)
-    {
-        System_printf ("Error: Unable to send RX dropped packet message over DIO socket\n");
-        return -1;
-    }
-
-    //sendMgmtPingReply();
-
-    Srio_sockClose (controlSocket);
-    return 0;
+   return 0;
 }
+
 

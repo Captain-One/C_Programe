@@ -16,6 +16,9 @@
 /* SRIO Driver Includes */
 #include <ti/drv/srio/srio_drv.h>
 
+#define SRIO_PORT_0                 0
+#define SRIO_PORT_1                 0
+
 
 /* These are the GARBAGE queues which are used by the TXU to dump the
  * descriptor if there is an error instead of recycling the descriptor
@@ -290,5 +293,7 @@ Int srioInit(Void);
 static int32_t enable_srio (void);
 int32_t SrioDevice_init (void);
 void myDIOIsr(UArg argument);
+Int srioSendData(uint8_t port, Void *buf, Int len);
+
 
 #endif /* INIT_SRIO_INIT_H_ */

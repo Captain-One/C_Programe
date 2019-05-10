@@ -12,6 +12,7 @@ GEN_CMDS__FLAG := -l"configPkg/linker.cmd"
 ORDERED_OBJS += \
 "./main.obj" \
 "./driver-interface/bb_interface.obj" \
+"./driver-interface/core_2_core_interface.obj" \
 "./init/cppi_device.obj" \
 "./init/init.obj" \
 "./init/qmss_device.obj" \
@@ -166,8 +167,8 @@ basic-platform.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "main.obj" "driver-interface\bb_interface.obj" "init\cppi_device.obj" "init\init.obj" "init\qmss_device.obj" "init\qmss_init.obj" "init\qmss_osal.obj" "init\srio_init.obj" "init\srio_laneconfig.obj" "init\srio_osal.obj" 
-	-$(RM) "main.d" "driver-interface\bb_interface.d" "init\cppi_device.d" "init\init.d" "init\qmss_device.d" "init\qmss_init.d" "init\qmss_osal.d" "init\srio_init.d" "init\srio_laneconfig.d" "init\srio_osal.d" 
+	-$(RM) "main.obj" "driver-interface\bb_interface.obj" "driver-interface\core_2_core_interface.obj" "init\cppi_device.obj" "init\init.obj" "init\qmss_device.obj" "init\qmss_init.obj" "init\qmss_osal.obj" "init\srio_init.obj" "init\srio_laneconfig.obj" "init\srio_osal.obj" 
+	-$(RM) "main.d" "driver-interface\bb_interface.d" "driver-interface\core_2_core_interface.d" "init\cppi_device.d" "init\init.d" "init\qmss_device.d" "init\qmss_init.d" "init\qmss_osal.d" "init\srio_init.d" "init\srio_laneconfig.d" "init\srio_osal.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

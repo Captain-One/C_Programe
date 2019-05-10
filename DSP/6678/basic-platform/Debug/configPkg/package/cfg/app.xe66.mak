@@ -3,7 +3,7 @@
 #  package.bld.  Any modifications to this file will be 
 #  overwritten whenever makefiles are re-generated.
 #
-#  target compatibility key = ti.targets.elf.C66{1,0,8.3,2
+#  target compatibility key = ti.targets.elf.C66{1,0,8.3,3
 #
 app.xe66: package/cfg/app.xe66.mak
 

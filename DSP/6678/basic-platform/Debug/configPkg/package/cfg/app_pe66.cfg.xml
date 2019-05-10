@@ -64,7 +64,7 @@
             version="1,0,8.2,2"
             usedby="ti.sdo.ipc"/>
     <target name="ti.targets.elf.C66"
-            version="1,0,8.3,2"
+            version="1,0,8.3,3"
             usedby="configPkg"/>
 </targets>
 <imports>
@@ -4850,7 +4850,7 @@
             <feature name="execCmd" type="string" value="@%24%28ECHO%29%20ti.platforms.generic%20cannot%20run%20app.xe66"/>
             <feature name="linkTemplate" type="object" value="null"/>
             <feature name="main" type="undefined" value="undefined"/>
-            <feature name="sectMap" type="object"><map id='xdc.cfg.Program/sectMap'  length='3'><entry key='.qmss'>MSMCSRAM</entry><entry key='.cppi'>MSMCSRAM</entry><entry key='.vecs'>xdc.services.intern.xsr.Value$Obj@1a1dab3::xdc.cfg.Program.SectionSpec#0</entry></map>
+            <feature name="sectMap" type="object"><map id='xdc.cfg.Program/sectMap'  length='4'><entry key='.qmss'>MSMCSRAM</entry><entry key='.cppi'>MSMCSRAM</entry><entry key='.L2RAM'>L2SRAM</entry><entry key='.vecs'>xdc.services.intern.xsr.Value$Obj@1a1dab3::xdc.cfg.Program.SectionSpec#0</entry></map>
             </feature>
             <feature name="sectionsExclude" type="object" value="null"/>
             <feature name="memoryExclude" type="boolean" value="false"/>

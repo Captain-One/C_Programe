@@ -461,3 +461,67 @@ void myDIOIsr(UArg argument)
 
 
 
+Int srioSendData(uint8_t port, Void *buf, Int len)
+{
+    Srio_SockHandle         controlSocket;
+    Srio_SockBindAddrInfo   bindInfo;
+    Srio_SockAddrInfo       to;
+
+
+    if(port == SRIO_PORT_0){
+        to.dio.rapidIOLSB    = 0;
+        to.dio.dstID         = srio_device_ID2;
+    }else{
+        to.dio.rapidIOLSB    = 0;
+        to.dio.dstID         = srio_device_ID3;
+    }
+
+
+    to.dio.rapidIOMSB    = 0x0;
+    to.dio.ttype         = Srio_Ttype_Write_NWRITE;
+    to.dio.ftype         = Srio_Ftype_SWRITE;
+
+    /* DIO Binding Information: */
+    bindInfo.dio.doorbellValid  = 0;
+    bindInfo.dio.intrRequest    = 0;
+    bindInfo.dio.supInt         = 0;
+    bindInfo.dio.xambs          = 0;
+    bindInfo.dio.priority       = 0;
+    bindInfo.dio.idSize         = 0;
+    bindInfo.dio.srcIDMap       = 0;
+    bindInfo.dio.hopCount       = 0;
+    bindInfo.dio.doorbellReg    = 0;
+    bindInfo.dio.doorbellBit    = 0;
+    bindInfo.dio.outPortID      = port;
+
+    controlSocket = Srio_sockOpen (hAppManagedSrioDrv, Srio_SocketType_DIO, TRUE);
+    if (controlSocket == NULL)
+    {
+        System_printf ("Error: DIO Control Socket open failed\n");
+        return -1;
+    }
+
+
+    /* Bind the DIO socket. */
+    if (Srio_sockBind (controlSocket, &bindInfo) < 0)
+    {
+       System_printf ("Error: Binding the DIO Control Socket failed.\n");
+       return -1;
+    }
+
+    if (Srio_sockSend (controlSocket, buf, len, &to) < 0)
+    {
+        System_printf ("Error: Unable to send RX dropped packet message over DIO socket\n");
+        return -1;
+    }
+
+    //sendMgmtPingReply();
+
+    Srio_sockClose (controlSocket);
+    return 0;
+}
+
+
+
+
+

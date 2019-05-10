@@ -99,7 +99,7 @@ C:/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/package.xs.
 package.mak: C:/ti/xdctools_3_51_01_18_core/packages/xdc/tools/configuro/template/package.xs.xdt
 endif
 
-ti.targets.elf.C66.rootDir ?= C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2
+ti.targets.elf.C66.rootDir ?= C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3
 ti.targets.elf.packageBase ?= C:/ti/sdk-k2h/bios_6_73_01_01/packages/ti/targets/elf/
 .PRECIOUS: $(XDCCFGDIR)/%.oe66
 .PHONY: all,e66 .dlls,e66 .executables,e66 test,e66

@@ -28,8 +28,8 @@
 
 #include "../init/init.h"
 
-String core_name = "CORE0";
-UInt16 core_id ;
+String const core_name = "CORE0";
+UInt16 const core_id = 0;
 
 
 /*
