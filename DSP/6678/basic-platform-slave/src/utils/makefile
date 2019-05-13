@@ -17,9 +17,9 @@ IPC_INC    = -I"C:/ti/sdk-k2h/ipc_3_50_03_04/packages"
 
 UTILS_INC    = -I"C:/ti/sdk-k2h/ipc_3_50_03_04/packages"
 
-CC = C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS) -I C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include
-ASM = C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS) -I C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/include
-AR = C:/ti/ccsv8/tools/compiler/ti-cgt-c6000_8.3.3/bin/ar6x rq
+CC = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS) -I C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include
+ASM = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/cl6x -c $(CCOPTS) -I C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include
+AR = C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/bin/ar6x rq
 
 DEL = cmd.exe /q /c del /f
 CP = cmd.exe /q /c copy /Y

@@ -206,6 +206,7 @@ SECTIONS
     .c6xabi.extab: load >> DDR
     .qmss: load > MSMCSRAM
     .cppi: load > MSMCSRAM
+    .L2RAM: load > L2SRAM
     .vecs: load > DDR
     xdc.meta: load > DDR, type = COPY
 

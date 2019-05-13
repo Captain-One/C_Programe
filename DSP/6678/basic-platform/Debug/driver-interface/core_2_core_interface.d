@@ -98,6 +98,9 @@ driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/package
 driver-interface/core_2_core_interface.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
 driver-interface/core_2_core_interface.obj: C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
 driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h
+driver-interface/core_2_core_interface.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stdlib.h
+driver-interface/core_2_core_interface.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h
+driver-interface/core_2_core_interface.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h
 driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/QMSS/QMSS_drv.h
 driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmssver.h
 driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_qm.h
@@ -147,8 +150,6 @@ driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packag
 driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppiver.h
 driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_desc.h
 driver-interface/core_2_core_interface.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h
-driver-interface/core_2_core_interface.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h
-driver-interface/core_2_core_interface.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h
 driver-interface/core_2_core_interface.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_osal.h
 
 ../driver-interface/core_2_core_interface.c: 
@@ -249,6 +250,9 @@ C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/IMessageQTransport.h
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
 C:/ti/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
 C:/ti/sdk-k2h/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/stdlib.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h: 
+C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/QMSS/QMSS_drv.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmssver.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_qm.h: 
@@ -298,6 +302,4 @@ C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h:
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppiver.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_desc.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/_ti_config.h: 
-C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/linkage.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/cppi/cppi_osal.h: 

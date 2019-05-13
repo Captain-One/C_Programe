@@ -11,14 +11,21 @@
 #include <xdc/std.h>
 #include "../common/common.h"
 
+//#define NUM_MONOLITHIC_DESC     32
+//#define SIZE_MONOLITHIC_DESC    64
+
+#define FREE_DSC_QUEUE          500
+#define TX_QUEUE                800
+#define RX_QUEUE                704
+
 #define NUM_HOST_DESC           32
-#define NUM_MONOLITHIC_DESC     32
-
 #define SIZE_HOST_DESC          64
-#define SIZE_MONOLITHIC_DESC    64
 
-#define SIZE_DATA_BUFFER        128
-#define NUM_DATA_BUFFER         128
+
+#define TX_CHANNEL              0
+
+#define SIZE_RX_DATA_BUFFER     1024
+#define NUM_RX_DATA_BUFFER      NUM_HOST_DESC
 
 #define CORE_NUM                2
 #define MASTER_CORE             0
@@ -29,5 +36,6 @@
 
 Int cppiInit(Void);
 Int ipcInit(Void);
+static uint32_t l2_global_address (uint32_t addr);
 
 #endif /* INIT_QMSS_INIT_H_ */

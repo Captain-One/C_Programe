@@ -14,9 +14,6 @@
 //#define NUM_MONOLITHIC_DESC     32
 //#define SIZE_MONOLITHIC_DESC    64
 
-//#define SIZE_DATA_BUFFER        128
-//#define NUM_DATA_BUFFER         128
-
 #define FREE_DSC_QUEUE          500
 #define TX_QUEUE                800
 #define RX_QUEUE                704
@@ -36,5 +33,6 @@
 
 Int cppiInit(Void);
 Int ipcInit(Void);
+static uint32_t l2_global_address (uint32_t addr);
 
 #endif /* INIT_QMSS_INIT_H_ */
