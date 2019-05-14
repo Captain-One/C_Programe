@@ -19,7 +19,7 @@
 #define RX_QUEUE                704
 
 #define NUM_HOST_DESC           128
-#define SIZE_HOST_DESC          64
+#define SIZE_HOST_DESC          32
 
 #define TX_CHANNEL              0
 

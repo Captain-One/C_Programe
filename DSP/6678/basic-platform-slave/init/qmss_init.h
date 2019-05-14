@@ -14,15 +14,15 @@
 //#define NUM_MONOLITHIC_DESC     32
 //#define SIZE_MONOLITHIC_DESC    64
 
-#define FREE_DSC_QUEUE          500
-#define TX_QUEUE                800
-#define RX_QUEUE                704
+#define FREE_DSC_QUEUE          501
+#define TX_QUEUE                801
+#define RX_QUEUE                705
 
-#define NUM_HOST_DESC           32
-#define SIZE_HOST_DESC          64
+#define NUM_HOST_DESC           128
+#define SIZE_HOST_DESC          32
 
 
-#define TX_CHANNEL              0
+#define TX_CHANNEL              1
 
 #define SIZE_RX_DATA_BUFFER     1024
 #define NUM_RX_DATA_BUFFER      NUM_HOST_DESC

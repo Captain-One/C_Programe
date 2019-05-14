@@ -242,6 +242,7 @@ main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc/k2h/src/cslr_device.h
 main.obj: C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_osal.h
 main.obj: D:/pxqwork/project/app-n/basic-platform/init/../init/init.h
+main.obj: D:/pxqwork/project/app-n/basic-platform/driver-interface/core_2_core_interface.h
 
 ../main.c: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.3/include/string.h: 
@@ -485,3 +486,4 @@ C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/tistdtypes.h:
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/csl/soc/k2h/src/cslr_device.h: 
 C:/ti/sdk-k2h/pdk_k2hk_4_0_12/packages/ti/drv/qmss/qmss_osal.h: 
 D:/pxqwork/project/app-n/basic-platform/init/../init/init.h: 
+D:/pxqwork/project/app-n/basic-platform/driver-interface/core_2_core_interface.h: 

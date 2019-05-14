@@ -28,9 +28,14 @@
 //SRIO
 
 #include "init/init.h"
+#include <core_2_core_interface.h>
 
 String core_name = "CORE0";
 UInt16 core_id = 1;
+
+uint8_t data[1024*128] = {0};
+
+uint32_t dataLen;
 
 /*
  *  ======== taskFxn ========
@@ -38,6 +43,7 @@ UInt16 core_id = 1;
 Void taskFxn(UArg a0, UArg a1)
 {
     Int status;
+    Int re;
 
     System_printf("enter taskFxn()\n");
 
@@ -47,7 +53,19 @@ Void taskFxn(UArg a0, UArg a1)
         System_exit(-1);
     }
 
-    Task_sleep(10);
+    while(1)
+    {
+        re = 0;
+        re = getDataFromCoreN(0, data, &dataLen);
+        if(re < 0){
+            System_printf("sendDataToCoreN eror\n");
+        }
+        if(re == 0)
+            break;
+
+    }
+
+    //Task_sleep(10);
 
     System_printf("exit taskFxn()\n");
 

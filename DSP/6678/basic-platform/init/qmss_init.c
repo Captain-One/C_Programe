@@ -113,7 +113,7 @@ Int cppiInit(Void)
     cfg.linkingRAM0Base = 0;
     cfg.linkingRAM0Size = 0;
     cfg.linkingRAM1Base = 0;
-    cfg.maxDescNum = 64;
+    cfg.maxDescNum = CORE_NUM * NUM_HOST_DESC;
     //cfg.mode = 0;
     //cfg.pdspFirmware = NULL;
     //cfg.qmssHwStatus = 0;
@@ -209,9 +209,9 @@ Int cppiInit(Void)
     /* Descriptor should be recycled back to freeQue allocated since destQueueNum is < 0 */
 
     descCfg.returnPushPolicy = Qmss_Location_TAIL;
-    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET;
+    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET;//Cppi_ReturnPolicy_RETURN_BUFFER;//
     descCfg.cfg.host.psLocation = Cppi_PSLoc_PS_IN_DESC;
-    //descCfg.cfg.mono.dataOffset = 12;//Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET;
+
 
     if ((freeQueHnd = Cppi_initDescriptor (&descCfg, &numAllocated)) < 0)
     {
@@ -325,6 +325,8 @@ Int cppiInit(Void)
 
     Qmss_queueEmpty (rxQueHnd);
     Qmss_queueEmpty (txQueHnd);
+
+    System_flush();
 
     return 0;
 }

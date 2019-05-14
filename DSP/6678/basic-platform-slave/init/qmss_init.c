@@ -85,13 +85,10 @@ Int ipcInit(Void)
 Int cppiInit(Void)
 {
     Qmss_Result  re_qmss;
-    Cppi_Result  re_cppi;
-    Qmss_InitCfg cfg;
     Qmss_Queue   queInfo;
 
     MessageQ_QueueId qid;
     Notifye_Msg *notifyMsg;
-    MessageQ_Params msgQ_params;
     MessageQ_Handle msg;
 
     Cppi_CpDmaInitCfg       cpdmaCfg;
@@ -103,8 +100,6 @@ Int cppiInit(Void)
     Cppi_DescCfg            descCfg;
     Cppi_Desc               *rxPkt;
 
-
-    Int initDone;
     Int re;
     Int i;
     uint32_t numAllocated;
@@ -181,7 +176,7 @@ Int cppiInit(Void)
     memset(&memInfo, 0, sizeof(memInfo));
     memInfo.descBase = (uint32_t *) l2_global_address ((uint32_t)hostDesc);
     memInfo.descNum = NUM_HOST_DESC;   // calculate
-    memInfo.startIndex = core_id * NUM_HOST_DESC;
+    memInfo.startIndex = (core_id - 1) * NUM_HOST_DESC + NUM_HOST_DESC;
     memInfo.descSize = SIZE_HOST_DESC;
     memInfo.manageDescFlag = Qmss_ManageDesc_MANAGE_DESCRIPTOR;
     memInfo.memRegion = (Qmss_MemRegion)core_id;
@@ -210,9 +205,8 @@ Int cppiInit(Void)
     /* Descriptor should be recycled back to freeQue allocated since destQueueNum is < 0 */
 
     descCfg.returnPushPolicy = Qmss_Location_TAIL;
-    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET;
+    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET; //Cppi_ReturnPolicy_RETURN_BUFFER;
     descCfg.cfg.host.psLocation = Cppi_PSLoc_PS_IN_DESC;
-    //descCfg.cfg.mono.dataOffset = 12;//Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET;
 
     if ((freeQueHnd = Cppi_initDescriptor (&descCfg, &numAllocated)) < 0)
     {
@@ -260,7 +254,7 @@ Int cppiInit(Void)
 #endif
 
     memset ((void *) &rxFlowCfg, 0, sizeof (Cppi_RxFlowCfg));
-    rxFlowCfg.flowIdNum = 0;
+    rxFlowCfg.flowIdNum = core_id;
     queInfo = Qmss_getQueueNumber (rxQueHnd);
     rxFlowCfg.rx_dest_qnum = queInfo.qNum;
     rxFlowCfg.rx_dest_qmgr = queInfo.qMgr;
@@ -326,6 +320,8 @@ Int cppiInit(Void)
 
     Qmss_queueEmpty (rxQueHnd);
     Qmss_queueEmpty (txQueHnd);
+
+    System_flush();
 
     return 0;
 }
