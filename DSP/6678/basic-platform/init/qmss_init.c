@@ -37,6 +37,9 @@ extern UInt16 const core_id;
 //#pragma DATA_ALIGN (dataBuff, 16)
 //uint8_t             dataBuff[SIZE_DATA_BUFFER * NUM_DATA_BUFFER];
 
+#pragma DATA_SECTION(ps_info, ".L2RAM")
+Ps_Info  ps_info = {0};
+
 /* Descriptor pool [Size of descriptor * Number of descriptors] */
 #pragma DATA_SECTION(hostDesc, ".L2RAM")
 #pragma DATA_ALIGN (hostDesc, 16)
@@ -47,7 +50,7 @@ uint8_t             hostDesc[SIZE_HOST_DESC * NUM_HOST_DESC];  //128 * 64 = 8k;
 uint8_t             rxDataBuff[SIZE_RX_DATA_BUFFER * NUM_RX_DATA_BUFFER];
 
 Qmss_QueueHnd freeQueHnd;
-Qmss_QueueHnd rxQueHnd;
+Qmss_QueueHnd rxQueHnd[CORE_NUM - 1];
 Qmss_QueueHnd txQueHnd;
 Cppi_ChHnd    txChHnd;
 Cppi_ChHnd    rxChHnd;
@@ -209,7 +212,7 @@ Int cppiInit(Void)
     /* Descriptor should be recycled back to freeQue allocated since destQueueNum is < 0 */
 
     descCfg.returnPushPolicy = Qmss_Location_TAIL;
-    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET;//Cppi_ReturnPolicy_RETURN_BUFFER;//
+    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_BUFFER;//Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET;//;//
     descCfg.cfg.host.psLocation = Cppi_PSLoc_PS_IN_DESC;
 
 
@@ -259,7 +262,7 @@ Int cppiInit(Void)
 #endif
 
     memset ((void *) &rxFlowCfg, 0, sizeof (Cppi_RxFlowCfg));
-    rxFlowCfg.flowIdNum = 0;
+    rxFlowCfg.flowIdNum = core_id;
     queInfo = Qmss_getQueueNumber (rxQueHnd);
     rxFlowCfg.rx_dest_qnum = queInfo.qNum;
     rxFlowCfg.rx_dest_qmgr = queInfo.qMgr;
@@ -309,6 +312,7 @@ Int cppiInit(Void)
         return -1;
     }
 
+    ps_info.src_core = core_id;
 
     for(i = 0; i < NUM_HOST_DESC; i++)
     {
@@ -317,6 +321,7 @@ Int cppiInit(Void)
               continue;
         }
         rxPkt = (Cppi_Desc *) QMSS_DESC_PTR (rxPkt);
+        Cppi_setPSData (Cppi_DescType_HOST, (Cppi_Desc*)rxPkt, (uint8_t *) &ps_info, sizeof(Ps_Info));
         Cppi_setData (Cppi_DescType_HOST, rxPkt, (uint8_t *)l2_global_address((uint32_t)(rxDataBuff + SIZE_RX_DATA_BUFFER * i)), SIZE_RX_DATA_BUFFER);
         Cppi_setOriginalBufInfo (Cppi_DescType_HOST, rxPkt, (uint8_t *)l2_global_address ((uint32_t) (rxDataBuff +  SIZE_RX_DATA_BUFFER * i)), SIZE_RX_DATA_BUFFER);
         Cppi_setPacketLen (Cppi_DescType_HOST, rxPkt, SIZE_RX_DATA_BUFFER);

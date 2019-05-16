@@ -205,7 +205,7 @@ Int cppiInit(Void)
     /* Descriptor should be recycled back to freeQue allocated since destQueueNum is < 0 */
 
     descCfg.returnPushPolicy = Qmss_Location_TAIL;
-    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET; //Cppi_ReturnPolicy_RETURN_BUFFER;
+    descCfg.cfg.host.returnPolicy = Cppi_ReturnPolicy_RETURN_BUFFER;//Cppi_ReturnPolicy_RETURN_ENTIRE_PACKET; //;
     descCfg.cfg.host.psLocation = Cppi_PSLoc_PS_IN_DESC;
 
     if ((freeQueHnd = Cppi_initDescriptor (&descCfg, &numAllocated)) < 0)

@@ -32,8 +32,8 @@
 String const core_name = "CORE0";
 UInt16 const core_id = 0;
 
-uint8_t data[8*1024] = {0};
-uint32_t dataLen = 8*1024;
+uint8_t data[10*128] = {0};
+uint32_t dataLen = 10*128;
 
 /*
  *  ======== taskFxn ========
