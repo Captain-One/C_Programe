@@ -49,6 +49,9 @@ uint8_t             hostDesc[SIZE_HOST_DESC * NUM_HOST_DESC];  //128 * 64 = 8k;
 #pragma DATA_ALIGN (rxDataBuff, 16)
 uint8_t             rxDataBuff[SIZE_RX_DATA_BUFFER * NUM_RX_DATA_BUFFER];
 
+int32_t const rxQueNum[8] = {-1, 704, 705, 706, 832, 833, 834, 835};
+int16_t const flowIdNum[8] = {-1, 1, 2, 3, 4, 5, 6, 7};  //id 1--7 核零接收其他七个核的数据
+
 Qmss_QueueHnd freeQueHnd;
 Qmss_QueueHnd rxQueHnd[CORE_NUM - 1];
 Qmss_QueueHnd txQueHnd;
@@ -227,10 +230,39 @@ Int cppiInit(Void)
 #endif
     }
 
-    if ((rxQueHnd = Qmss_queueOpen (Qmss_QueueType_HIGH_PRIORITY_QUEUE, RX_QUEUE, &isAllocated)) < 0)
+    memset ((void *) &rxFlowCfg, 0, sizeof (Cppi_RxFlowCfg));
+    rxFlowCfg.rx_sop_offset = 0;
+    rxFlowCfg.rx_desc_type = Cppi_DescType_HOST;
+
+    queInfo = Qmss_getQueueNumber (freeQueHnd);
+    rxFlowCfg.rx_fdq0_sz0_qnum = queInfo.qNum;
+    rxFlowCfg.rx_fdq0_sz0_qmgr = queInfo.qMgr;
+    rxFlowCfg.rx_psinfo_present = 1;
+    rxFlowCfg.rx_ps_location = 0;
+    rxFlowCfg.rx_error_handling = 1;
+
+    for(i = 0; i < CORE_NUM; i++)
     {
-        System_printf ("Error Core %d : Opening Queue Number\n", core_id);
-        return -1;
+        if(i == core_id)
+            continue;
+
+        if((rxQueHnd[i] = Qmss_queueOpen (Qmss_QueueType_GENERAL_PURPOSE_QUEUE, rxQueNum[i], &isAllocated)) < 0)
+        {
+            System_printf ("Error Core %d : Opening Queue Number\n", core_id);
+            return -1;
+        }
+        Qmss_queueEmpty (rxQueHnd[i]);
+
+        rxFlowCfg.flowIdNum = flowIdNum[i];
+        queInfo = Qmss_getQueueNumber (rxQueHnd[i]);
+        rxFlowCfg.rx_dest_qnum = queInfo.qNum;
+        rxFlowCfg.rx_dest_qmgr = queInfo.qMgr;
+
+        rx_flowhnd = Cppi_configureRxFlow(cppiHnd, &rxFlowCfg, &isAllocated);
+        if(rx_flowhnd == NULL){
+           System_printf("Cppi_configureRxFlow error !!!!\n");
+           return -1;
+        }
     }
 
     if ((txQueHnd = Qmss_queueOpen (Qmss_QueueType_INFRASTRUCTURE_QUEUE, TX_QUEUE, &isAllocated)) < 0)
@@ -261,26 +293,6 @@ Int cppiInit(Void)
     }
 #endif
 
-    memset ((void *) &rxFlowCfg, 0, sizeof (Cppi_RxFlowCfg));
-    rxFlowCfg.flowIdNum = core_id;
-    queInfo = Qmss_getQueueNumber (rxQueHnd);
-    rxFlowCfg.rx_dest_qnum = queInfo.qNum;
-    rxFlowCfg.rx_dest_qmgr = queInfo.qMgr;
-    rxFlowCfg.rx_sop_offset = 0;
-    rxFlowCfg.rx_desc_type = Cppi_DescType_HOST;
-
-    queInfo = Qmss_getQueueNumber (freeQueHnd);
-    rxFlowCfg.rx_fdq0_sz0_qnum = queInfo.qNum;
-    rxFlowCfg.rx_fdq0_sz0_qmgr = queInfo.qMgr;
-    rxFlowCfg.rx_psinfo_present = 0;
-    rxFlowCfg.rx_ps_location = 0;
-    rxFlowCfg.rx_error_handling = 1;
-
-    rx_flowhnd = Cppi_configureRxFlow(cppiHnd, &rxFlowCfg, &isAllocated);
-    if(rx_flowhnd == NULL){
-        System_printf("Cppi_configureRxFlow error !!!!\n");
-        return -1;
-    }
 
     for(i = 0; i < CORE_NUM; i++)
     {
@@ -328,7 +340,6 @@ Int cppiInit(Void)
         Qmss_queuePushDesc (freeQueHnd, (uint32_t *) rxPkt);
     }
 
-    Qmss_queueEmpty (rxQueHnd);
     Qmss_queueEmpty (txQueHnd);
 
     System_flush();

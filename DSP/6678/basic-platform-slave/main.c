@@ -56,12 +56,12 @@ Void taskFxn(UArg a0, UArg a1)
     while(1)
     {
         re = 0;
-        re = getDataFromCoreN(0, data, &dataLen);
+        re = getDataFromCoreN(0, data, &dataLen, 0);
         if(re < 0){
             System_printf("sendDataToCoreN eror\n");
         }
         if(re == 0)
-            break;
+            continue;
 
     }
 

@@ -11,7 +11,7 @@
 #include <xdc/std.h>
 #include <ti/ipc/MessageQ.h>
 
-#define CORE_NUM                2
+#define CORE_NUM                8
 #define MASTER_CORE             0
 
 #define MASTER_MSGQ_NAME         "masterMsgQ";

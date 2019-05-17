@@ -44,8 +44,7 @@ Int sendDataToCoreN(Int core_num, Void *buf, uint32_t len)
 
     uint8_t     * pbuf = buf;
 
-    Tag.srcTagLo = core_num;  //rx flow id
-
+    Tag.srcTagLo = core_num << 3 + core_id;  //rx flow id
 
     if((len % SIZE_RX_DATA_BUFFER) == 0){
         rePktCount = len / SIZE_RX_DATA_BUFFER;
@@ -109,11 +108,16 @@ Int getDataFromCoreN(Int core_num, Void *buf, uint32_t *len, Int isBlock)
         uint8_t  *pBuf = buf;
 
         Cppi_Desc *rxPkt;
-        Cppi_Desc *curDescPtr;
-        Cppi_Desc *prevDescPtr;
+
+        uint32_t descCount;
+        uint32_t pktLen;
 
         if(buf == NULL){
             return -2;
+        }
+
+        if(core_num == core_id){
+            return -3;
         }
 
         rx_count = Qmss_getQueueEntryCount (rxQueHnd[core_num]);
@@ -129,27 +133,63 @@ Int getDataFromCoreN(Int core_num, Void *buf, uint32_t *len, Int isBlock)
         }
 
         rxPkt = (Cppi_Desc *)QMSS_DESC_PTR (rxPkt);
-        Cppi_getPSData (Cppi_DescType_HOST, Cppi_PSLoc_PS_IN_DESC, rxPkt, &ps_data, &ps_len);
-        if(ps_data->DescNum > 1){
-
+        Cppi_getPSData (Cppi_DescType_HOST, Cppi_PSLoc_PS_IN_DESC, rxPkt, (uint8_t **)(&ps_data), &ps_len);
+        descCount = ps_data->DescNum;
+        pktLen = ps_data->pktLen;
+        if(descCount > 1){
+            rx_count = Qmss_getQueueEntryCount (rxQueHnd[core_num]);
+            if(rx_count < descCount - 1){
+               if(isBlock){
+                   while(rx_count < descCount - 1)
+                   {
+                       rx_count = Qmss_getQueueEntryCount (rxQueHnd[core_num]);
+                   }
+               }else{
+                   //处理push回原处 //buffer?
+                   Qmss_queuePush(rxQueHnd[core_num], rxPkt, SIZE_RX_DATA_BUFFER, SIZE_HOST_DESC, Qmss_Location_HEAD);
+                   return 2;
+               }
+            }
         }else{
-            Cppi_getData (Cppi_DescType_HOST, curDescPtr, &data, &rxLen);
+
         }
-        do{
-            curDescPtr = (Cppi_Desc *) QMSS_DESC_PTR (curDescPtr);
-            Cppi_getData (Cppi_DescType_HOST, curDescPtr, &data, &rxLen);
-            memcpy(pBuf, data, rxLen);
-            pBuf += rxLen;
-            totalLen += rxLen;
-            prevDescPtr = curDescPtr;
-            curDescPtr = Cppi_getNextBD(Cppi_DescType_HOST, curDescPtr);
-            Qmss_queuePushDesc (freeQueHnd, (uint32_t *) prevDescPtr);
-        }while(curDescPtr != 0);
 
-        *len = totalLen;
-        //Cppi_getPSData (Cppi_DescType_HOST, Cppi_PSLoc_PS_IN_DESC, rxPkt, &buf, &len);
-
-
+        Cppi_getData (Cppi_DescType_HOST, rxPkt, &data, &rxLen);
+        memcpy(pBuf, data, rxLen);
+        //cache
+        //Cppi_setPSData (Cppi_DescType_HOST, rxPkt, (uint8_t *) &ps_info, sizeof(Ps_Info));
+        Cppi_setData (Cppi_DescType_HOST, rxPkt, (uint8_t *)((uint32_t)(data)), SIZE_RX_DATA_BUFFER);
+        Cppi_setOriginalBufInfo (Cppi_DescType_HOST, rxPkt, (uint8_t *)((uint32_t)(data)), SIZE_RX_DATA_BUFFER);
+        Cppi_setPacketLen (Cppi_DescType_HOST, rxPkt, SIZE_RX_DATA_BUFFER);
         Qmss_queuePushDesc (freeQueHnd, (uint32_t *) rxPkt);
+
+        pBuf += rxLen;
+        totalLen += rxLen;
+        descCount --;
+        while(descCount){
+            rxPkt = (Cppi_Desc *) Qmss_queuePop (rxQueHnd[core_num]);
+            if(rxPkt == NULL){
+                System_printf("Qmss_queuePop rxPkt is NULL !!!!!\n");
+                return -1;
+            }
+
+            rxPkt = (Cppi_Desc *)QMSS_DESC_PTR (rxPkt);
+            Cppi_getPSData (Cppi_DescType_HOST, Cppi_PSLoc_PS_IN_DESC, rxPkt, (uint8_t **)(&ps_data), &ps_len);
+            Cppi_getData (Cppi_DescType_HOST, rxPkt, &data, &rxLen);
+            memcpy(pBuf, data, rxLen);
+            //cache
+            //Cppi_setPSData (Cppi_DescType_HOST, rxPkt, (uint8_t *) &ps_info, sizeof(Ps_Info));
+            Cppi_setData (Cppi_DescType_HOST, rxPkt, (uint8_t *)((uint32_t)(data)), SIZE_RX_DATA_BUFFER);
+            Cppi_setOriginalBufInfo (Cppi_DescType_HOST, rxPkt, (uint8_t *)((uint32_t)(data)), SIZE_RX_DATA_BUFFER);
+            Cppi_setPacketLen (Cppi_DescType_HOST, rxPkt, SIZE_RX_DATA_BUFFER);
+            Qmss_queuePushDesc (freeQueHnd, (uint32_t *) rxPkt);
+            totalLen += rxLen;
+            pBuf += rxLen;
+            descCount--;
+        }
+        if(totalLen != pktLen){
+            return -5;
+        }
+        *len = totalLen;
         return 0;
 }
