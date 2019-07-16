@@ -1,0 +1,214 @@
+******************************************************************************
+               TMS320C6x Linker PC v8.3.2                      
+******************************************************************************
+>> Linked Thu Jul 11 09:44:21 2019
+
+OUTPUT FILE NAME:   <5G_platform_test2.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 84041700
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  L1PSRAM               00e00000   00007fff  00000000  00007fff  RW X
+  L1DSRAM               00f00000   00007fff  00000000  00007fff  RW X
+  MSMCSRAM              0c000000   00200000  00000000  00200000  RW X
+  L2SRAM                10800000   00100000  0000a000  000f6000  RW X
+  DDR3                  84000000   04000000  000418ac  03fbe754  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+10800000    10800000    0000a000   00000000    rw-
+  10800000    10800000    0000a000   00000000    rw- .stack
+84000000    84000000    00041000   00000000    rw-
+  84000000    84000000    00041000   00000000    rw- .sysmem
+84041000    84041000    00000880   00000880    r-x
+  84041000    84041000    00000880   00000880    r-x .text
+84041880    84041880    0000000c   00000000    rw-
+  84041880    84041880    0000000c   00000000    rw- .fardata
+84041890    84041890    00000020   00000020    r--
+  84041890    84041890    00000020   00000020    r-- .cinit
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.text      0    84041000    00000880     
+                  84041000    00000220     main.obj (.text)
+                  84041220    00000100     rts6600_elf.lib : copy_decompress_rle.c.obj (.text:__TI_decompress_rle_core)
+                  84041320    000000e0                     : exit.c.obj (.text:exit)
+                  84041400    000000e0                     : memset.c.obj (.text:memset)
+                  840414e0    000000c0                     : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  840415a0    000000c0                     : tls.c.obj (.text:tls:init:__TI_tls_init)
+                  84041660    000000a0                     : memcpy64.asm.obj (.text:memcpy)
+                  84041700    00000080                     : boot.c.obj (.text:_c_int00)
+                  84041780    00000040                     : args_main.c.obj (.text:_args_main)
+                  840417c0    00000020     ti.csl.ae66 : csl_gpioGetBaseAddress.oe66 (.text:CSL_GPIO_open)
+                  840417e0    00000020     rts6600_elf.lib : startup.c.obj (.text:_system_post_cinit)
+                  84041800    00000020                     : pre_init.c.obj (.text:_system_pre_init)
+                  84041820    00000020                     : exit.c.obj (.text:abort)
+                  84041840    00000020                     : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  84041860    00000020                     : copy_decompress_rle.c.obj (.text:decompress:rle24:__TI_decompress_rle24)
+
+.stack     0    10800000    0000a000     UNINITIALIZED
+                  10800000    00000008     rts6600_elf.lib : boot.c.obj (.stack)
+                  10800008    00009ff8     --HOLE--
+
+.cinit     0    84041890    00000020     
+                  84041890    0000000d     (.cinit..fardata.load) [load image, compression = rle]
+                  8404189d    00000003     --HOLE-- [fill = 0]
+                  840418a0    00000008     (__TI_handler_table)
+                  840418a8    00000008     (__TI_cinit_table)
+
+.sysmem    0    84000000    00041000     UNINITIALIZED
+                  84000000    00000008     rts6600_elf.lib : memory.c.obj (.sysmem)
+                  84000008    00040ff8     --HOLE--
+
+.fardata   0    84041880    0000000c     UNINITIALIZED
+                  84041880    0000000c     rts6600_elf.lib : exit.c.obj (.fardata)
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    .\
+       main.obj                      544    0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        544    0         0      
+                                                             
+    C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/lib/c6678/c66/release/ti.csl.ae66
+       csl_gpioGetBaseAddress.oe66   32     0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        32     0         0      
+                                                             
+    C:\ti\ccs901\ccs\tools\compiler\ti-cgt-c6000_8.3.2\lib\rts6600_elf.lib
+       copy_decompress_rle.c.obj     288    0         0      
+       exit.c.obj                    256    0         12     
+       memset.c.obj                  224    0         0      
+       autoinit.c.obj                192    0         0      
+       tls.c.obj                     192    0         0      
+       memcpy64.asm.obj              160    0         0      
+       boot.c.obj                    128    0         0      
+       args_main.c.obj               64     0         0      
+       copy_decompress_none.c.obj    32     0         0      
+       pre_init.c.obj                32     0         0      
+       startup.c.obj                 32     0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        1600   0         12     
+                                                             
+       Heap:                         0      0         266240 
+       Stack:                        0      0         40960  
+       Linker Generated:             0      29        0      
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  2176   29        307212 
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 840418a8 records: 1, size/record: 8, table size: 8
+	.fardata: load addr=84041890, load size=0000000d bytes, run addr=84041880, run size=0000000c bytes, compression=rle
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 840418a0 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                           
+-------   ----                           
+84041820  C$$EXIT                        
+840417c0  CSL_GPIO_open                  
+840418a8  __TI_CINIT_Base                
+840418b0  __TI_CINIT_Limit               
+840418a0  __TI_Handler_Table_Base        
+840418a8  __TI_Handler_Table_Limit       
+1080a000  __TI_STACK_END                 
+0000a000  __TI_STACK_SIZE                
+00000000  __TI_STATIC_BASE               
+00041000  __TI_SYSMEM_SIZE               
+UNDEFED   __TI_TLS_INIT_Base             
+UNDEFED   __TI_TLS_INIT_Limit            
+840414e0  __TI_auto_init_nobinit_nopinit 
+84041880  __TI_cleanup_ptr               
+84041840  __TI_decompress_none           
+84041860  __TI_decompress_rle24          
+84041884  __TI_dtors_ptr                 
+84041888  __TI_enable_exit_profile_output
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+840415a0  __TI_tls_init                  
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+84041780  _args_main                     
+84041700  _c_int00                       
+10800000  _stack                         
+84000000  _sys_memory                    
+840417e0  _system_post_cinit             
+84041800  _system_pre_init               
+84041820  abort                          
+ffffffff  binit                          
+840410b8  delay_ms                       
+84041320  exit                           
+84041174  main                           
+84041660  memcpy                         
+84041400  memset                         
+84041150  mygpioClearOutput              
+8404112c  mygpioSetOutput                
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                           
+-------   ----                           
+00000000  __TI_STATIC_BASE               
+0000a000  __TI_STACK_SIZE                
+00041000  __TI_SYSMEM_SIZE               
+10800000  _stack                         
+1080a000  __TI_STACK_END                 
+84000000  _sys_memory                    
+840410b8  delay_ms                       
+8404112c  mygpioSetOutput                
+84041150  mygpioClearOutput              
+84041174  main                           
+84041320  exit                           
+84041400  memset                         
+840414e0  __TI_auto_init_nobinit_nopinit 
+840415a0  __TI_tls_init                  
+84041660  memcpy                         
+84041700  _c_int00                       
+84041780  _args_main                     
+840417c0  CSL_GPIO_open                  
+840417e0  _system_post_cinit             
+84041800  _system_pre_init               
+84041820  C$$EXIT                        
+84041820  abort                          
+84041840  __TI_decompress_none           
+84041860  __TI_decompress_rle24          
+84041880  __TI_cleanup_ptr               
+84041884  __TI_dtors_ptr                 
+84041888  __TI_enable_exit_profile_output
+840418a0  __TI_Handler_Table_Base        
+840418a8  __TI_CINIT_Base                
+840418a8  __TI_Handler_Table_Limit       
+840418b0  __TI_CINIT_Limit               
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+ffffffff  binit                          
+UNDEFED   __TI_TLS_INIT_Base             
+UNDEFED   __TI_TLS_INIT_Limit            
+
+[39 symbols]

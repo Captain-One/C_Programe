@@ -1,0 +1,865 @@
+******************************************************************************
+               TMS320C6x Linker PC v8.3.2                      
+******************************************************************************
+>> Linked Wed Jul 10 13:47:28 2019
+
+OUTPUT FILE NAME:   <5G_Nand_Writer.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 0086ce40
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  L2SRAM                00820000   000e0000  00057978  00088688  RW X
+  L1PSRAM               00e00000   00007fff  00000000  00007fff  RW X
+  L1DSRAM               00f00000   00007fff  00000000  00007fff  RW X
+  MSMCSRAM              0c000000   00200000  00000000  00200000  RW X
+  DDR3                  80000000   10000000  00000000  10000000  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00820000    00820000    00040000   00000000    rw-
+  00820000    00820000    00040000   00000000    rw- .sysmem
+00860000    00860000    0000d900   0000d900    r-x
+  00860000    00860000    0000d900   0000d900    r-x .text
+0086d900    0086d900    000091a0   00000000    rw-
+  0086d900    0086d900    00008000   00000000    rw- .stack
+  00875900    00875900    000011a0   00000000    rw- platform_lib
+00876aa0    00876aa0    000006c0   000006c0    r--
+  00876aa0    00876aa0    000006c0   000006c0    r-- .const
+00877160    00877160    00000638   00000000    rw-
+  00877160    00877160    00000344   00000000    rw- .fardata
+  008774a8    008774a8    000001d0   00000000    rw- .far
+  00877678    00877678    00000120   00000000    rw- .cio
+00877798    00877798    00000054   00000054    r--
+  00877798    00877798    00000054   00000054    r-- .switch
+008777ec    008777ec    00000018   00000000    rw-
+  008777ec    008777ec    00000014   00000000    rw- .neardata
+  00877800    00877800    00000004   00000000    rw- .bss
+00877808    00877808    00000178   00000178    r--
+  00877808    00877808    00000178   00000178    r-- .cinit
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.sysmem    0    00820000    00040000     UNINITIALIZED
+                  00820000    00000008     rts6600_elf.lib : memory.c.obj (.sysmem)
+                  00820008    0003fff8     --HOLE--
+
+.text      0    00860000    0000d900     
+                  00860000    00001fe0     rts6600_elf.lib : _printfi.c.obj (.text:__TI_printfi)
+                  00861fe0    00001a60     ti.platform.evm6678l.ae66 : platform.obj (.text)
+                  00863a40    000010a0     nandwriter.obj (.text)
+                  00864ae0    00000b40     ti.platform.evm6678l.ae66 : cyhc5g_nand.obj (.text)
+                  00865620    000009a0                               : cyhc5g.obj (.text)
+                  00865fc0    000007e0                               : cyhc5g_i2c_eeprom.obj (.text)
+                  008667a0    00000640     rts6600_elf.lib : _printfi.c.obj (.text:_pconv_a)
+                  00866de0    00000600                     : divd.c.obj (.text:__c6xabi_divd)
+                  008673e0    00000460     ti.platform.evm6678l.ae66 : cyhc5g_spi.obj (.text)
+                  00867840    00000440     rts6600_elf.lib : _printfi.c.obj (.text:_pconv_g)
+                  00867c80    000003e0     ti.platform.evm6678l.ae66 : cyhc5g_nor.obj (.text)
+                  00868060    000003c0     rts6600_elf.lib : memory.c.obj (.text:free)
+                  00868420    00000340                     : fgets.c.obj (.text:_dofgets)
+                  00868760    00000340     ti.platform.evm6678l.ae66 : cyhc5g_gpio.obj (.text)
+                  00868aa0    00000320     rts6600_elf.lib : fputs.c.obj (.text:fputs)
+                  00868dc0    00000300                     : strtoul.c.obj (.text:strtoul)
+                  008690c0    00000300     ti.platform.evm6678l.ae66 : cyhc5g_phy.obj (.text)
+                  008693c0    000002c0     rts6600_elf.lib : _printfi.c.obj (.text:fcvt)
+                  00869680    000002a0                     : _printfi.c.obj (.text:_pconv_e)
+                  00869920    00000240                     : imath64.c.obj (.text:__c6xabi_divull)
+                  00869b60    00000220                     : open.c.obj (.text:open)
+                  00869d80    000001e0     ti.platform.evm6678l.ae66 : cyhc5g_uart.obj (.text)
+                  00869f60    000001c0     rts6600_elf.lib : imath40.c.obj (.text:__c6xabi_divul)
+                  0086a120    000001c0                     : _printfi.c.obj (.text:_ltostr)
+                  0086a2e0    000001c0                     : fopen.c.obj (.text:_openfile)
+                  0086a4a0    000001c0                     : fputc.c.obj (.text:fputc)
+                  0086a660    000001c0                     : memory.c.obj (.text:malloc)
+                  0086a820    000001c0                     : setvbuf.c.obj (.text:setvbuf)
+                  0086a9e0    000001a0                     : hostrename.c.obj (.text:HOSTrename)
+                  0086ab80    000001a0                     : frexp.c.obj (.text:frexp)
+                  0086ad20    000001a0                     : s_scalbn.c.obj (.text:scalbn)
+                  0086aec0    00000160                     : _bufread.c.obj (.text:__TI_buff_read)
+                  0086b020    00000140                     : fopen.c.obj (.text:fopen)
+                  0086b160    00000120                     : _printfi.c.obj (.text:_pconv_f)
+                  0086b280    00000120                     : getdevice.c.obj (.text:getdevice)
+                  0086b3a0    00000100                     : fclose.c.obj (.text:__TI_closefile)
+                  0086b4a0    00000100                     : copy_decompress_rle.c.obj (.text:__TI_decompress_rle_core)
+                  0086b5a0    00000100                     : _printfi.c.obj (.text:_mcpy)
+                  0086b6a0    00000100                     : atoi.c.obj (.text:atoi)
+                  0086b7a0    00000100                     : fseek.c.obj (.text:fseek)
+                  0086b8a0    00000100                     : ftell.c.obj (.text:ftell)
+                  0086b9a0    000000e0                     : hostlseek.c.obj (.text:HOSTlseek)
+                  0086ba80    000000e0                     : hostopen.c.obj (.text:HOSTopen)
+                  0086bb60    000000e0                     : hostwrite.c.obj (.text:HOSTwrite)
+                  0086bc40    000000e0                     : _io_perm.c.obj (.text:__TI_wrt_ok)
+                  0086bd20    000000e0                     : close.c.obj (.text:close)
+                  0086be00    000000e0                     : exit.c.obj (.text:exit)
+                  0086bee0    000000e0                     : ltoa.c.obj (.text:ltoa)
+                  0086bfc0    000000e0                     : memset.c.obj (.text:memset)
+                  0086c0a0    000000e0                     : printf.c.obj (.text:printf)
+                  0086c180    000000c0                     : hostread.c.obj (.text:HOSTread)
+                  0086c240    000000c0                     : hostunlink.c.obj (.text:HOSTunlink)
+                  0086c300    000000c0                     : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  0086c3c0    000000c0                     : fflush.c.obj (.text:__TI_doflush)
+                  0086c480    000000c0                     : divu.asm.obj (.text:__divu)
+                  0086c540    000000c0                     : memory.c.obj (.text:minsert)
+                  0086c600    000000c0                     : memory.c.obj (.text:mremove)
+                  0086c6c0    000000c0                     : strtok.c.obj (.text:strtok)
+                  0086c780    000000c0                     : tls.c.obj (.text:tls:init:__TI_tls_init)
+                  0086c840    000000a0                     : hostclose.c.obj (.text:HOSTclose)
+                  0086c8e0    000000a0                     : fopen.c.obj (.text:__TI_cleanup)
+                  0086c980    000000a0                     : _io_perm.c.obj (.text:__TI_rd_ok)
+                  0086ca20    000000a0                     : remu.asm.obj (.text:__remu)
+                  0086cac0    000000a0                     : _printfi.c.obj (.text:_ecpy)
+                  0086cb60    000000a0                     : getdevice.c.obj (.text:finddevice)
+                  0086cc00    000000a0                     : memcpy64.asm.obj (.text:memcpy)
+                  0086cca0    000000a0                     : strspn.c.obj (.text:strspn)
+                  0086cd40    00000080                     : trgmsg.c.obj (.text:__TI_readmsg)
+                  0086cdc0    00000080                     : llshift.c.obj (.text:__c6xabi_llshl)
+                  0086ce40    00000080                     : boot.c.obj (.text:_c_int00)
+                  0086cec0    00000080                     : fclose.c.obj (.text:fclose)
+                  0086cf40    00000080     ti.platform.evm6678l.ae66 : cyhc5g_i2c.obj (.text)
+                  0086cfc0    00000080     rts6600_elf.lib : unlink.c.obj (.text:unlink)
+                  0086d040    00000060                     : frcmpyd_div.c.obj (.text:__TI_frcmpyd_div)
+                  0086d0a0    00000060                     : trgmsg.c.obj (.text:__TI_writemsg)
+                  0086d100    00000060                     : llshift.c.obj (.text:__c6xabi_llshru)
+                  0086d160    00000060                     : imath64.c.obj (.text:_subcull)
+                  0086d1c0    00000060                     : lseek.c.obj (.text:lseek)
+                  0086d220    00000060                     : memccpy.c.obj (.text:memccpy)
+                  0086d280    00000060                     : read.c.obj (.text:read)
+                  0086d2e0    00000060                     : strcmp.c.obj (.text:strcmp)
+                  0086d340    00000060                     : strcpy.c.obj (.text:strcpy)
+                  0086d3a0    00000060                     : strcspn.c.obj (.text:strcspn)
+                  0086d400    00000060                     : strrchr.c.obj (.text:strrchr)
+                  0086d460    00000060                     : write.c.obj (.text:write)
+                  0086d4c0    00000040                     : isinf.c.obj (.text:__c6xabi_isinf)
+                  0086d500    00000040                     : _printfi.c.obj (.text:__c6xabi_isnan)
+                  0086d540    00000040                     : call_stub.asm.obj (.text:__call_stub)
+                  0086d580    00000040                     : args_main.c.obj (.text:_args_main)
+                  0086d5c0    00000040                     : vsprintf.c.obj (.text:_outs)
+                  0086d600    00000040                     : strlen.c.obj (.text:strlen)
+                  0086d640    00000040     ti.platform.evm6678l.ae66 : cyhc5g_led.obj (.text)
+                  0086d680    00000040     rts6600_elf.lib : vsprintf.c.obj (.text:vsprintf)
+                  0086d6c0    00000040                     : wcslen.c.obj (.text:wcslen)
+                  0086d700    00000020     ti.csl.ae66 : csl_gpioGetBaseAddress.oe66 (.text:CSL_GPIO_open)
+                  0086d720    00000020     rts6600_elf.lib : errno.c.obj (.text:__c6xabi_errno_addr)
+                  0086d740    00000020                     : push.asm.obj (.text:__pop_rts)
+                  0086d760    00000020                     : push.asm.obj (.text:__push_rts)
+                  0086d780    00000020                     : _lock.c.obj (.text:_nop)
+                  0086d7a0    00000020                     : printf.c.obj (.text:_outc)
+                  0086d7c0    00000020                     : vsprintf.c.obj (.text:_outc)
+                  0086d7e0    00000020                     : printf.c.obj (.text:_outs)
+                  0086d800    00000020                     : signbit.c.obj (.text:_signbit)
+                  0086d820    00000020                     : startup.c.obj (.text:_system_post_cinit)
+                  0086d840    00000020                     : pre_init.c.obj (.text:_system_pre_init)
+                  0086d860    00000020                     : exit.c.obj (.text:abort)
+                  0086d880    00000020                     : s_copysign.c.obj (.text:copysign)
+                  0086d8a0    00000020                     : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  0086d8c0    00000020                     : copy_decompress_rle.c.obj (.text:decompress:rle24:__TI_decompress_rle24)
+                  0086d8e0    00000020                     : fgets.c.obj (.text:fgets)
+
+.stack     0    0086d900    00008000     UNINITIALIZED
+                  0086d900    00000008     rts6600_elf.lib : boot.c.obj (.stack)
+                  0086d908    00007ff8     --HOLE--
+
+platform_lib 
+*          0    00875900    000011a0     UNINITIALIZED
+                  00875900    00000858     ti.platform.evm6678l.ae66 : platform.obj (platform_lib:uninit)
+                  00876158    00000840                               : cyhc5g_nand.obj (platform_lib)
+                  00876998    00000108                               : platform.obj (platform_lib:init)
+
+.const     0    00876aa0    000006c0     
+                  00876aa0    0000046c     nandwriter.obj (.const:.string)
+                  00876f0c    00000004     ti.platform.evm6678l.ae66 : cyhc5g_gpio.obj (.const)
+                  00876f10    00000101     rts6600_elf.lib : ctype.c.obj (.const:.string:_ctypes_)
+                  00877011    00000003     --HOLE-- [fill = 0]
+                  00877014    00000070     ti.platform.evm6678l.ae66 : platform.obj (.const)
+                  00877084    0000005c                               : platform.obj (.const:.string)
+                  008770e0    00000028                               : cyhc5g_nand.obj (.const:.string:rbl_eccLoc)
+                  00877108    00000024     rts6600_elf.lib : _printfi.c.obj (.const:.string)
+                  0087712c    00000014     ti.platform.evm6678l.ae66 : cyhc5g_nor.obj (.const)
+                  00877140    00000008                               : cyhc5g_nand.obj (.const)
+                  00877148    00000008                               : cyhc5g_spi.obj (.const)
+                  00877150    00000007     nandwriter.obj (.const:.string:$P$T0$1)
+                  00877157    00000001     --HOLE-- [fill = 0]
+                  00877158    00000004     ti.platform.evm6678l.ae66 : cyhc5g_i2c_eeprom.obj (.const)
+                  0087715c    00000004                               : cyhc5g_uart.obj (.const)
+
+.far       0    008774a8    000001d0     UNINITIALIZED
+                  008774a8    00000140     (.common:__TI_tmpnams)
+                  008775e8    00000044     (.common:gI2cBlock)
+                  0087762c    00000044     (.common:nandWriterInfo)
+                  00877670    00000008     (.common:parmbuf)
+
+.cio       0    00877678    00000120     UNINITIALIZED
+                  00877678    00000120     rts6600_elf.lib : trgmsg.c.obj (.cio)
+
+.neardata 
+*          0    008777ec    00000014     UNINITIALIZED
+                  008777ec    0000000c     nandwriter.obj (.neardata)
+                  008777f8    00000008     ti.platform.evm6678l.ae66 : platform.obj (.neardata)
+
+.rodata    0    00877800    00000000     UNINITIALIZED
+
+.bss       0    00877800    00000004     UNINITIALIZED
+                  00877800    00000004     ti.platform.evm6678l.ae66 : cyhc5g_spi.obj (.bss)
+
+.cinit     0    00877808    00000178     
+                  00877808    0000009f     (.cinit.platform_lib.load) [load image, compression = rle]
+                  008778a7    00000089     (.cinit..fardata.load) [load image, compression = rle]
+                  00877930    0000000c     (.cinit..neardata.load) [load image, compression = rle]
+                  0087793c    0000000b     (.cinit..far.load) [load image, compression = rle]
+                  00877947    00000009     (.cinit..bss.load) [load image, compression = rle]
+                  00877950    00000008     (__TI_handler_table)
+                  00877958    00000028     (__TI_cinit_table)
+
+.switch    0    00877798    00000054     
+                  00877798    00000038     rts6600_elf.lib : _printfi.c.obj (.switch:__TI_printfi)
+                  008777d0    0000001c     ti.platform.evm6678l.ae66 : platform.obj (.switch:platform_internal_memory_test)
+
+.fardata   0    00877160    00000344     UNINITIALIZED
+                  00877160    000001e0     rts6600_elf.lib : defs.c.obj (.fardata:_ftable)
+                  00877340    000000a0                     : write.c.obj (.fardata:_stream)
+                  008773e0    00000078                     : write.c.obj (.fardata:_device)
+                  00877458    00000010     ti.csl.ae66 : csl_cpsgmii.oe66 (.fardata:cpsgmiiPortBaseAddr)
+                  00877468    0000000c     rts6600_elf.lib : exit.c.obj (.fardata)
+                  00877474    00000004                     : _lock.c.obj (.fardata:_lock)
+                  00877478    0000000c     nandwriter.obj (.fardata:version)
+                  00877484    00000008     rts6600_elf.lib : memory.c.obj (.fardata)
+                  0087748c    00000004                     : _lock.c.obj (.fardata:_unlock)
+                  00877490    00000004                     : defs.c.obj (.fardata)
+                  00877494    00000004                     : errno.c.obj (.fardata)
+                  00877498    00000004                     : fopen.c.obj (.fardata)
+                  0087749c    00000004                     : open.c.obj (.fardata)
+                  008774a0    00000004                     : strtok.c.obj (.fardata)
+
+MODULE SUMMARY
+
+       Module                        code    ro data   rw data
+       ------                        ----    -------   -------
+    .\
+       nandwriter.obj                4256    1139      92     
+    +--+-----------------------------+-------+---------+---------+
+       Total:                        4256    1139      92     
+                                                              
+    C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/lib/c6678/c66/release/ti.csl.ae66
+       csl_gpioGetBaseAddress.oe66   32      0         0      
+       csl_cpsgmii.oe66              0       0         16     
+    +--+-----------------------------+-------+---------+---------+
+       Total:                        32      0         16     
+                                                              
+    C:\ti\ccs901\ccs\tools\compiler\ti-cgt-c6000_8.3.2\lib\rts6600_elf.lib
+       _printfi.c.obj                13440   92        0      
+       memory.c.obj                  1792    0         8      
+       divd.c.obj                    1536    0         0      
+       fopen.c.obj                   928     0         4      
+       fgets.c.obj                   864     0         0      
+       defs.c.obj                    0       0         804    
+       fputs.c.obj                   800     0         0      
+       strtoul.c.obj                 768     0         0      
+       imath64.c.obj                 672     0         0      
+       open.c.obj                    544     0         4      
+       trgmsg.c.obj                  224     0         288    
+       fputc.c.obj                   448     0         0      
+       getdevice.c.obj               448     0         0      
+       imath40.c.obj                 448     0         0      
+       setvbuf.c.obj                 448     0         0      
+       frexp.c.obj                   416     0         0      
+       hostrename.c.obj              416     0         0      
+       s_scalbn.c.obj                416     0         0      
+       _io_perm.c.obj                384     0         0      
+       fclose.c.obj                  384     0         0      
+       write.c.obj                   96      0         280    
+       _bufread.c.obj                352     0         0      
+       copy_decompress_rle.c.obj     288     0         0      
+       printf.c.obj                  288     0         0      
+       exit.c.obj                    256     0         12     
+       ctype.c.obj                   0       257       0      
+       atoi.c.obj                    256     0         0      
+       fseek.c.obj                   256     0         0      
+       ftell.c.obj                   256     0         0      
+       hostopen.c.obj                224     0         8      
+       close.c.obj                   224     0         0      
+       hostlseek.c.obj               224     0         0      
+       hostwrite.c.obj               224     0         0      
+       llshift.c.obj                 224     0         0      
+       ltoa.c.obj                    224     0         0      
+       memset.c.obj                  224     0         0      
+       strtok.c.obj                  192     0         4      
+       autoinit.c.obj                192     0         0      
+       divu.asm.obj                  192     0         0      
+       fflush.c.obj                  192     0         0      
+       hostread.c.obj                192     0         0      
+       hostunlink.c.obj              192     0         0      
+       tls.c.obj                     192     0         0      
+       hostclose.c.obj               160     0         0      
+       memcpy64.asm.obj              160     0         0      
+       remu.asm.obj                  160     0         0      
+       strspn.c.obj                  160     0         0      
+       vsprintf.c.obj                160     0         0      
+       boot.c.obj                    128     0         0      
+       unlink.c.obj                  128     0         0      
+       frcmpyd_div.c.obj             96      0         0      
+       lseek.c.obj                   96      0         0      
+       memccpy.c.obj                 96      0         0      
+       read.c.obj                    96      0         0      
+       strcmp.c.obj                  96      0         0      
+       strcpy.c.obj                  96      0         0      
+       strcspn.c.obj                 96      0         0      
+       strrchr.c.obj                 96      0         0      
+       args_main.c.obj               64      0         0      
+       call_stub.asm.obj             64      0         0      
+       isinf.c.obj                   64      0         0      
+       push.asm.obj                  64      0         0      
+       strlen.c.obj                  64      0         0      
+       wcslen.c.obj                  64      0         0      
+       _lock.c.obj                   32      0         8      
+       errno.c.obj                   32      0         4      
+       copy_decompress_none.c.obj    32      0         0      
+       pre_init.c.obj                32      0         0      
+       s_copysign.c.obj              32      0         0      
+       signbit.c.obj                 32      0         0      
+       startup.c.obj                 32      0         0      
+    +--+-----------------------------+-------+---------+---------+
+       Total:                        32768   349       1424   
+                                                              
+    D:/pxqwork/project/5G-DSP/platform_lib_evmc6678l/lib/debug/ti.platform.evm6678l.ae66
+       platform.obj                  6752    232       2408   
+       cyhc5g_nand.obj               2880    48        2112   
+       cyhc5g.obj                    2464    0         0      
+       cyhc5g_i2c_eeprom.obj         2016    4         68     
+       cyhc5g_spi.obj                1120    8         4      
+       cyhc5g_nor.obj                992     20        0      
+       cyhc5g_gpio.obj               832     4         0      
+       cyhc5g_phy.obj                768     0         0      
+       cyhc5g_uart.obj               480     4         0      
+       cyhc5g_i2c.obj                128     0         0      
+       cyhc5g_led.obj                64      0         0      
+    +--+-----------------------------+-------+---------+---------+
+       Total:                        18496   320       4592   
+                                                              
+       Heap:                         0       0         262144 
+       Stack:                        0       0         32768  
+       Linker Generated:             0       376       0      
+    +--+-----------------------------+-------+---------+---------+
+       Grand Total:                  55552   2184      301036 
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00877958 records: 5, size/record: 8, table size: 40
+	platform_lib: load addr=00877808, load size=0000009f bytes, run addr=00875900, run size=000011a0 bytes, compression=rle
+	.fardata: load addr=008778a7, load size=00000089 bytes, run addr=00877160, run size=00000344 bytes, compression=rle
+	.neardata: load addr=00877930, load size=0000000c bytes, run addr=008777ec, run size=00000014 bytes, compression=rle
+	.far: load addr=0087793c, load size=0000000b bytes, run addr=008774a8, run size=000001d0 bytes, compression=rle
+	.bss: load addr=00877947, load size=00000009 bytes, run addr=00877800, run size=00000004 bytes, compression=rle
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00877950 records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_rle24
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                            
+-------   ----                            
+0086d860  C$$EXIT                         
+0086d0f8  C$$IO$$                         
+0086d700  CSL_GPIO_open                   
+008639d8  Convert_CoreLocal2GlobalAddr    
+00865ee0  CorePllcGetHwSetup              
+00865cb4  CorePllcHwSetup                 
+00865a58  DDR3Init                        
+0086c840  HOSTclose                       
+0086b9a0  HOSTlseek                       
+0086ba80  HOSTopen                        
+0086c180  HOSTread                        
+0086a9e0  HOSTrename                      
+0086c240  HOSTunlink                      
+0086bb60  HOSTwrite                       
+00869224  Init_SGMII                      
+00865550  NandGetDetails                  
+00864bb0  NandReadSpareArea               
+00864c50  NandWriteDataBytes              
+00864da8  NandWriteSpareArea              
+00863a54  Osal_platformFree               
+00863a40  Osal_platformMalloc             
+00863a74  Osal_platformSpiCsEnter         
+00863a80  Osal_platformSpiCsExit          
+00865964  PowerUpDomains                  
+00865848  SetDDR3PllConfig                
+00865728  SetPaPllConfig                  
+00869e4c  UartInit                        
+00869e2c  UartIsDataReady                 
+00869df8  UartReadBaudRate                
+00869de8  UartReadData                    
+00869dc0  UartSetBaudRate                 
+00869d80  UartWriteData                   
+00877678  __CIOBUF_                       
+00877958  __TI_CINIT_Base                 
+00877980  __TI_CINIT_Limit                
+00877950  __TI_Handler_Table_Base         
+00877958  __TI_Handler_Table_Limit        
+00875900  __TI_STACK_END                  
+00008000  __TI_STACK_SIZE                 
+008777ec  __TI_STATIC_BASE                
+00040000  __TI_SYSMEM_SIZE                
+UNDEFED   __TI_TLS_INIT_Base              
+UNDEFED   __TI_TLS_INIT_Limit             
+0086c300  __TI_auto_init_nobinit_nopinit  
+0086aec0  __TI_buff_read                  
+0086c8e0  __TI_cleanup                    
+00877468  __TI_cleanup_ptr                
+0086b3a0  __TI_closefile                  
+0086d8a0  __TI_decompress_none            
+0086d8c0  __TI_decompress_rle24           
+0086c3c0  __TI_doflush                    
+0087746c  __TI_dtors_ptr                  
+00877470  __TI_enable_exit_profile_output 
+0086d040  __TI_frcmpyd_div                
+00877490  __TI_ft_end                     
+ffffffff  __TI_pprof_out_hndl             
+00860000  __TI_printfi                    
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+0086c980  __TI_rd_ok                      
+0086cd40  __TI_readmsg                    
+0086c780  __TI_tls_init                   
+008774a8  __TI_tmpnams                    
+0086d0a0  __TI_writemsg                   
+0086bc40  __TI_wrt_ok                     
+ffffffff  __binit__                       
+0086d540  __c6xabi_call_stub              
+00866de0  __c6xabi_divd                   
+0086c480  __c6xabi_divu                   
+00869f60  __c6xabi_divul                  
+00869920  __c6xabi_divull                 
+0086d720  __c6xabi_errno_addr             
+0086d4c0  __c6xabi_isinf                  
+0086cdc0  __c6xabi_llshl                  
+0086d100  __c6xabi_llshru                 
+0086d740  __c6xabi_pop_rts                
+0086d760  __c6xabi_push_rts               
+0086ca20  __c6xabi_remu                   
+ffffffff  __c_args__                      
+0086d540  __call_stub                     
+0086c480  __divu                          
+00877494  __errno                         
+0086d740  __pop_rts                       
+0086d760  __push_rts                      
+0086ca20  __remu                          
+0086d580  _args_main                      
+0086ce40  _c_int00                        
+00876f10  _ctypes_                        
+008773e0  _device                         
+00877160  _ftable                         
+00877474  _lock                           
+0086d780  _nop                            
+0086d800  _signbit                        
+0086d900  _stack                          
+00877340  _stream                         
+0086d160  _subcull                        
+00820000  _sys_memory                     
+0086d820  _system_post_cinit              
+0086d840  _system_pre_init                
+0087748c  _unlock                         
+0086d860  abort                           
+0086b6a0  atoi                            
+ffffffff  binit                           
+00863ab0  checkBadBlockMark               
+0086bd20  close                           
+008690c0  configSerdes                    
+0086d880  copysign                        
+0086d880  copysignl                       
+00877458  cpsgmiiPortBaseAddr             
+0086d640  dspControlUserLEDs              
+00876a98  emac_port_mode                  
+00877494  errno                           
+0086cf40  evmI2CInit                      
+0086be00  exit                            
+0086cec0  fclose                          
+0086d8e0  fgets                           
+0086cb60  finddevice                      
+00863c44  flash_nand                      
+00863f8c  flash_verify                    
+0086b020  fopen                           
+00863b80  formBlock                       
+0086a4a0  fputc                           
+00868aa0  fputs                           
+00868060  free                            
+0086ab80  frexp                           
+0086ab80  frexpl                          
+0086b7a0  fseek                           
+0086b8a0  ftell                           
+00876a24  gDeviceEeprom0                  
+00876a5c  gDeviceEeprom1                  
+008769b4  gDeviceNand                     
+00875958  gDeviceNandBBlist               
+008769ec  gDeviceNor                      
+008775e8  gI2cBlock                       
+0086b280  getdevice                       
+00868a54  gpioClearFallingEdgeInterrupt   
+00868a20  gpioClearOutput                 
+008689ec  gpioClearRisingEdgeInterrupt    
+008689d0  gpioDisableGlobalInterrupt      
+008689b8  gpioEnableGlobalInterrupt       
+00868958  gpioInit                        
+00868918  gpioReadInput                   
+008688a0  gpioSetDataBusDirection         
+00868820  gpioSetDirection                
+008687d8  gpioSetFallingEdgeInterrupt     
+008687a4  gpioSetOutput                   
+00868760  gpioSetRisingEdgeInterrupt      
+008665b4  i2cEepromMacRead                
+00866464  i2cEepromMacWrite               
+00866358  i2cEepromRead                   
+00866294  i2cEepromWrite                  
+00865fe0  i2cEepromWriteBlock             
+0086618c  i2cEepromWriteByteAddr          
+008777ec  input_file                      
+0086ad20  ldexp                           
+0086ad20  ldexpl                          
+0086d1c0  lseek                           
+0086bee0  ltoa                            
+008647b0  main                            
+0086a660  malloc                          
+00863ae8  markBlockBad                    
+0086d220  memccpy                         
+0086cc00  memcpy                          
+0086bfc0  memset                          
+008654ac  nandFlashBlockErase             
+00865438  nandInit                        
+0087762c  nandWriterInfo                  
+008777f4  nand_erase_flag                 
+00867f74  nor_erase                       
+00867f08  nor_get_details                 
+00867ea0  nor_init                        
+00867e24  nor_read                        
+00867d00  nor_write                       
+00869b60  open                            
+00877670  parmbuf                         
+008632e4  platform_blocknpage_to_offset   
+00862190  platform_delay                  
+008639b0  platform_delaycycles            
+00862d58  platform_device_close           
+00863920  platform_device_erase_block     
+00863828  platform_device_mark_block_bad  
+00862b34  platform_device_open            
+00862c30  platform_device_read            
+008637b4  platform_device_read_spare_data 
+00863378  platform_device_write           
+00863270  platform_device_write_spare_data
+008777f8  platform_errno                  
+008630e4  platform_external_memory_test   
+008623b8  platform_get_coreid             
+0086308c  platform_get_emac_info          
+00862e48  platform_get_info               
+00862ae4  platform_get_macaddr            
+00862260  platform_get_phy_addr           
+00862ae0  platform_get_switch_state       
+00862808  platform_init                   
+008777fc  platform_init_return_code       
+008623c4  platform_internal_memory_test   
+0086238c  platform_led                    
+008622b4  platform_offset_to_blocknpage   
+00862264  platform_phy_link_status        
+00862244  platform_uart_init              
+008621d0  platform_uart_read              
+00862168  platform_uart_set_baudrate      
+00862054  platform_uart_write             
+00862068  platform_write                  
+00862040  platform_write_configure        
+00863a88  print_platform_errno            
+0086c0a0  printf                          
+00865638  prog_pll1_values                
+0086a4a0  putc                            
+0086d280  read                            
+008651b0  readNandPage                    
+0086cfc0  remove                          
+0086ad20  scalbn                          
+0086ad20  scalbnl                         
+00861fe0  serial_num_isvalid              
+0086a820  setvbuf                         
+008676e0  spi_claim                       
+00867694  spi_cmd                         
+00867658  spi_cmd_read                    
+00867620  spi_cmd_write                   
+008675b0  spi_read_word                   
+00867594  spi_release                     
+00867534  spi_write_word                  
+008673e0  spi_xfer                        
+0086d2e0  strcmp                          
+0086d340  strcpy                          
+0086d3a0  strcspn                         
+0086d600  strlen                          
+0086d400  strrchr                         
+0086cca0  strspn                          
+0086c6c0  strtok                          
+00868dc0  strtoul                         
+008777f0  swap_byte                       
+0086cfc0  unlink                          
+00877478  version                         
+0086d680  vsprintf                        
+0086d6c0  wcslen                          
+0086d460  write                           
+00864e48  writeNandPage                   
+00865620  xmc_setup                       
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                            
+-------   ----                            
+00008000  __TI_STACK_SIZE                 
+00040000  __TI_SYSMEM_SIZE                
+00820000  _sys_memory                     
+00860000  __TI_printfi                    
+00861fe0  serial_num_isvalid              
+00862040  platform_write_configure        
+00862054  platform_uart_write             
+00862068  platform_write                  
+00862168  platform_uart_set_baudrate      
+00862190  platform_delay                  
+008621d0  platform_uart_read              
+00862244  platform_uart_init              
+00862260  platform_get_phy_addr           
+00862264  platform_phy_link_status        
+008622b4  platform_offset_to_blocknpage   
+0086238c  platform_led                    
+008623b8  platform_get_coreid             
+008623c4  platform_internal_memory_test   
+00862808  platform_init                   
+00862ae0  platform_get_switch_state       
+00862ae4  platform_get_macaddr            
+00862b34  platform_device_open            
+00862c30  platform_device_read            
+00862d58  platform_device_close           
+00862e48  platform_get_info               
+0086308c  platform_get_emac_info          
+008630e4  platform_external_memory_test   
+00863270  platform_device_write_spare_data
+008632e4  platform_blocknpage_to_offset   
+00863378  platform_device_write           
+008637b4  platform_device_read_spare_data 
+00863828  platform_device_mark_block_bad  
+00863920  platform_device_erase_block     
+008639b0  platform_delaycycles            
+008639d8  Convert_CoreLocal2GlobalAddr    
+00863a40  Osal_platformMalloc             
+00863a54  Osal_platformFree               
+00863a74  Osal_platformSpiCsEnter         
+00863a80  Osal_platformSpiCsExit          
+00863a88  print_platform_errno            
+00863ab0  checkBadBlockMark               
+00863ae8  markBlockBad                    
+00863b80  formBlock                       
+00863c44  flash_nand                      
+00863f8c  flash_verify                    
+008647b0  main                            
+00864bb0  NandReadSpareArea               
+00864c50  NandWriteDataBytes              
+00864da8  NandWriteSpareArea              
+00864e48  writeNandPage                   
+008651b0  readNandPage                    
+00865438  nandInit                        
+008654ac  nandFlashBlockErase             
+00865550  NandGetDetails                  
+00865620  xmc_setup                       
+00865638  prog_pll1_values                
+00865728  SetPaPllConfig                  
+00865848  SetDDR3PllConfig                
+00865964  PowerUpDomains                  
+00865a58  DDR3Init                        
+00865cb4  CorePllcHwSetup                 
+00865ee0  CorePllcGetHwSetup              
+00865fe0  i2cEepromWriteBlock             
+0086618c  i2cEepromWriteByteAddr          
+00866294  i2cEepromWrite                  
+00866358  i2cEepromRead                   
+00866464  i2cEepromMacWrite               
+008665b4  i2cEepromMacRead                
+00866de0  __c6xabi_divd                   
+008673e0  spi_xfer                        
+00867534  spi_write_word                  
+00867594  spi_release                     
+008675b0  spi_read_word                   
+00867620  spi_cmd_write                   
+00867658  spi_cmd_read                    
+00867694  spi_cmd                         
+008676e0  spi_claim                       
+00867d00  nor_write                       
+00867e24  nor_read                        
+00867ea0  nor_init                        
+00867f08  nor_get_details                 
+00867f74  nor_erase                       
+00868060  free                            
+00868760  gpioSetRisingEdgeInterrupt      
+008687a4  gpioSetOutput                   
+008687d8  gpioSetFallingEdgeInterrupt     
+00868820  gpioSetDirection                
+008688a0  gpioSetDataBusDirection         
+00868918  gpioReadInput                   
+00868958  gpioInit                        
+008689b8  gpioEnableGlobalInterrupt       
+008689d0  gpioDisableGlobalInterrupt      
+008689ec  gpioClearRisingEdgeInterrupt    
+00868a20  gpioClearOutput                 
+00868a54  gpioClearFallingEdgeInterrupt   
+00868aa0  fputs                           
+00868dc0  strtoul                         
+008690c0  configSerdes                    
+00869224  Init_SGMII                      
+00869920  __c6xabi_divull                 
+00869b60  open                            
+00869d80  UartWriteData                   
+00869dc0  UartSetBaudRate                 
+00869de8  UartReadData                    
+00869df8  UartReadBaudRate                
+00869e2c  UartIsDataReady                 
+00869e4c  UartInit                        
+00869f60  __c6xabi_divul                  
+0086a4a0  fputc                           
+0086a4a0  putc                            
+0086a660  malloc                          
+0086a820  setvbuf                         
+0086a9e0  HOSTrename                      
+0086ab80  frexp                           
+0086ab80  frexpl                          
+0086ad20  ldexp                           
+0086ad20  ldexpl                          
+0086ad20  scalbn                          
+0086ad20  scalbnl                         
+0086aec0  __TI_buff_read                  
+0086b020  fopen                           
+0086b280  getdevice                       
+0086b3a0  __TI_closefile                  
+0086b6a0  atoi                            
+0086b7a0  fseek                           
+0086b8a0  ftell                           
+0086b9a0  HOSTlseek                       
+0086ba80  HOSTopen                        
+0086bb60  HOSTwrite                       
+0086bc40  __TI_wrt_ok                     
+0086bd20  close                           
+0086be00  exit                            
+0086bee0  ltoa                            
+0086bfc0  memset                          
+0086c0a0  printf                          
+0086c180  HOSTread                        
+0086c240  HOSTunlink                      
+0086c300  __TI_auto_init_nobinit_nopinit  
+0086c3c0  __TI_doflush                    
+0086c480  __c6xabi_divu                   
+0086c480  __divu                          
+0086c6c0  strtok                          
+0086c780  __TI_tls_init                   
+0086c840  HOSTclose                       
+0086c8e0  __TI_cleanup                    
+0086c980  __TI_rd_ok                      
+0086ca20  __c6xabi_remu                   
+0086ca20  __remu                          
+0086cb60  finddevice                      
+0086cc00  memcpy                          
+0086cca0  strspn                          
+0086cd40  __TI_readmsg                    
+0086cdc0  __c6xabi_llshl                  
+0086ce40  _c_int00                        
+0086cec0  fclose                          
+0086cf40  evmI2CInit                      
+0086cfc0  remove                          
+0086cfc0  unlink                          
+0086d040  __TI_frcmpyd_div                
+0086d0a0  __TI_writemsg                   
+0086d0f8  C$$IO$$                         
+0086d100  __c6xabi_llshru                 
+0086d160  _subcull                        
+0086d1c0  lseek                           
+0086d220  memccpy                         
+0086d280  read                            
+0086d2e0  strcmp                          
+0086d340  strcpy                          
+0086d3a0  strcspn                         
+0086d400  strrchr                         
+0086d460  write                           
+0086d4c0  __c6xabi_isinf                  
+0086d540  __c6xabi_call_stub              
+0086d540  __call_stub                     
+0086d580  _args_main                      
+0086d600  strlen                          
+0086d640  dspControlUserLEDs              
+0086d680  vsprintf                        
+0086d6c0  wcslen                          
+0086d700  CSL_GPIO_open                   
+0086d720  __c6xabi_errno_addr             
+0086d740  __c6xabi_pop_rts                
+0086d740  __pop_rts                       
+0086d760  __c6xabi_push_rts               
+0086d760  __push_rts                      
+0086d780  _nop                            
+0086d800  _signbit                        
+0086d820  _system_post_cinit              
+0086d840  _system_pre_init                
+0086d860  C$$EXIT                         
+0086d860  abort                           
+0086d880  copysign                        
+0086d880  copysignl                       
+0086d8a0  __TI_decompress_none            
+0086d8c0  __TI_decompress_rle24           
+0086d8e0  fgets                           
+0086d900  _stack                          
+00875900  __TI_STACK_END                  
+00875958  gDeviceNandBBlist               
+008769b4  gDeviceNand                     
+008769ec  gDeviceNor                      
+00876a24  gDeviceEeprom0                  
+00876a5c  gDeviceEeprom1                  
+00876a98  emac_port_mode                  
+00876f10  _ctypes_                        
+00877160  _ftable                         
+00877340  _stream                         
+008773e0  _device                         
+00877458  cpsgmiiPortBaseAddr             
+00877468  __TI_cleanup_ptr                
+0087746c  __TI_dtors_ptr                  
+00877470  __TI_enable_exit_profile_output 
+00877474  _lock                           
+00877478  version                         
+0087748c  _unlock                         
+00877490  __TI_ft_end                     
+00877494  __errno                         
+00877494  errno                           
+008774a8  __TI_tmpnams                    
+008775e8  gI2cBlock                       
+0087762c  nandWriterInfo                  
+00877670  parmbuf                         
+00877678  __CIOBUF_                       
+008777ec  __TI_STATIC_BASE                
+008777ec  input_file                      
+008777f0  swap_byte                       
+008777f4  nand_erase_flag                 
+008777f8  platform_errno                  
+008777fc  platform_init_return_code       
+00877950  __TI_Handler_Table_Base         
+00877958  __TI_CINIT_Base                 
+00877958  __TI_Handler_Table_Limit        
+00877980  __TI_CINIT_Limit                
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+ffffffff  binit                           
+UNDEFED   __TI_TLS_INIT_Base              
+UNDEFED   __TI_TLS_INIT_Limit             
+
+[241 symbols]
