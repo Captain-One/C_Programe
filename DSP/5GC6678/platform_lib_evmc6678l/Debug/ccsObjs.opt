@@ -1,0 +1,1 @@
+"./src/cyhc5g.obj" "./src/cyhc5g_gpio.obj" "./src/cyhc5g_i2c.obj" "./src/cyhc5g_i2c_eeprom.obj" "./src/cyhc5g_led.obj" "./src/cyhc5g_nand.obj" "./src/cyhc5g_nor.obj" "./src/cyhc5g_phy.obj" "./src/cyhc5g_spi.obj" "./src/cyhc5g_uart.obj" "./src/platform.obj" "../lib/debug/ti.platform.evm6678l.lite.lib" 

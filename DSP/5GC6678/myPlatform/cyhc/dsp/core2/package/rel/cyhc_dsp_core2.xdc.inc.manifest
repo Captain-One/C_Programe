@@ -1,0 +1,17 @@
+cyhc/dsp/core2/Platform.xdc
+cyhc/dsp/core2/Platform.xs
+cyhc/dsp/core2/config.bld
+cyhc/dsp/core2/package/.vers_b200
+cyhc/dsp/core2/package/.vers_g200
+cyhc/dsp/core2/package/.vers_r200
+cyhc/dsp/core2/package/.xdc-F07
+cyhc/dsp/core2/package/build.cfg
+cyhc/dsp/core2/package/cyhc.dsp.core2.ccs
+cyhc/dsp/core2/package/cyhc.dsp.core2.sch
+cyhc/dsp/core2/package/cyhc_dsp_core2.class
+cyhc/dsp/core2/package/cyhc_dsp_core2.java
+cyhc/dsp/core2/package/package.bld.xml
+cyhc/dsp/core2/package/package.defs.h
+cyhc/dsp/core2/package/package_cyhc.dsp.core2.c
+cyhc/dsp/core2/package.bld
+cyhc/dsp/core2/package.xdc
