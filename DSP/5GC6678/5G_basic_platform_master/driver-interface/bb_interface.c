@@ -197,6 +197,7 @@ Int writeReadIndex(Int bbfpgaNo, uint32_t readIndex)
         break;
     case BB_FPGA_NO_1:
         data = (uint64_t)((SRIO_FPGA1_DATA_BUF_ADDR >> 8) + readIndex);
+        CACHE_wbL1d ((void *) &data, 8, CACHE_WAIT);
         re = srioSendData(2, &data, 8 , srio_Send_ReadIndex);
         break;
     default : break;

@@ -32,10 +32,10 @@ driver-interface/uart_mutex.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl
 driver-interface/uart_mutex.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/src/ip/uart/V0/cslr_uart.h
 driver-interface/uart_mutex.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr.h
 driver-interface/uart_mutex.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
-driver-interface/uart_mutex.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/std.h
-driver-interface/uart_mutex.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/std.h
-driver-interface/uart_mutex.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/C66.h
-driver-interface/uart_mutex.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/std.h
+driver-interface/uart_mutex.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/std.h
+driver-interface/uart_mutex.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/std.h
+driver-interface/uart_mutex.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/C66.h
+driver-interface/uart_mutex.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/std.h
 driver-interface/uart_mutex.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
 driver-interface/uart_mutex.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/uart/src/v0/UART_v0.h
 driver-interface/uart_mutex.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/soc.h
@@ -83,10 +83,10 @@ C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/src/ip/uart/V0/uart.h:
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/src/ip/uart/V0/cslr_uart.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/std.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/std.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/C66.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/std.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/std.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/std.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/C66.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/std.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/uart/src/v0/UART_v0.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/soc.h: 

@@ -1,17 +1,17 @@
 vpath % C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/
-vpath %.c C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/
+vpath %.c C:/ti/ccs901/xdctools_3_55_00_11_core/packages/
 
-XOPTS = -I"C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/" -Dxdc_target_types__=C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/std.h -Dxdc_target_name__=C66
+XOPTS = -I"C:/ti/ccs901/xdctools_3_55_00_11_core/packages/" -Dxdc_target_types__=C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/std.h -Dxdc_target_name__=C66
 
 CCOPTS = -mv6600 --abi=eabi -q -mi10 -mo -pdr -pden -pds=238 -pds=880 -pds1110  --program_level_compile -o3 -g  -Dti_sysbios_family_c64p_Exception_enableExternalMPC__D=FALSE -Dti_sysbios_family_c64p_Exception_enablePrint__D=TRUE -Dti_sysbios_knl_Clock_stopCheckNext__D=FALSE -Dti_sysbios_knl_Task_minimizeLatency__D=FALSE
 
-XDC_ROOT  = C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/
+XDC_ROOT  = C:/ti/ccs901/xdctools_3_55_00_11_core/packages/
 
 IPC_ROOT = C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/
 
 BUILD_DEFS = 
 
-SYSBIOS_INC  = -I"C:/ti/pdk/6678/bios_6_73_01_01/packages"
+SYSBIOS_INC  = -I"C:/ti/pdk/6678/bios_6_75_02_00/packages"
 
 IPC_INC    = -I"C:/ti/pdk/6678/ipc_3_50_03_04/packages"
 

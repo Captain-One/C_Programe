@@ -34,20 +34,21 @@
 /* CSL RL includes */
 #include <ti/csl/csl_chip.h>
 #include <ti/csl/csl_cacheAux.h>
+#include <ti/csl/csl_semAux.h>
 
 //SRIO
 
 #include <ti/platform/platform.h>
 #include <ti/board/board.h>
 
-
 #include "../init/init.h"
 #include <core_2_core_interface.h>
 #include <bb_interface.h>
 #include <common.h>
 
-#include <c6x.h>
+#include <uart_mutex.h>
 
+#include <c6x.h>
 
 #define swap16(s) ((((s) & 0xff) << 8) | (((s) >> 8) & 0xff))
 #define swap32(l) (((l) >> 24) | \
@@ -58,39 +59,24 @@
 String const core_name = "CORE0";
 UInt16 const core_id = 0;
 
-#define SEND_DATA_LEN      (8*1024 - 20)
+#define SEND_DATA_LEN      (1024)
 
 #pragma DATA_ALIGN(data, 64);
+#ifdef SRIO_PERFORMANCE_TEST
+uint64_t data[SEND_DATA_LEN] = {0};
+#else
 uint8_t data[SEND_DATA_LEN] = {0};
+#endif
 
 uint32_t dataLen = SEND_DATA_LEN;
 
-
-UART_Handle uart_handle;
-
-/* UART parameters structure polled mode*/
-const UART_Params user_params = {
-    UART_MODE_BLOCKING,     /* readMode */
-    UART_MODE_BLOCKING,     /* writeMode */
-    0U,                     /* readTimeout */
-    0U,                     /* writeTimeout */
-    NULL,                  /* readCallback */
-    NULL,                 /* writeCallback */
-    UART_RETURN_NEWLINE,  /* readReturnMode */
-    UART_DATA_TEXT,       /* readDataMode */
-    UART_DATA_TEXT,       /* writeDataMode */
-    UART_ECHO_ON,         /* readEcho */
-    115200,               /* baudRate */
-    UART_LEN_8,           /* dataLength */
-    UART_STOP_ONE,        /* stopBits */
-    UART_PAR_NONE         /* parityType */
-};
+uint8_t core_ID = 0;
 
 
 #define TEST_TIME_1MIN  60000000000UL
 #define TEST_TIME_1S    1000000000UL
 
-uint64_t TEST_TIME   =  60*60000000000;
+uint64_t TEST_TIME   =  1*60000000000;
 
 #pragma DATA_SECTION(rxbuf, ".L2RAM")
 #pragma DATA_ALIGN (rxbuf, 64)
@@ -100,108 +86,56 @@ uint8_t *rxbuf;
  */
 Void taskFxn(UArg a0, UArg a1)
 {
-    UART_Params      params;
-    UART_HwAttrs uart_cfg;
+    //UART_Params      params;
+    //UART_HwAttrs     uartHwAttrsCfg;
     Int status;
     Int i;
     Int re;
-    char printbuf[128] = "hello world\n";
+    uint32_t rxlen;
 
-   PLATFORM_LED_OP  ledOp;
-   LED_CLASS_E led_class;
-
-   uint32_t rxlen;
-   //UART_stdioDeInit();
-   //UART_stdioInit(0);
-
-   //UART_printf("core 0 uart init over!\n");
-
-#if 0
-   Platform_STATUS platstatus;
-   platform_init_flags init_flag;
-   platform_init_config init_config;
-
-   led_class = PLATFORM_USER_LED_CLASS;
-
-   init_flag.pll = 0;
-   init_flag.ddr = 1;
-   init_flag.phy = 0;
-   init_flag.ecc = 0;
-   init_flag.tcsl = 0;
-
-   init_config.plld = 0;
-   init_config.pllm = 0;
-   init_config.postdiv = 0;
-   init_config.prediv = 0;
-
-   memset((uint32_t *)0x80000000, 0 , 2*1024);
-   memset((uint32_t *)0x80000800, 0 , 20*1024*1024);
-
-   rxbuf = malloc(16*1024);
-
-   for(i = 0; i < dataLen; i++){
-       data[i] = i;
-   }
-
-   platstatus = platform_init(&init_flag, &init_config);
-   if(platstatus != Platform_EOK){
-       printf("platform_init Error: %d\n", platstatus);
-   }
-   printf("platform_init OK!\n");
-
-  // UART_socGetInitCfg(0, &uart_cfg);
-
-  // UART_socSetInitCfg(0, &uart_cfg);
-
-   UART_init();
-   UART_Params_init(&params);
-   params = user_params;
-   uart_handle = UART_open(0, &params);
-   if(uart_handle == NULL)
-       ;
-
-   UART_write(uart_handle,printbuf,20);
-#endif
-
-    System_printf("enter taskFxn()\n");
+    MYPRINTF("enter taskFxn()\n");
+    MYPRINTF("enter taskFxn()\n");
     status = sysInit();
     if(status < 0){
-        System_printf("Core %d sysInit error\n", core_id);
+        MYPRINTF("Core %d sysInit error\n", core_id);
         System_exit(-1);
     }
 
-
-
-#if 1
+#ifdef SRIO_DEBUG_FPGA0
     re = configSrioParameterToFPGA(BB_FPGA_NO_0);
-   // re = configSrioParameterToFPGA(BB_FPGA_NO_1);
+#elif defined SRIO_DEBUG_FPGA1
+    re = configSrioParameterToFPGA(BB_FPGA_NO_1);
+#else
+    re = configSrioParameterToFPGA(BB_FPGA_NO_0);
     if(re < 0){
-        System_printf("configSrioParameterToFPGA eror\n");
+        MYPRINTF("configSrioParameterToFPGA eror\n");
+    }
+    re = configSrioParameterToFPGA(BB_FPGA_NO_1);
+#endif
+    if(re < 0){
+        MYPRINTF("configSrioParameterToFPGA eror\n");
     }
 
+#ifdef  SRIO_PERFORMANCE_TEST
+    uint64_t wst = 0, wst1 = 0, wst2 = 0;
+    uint64_t start_time = 0, end_time = 0;
+    double speed = 0;
+    double test_time = 0;
+    double overhead_time = 0;
+    double use_time = 0;
+#endif
+
+#ifdef SRIO_RECEIVE_PERFORMANCE_TEST
     uint64_t prv = 0, cur = 0, prvPktend = 0;;
     uint64_t get_count = 0;
     uint32_t err_count = 0;
     uint32_t get_err_count = 0;
     uint32_t rx_err_count_pkt = 0;
-    uint64_t start_time, end_time;
+    double get_size = 0;
+
     uint8_t * pbuf;
 
-    uint64_t s_count = 0;
-    uint32_t send_err_count = 0;
-    uint64_t send_count = 0;
-    uint64_t wst = 0, wst1 = 0, wst2 = 0;
-#endif
-
-
-    double sen_size = 0, get_size = 0;
-    double speed = 0;
-    double test_time = 0;
-    double overhead_time = 0;
-    double use_time = 0;
-#if 0
     wst1 = _itoll(TSCH, TSCL);
-
     end_time = _itoll(TSCH, TSCL);
     if((end_time - start_time) > TEST_TIME)
             ;
@@ -212,16 +146,23 @@ Void taskFxn(UArg a0, UArg a1)
 
     wst2 = _itoll(TSCH, TSCL);
     wst = wst2 - wst1;
-    System_printf("wst time %ld cycle\n", wst);
+
+    MYPRINTF("wst time %ld cycle\n", wst);
 
     start_time = _itoll(TSCH, TSCL);
     while(1){
         end_time = _itoll(TSCH, TSCL);
         if((end_time - start_time) > TEST_TIME)
                     break;
+#ifdef SRIO_DEBUG_FPGA0
         re = getBbData(BB_FPGA_NO_0, rxbuf,&rxlen);
+#elif defined SRIO_DEBUG_FPGA1
+        re = getBbData(BB_FPGA_NO_1, rxbuf,&rxlen);
+#else
+        re = getBbData(BB_FPGA_NO_0, rxbuf,&rxlen);
+#endif
         if(re < 0){
-            System_printf("get data error");
+            MYPRINTF("get data error");
             get_err_count ++;
             continue;
         }
@@ -237,12 +178,6 @@ Void taskFxn(UArg a0, UArg a1)
 
         prv = *(uint64_t *)pbuf;
         if(get_count != 1){
-            //CACHE_wbL1d ((void *) &get_count, 4, CACHE_WAIT);
-            //CACHE_wbL1d ((void *) &prvPktend, 8, CACHE_WAIT);
-            //CACHE_wbL1d ((void *) rxbuf, 8, CACHE_WAIT);
-            //CACHE_invL1d ((void *) &prv, 8, CACHE_WAIT);
-            //CACHE_invL1d ((void *) &get_count, 4, CACHE_WAIT);
-            //System_printf("prvPktend %ld, prv %ld, n %d\n", prvPktend, prv, get_count);
             if(prv != (prvPktend +1)){
                 rx_err_count_pkt ++;
             }
@@ -258,8 +193,6 @@ Void taskFxn(UArg a0, UArg a1)
             prv = cur;
         }
         prvPktend = prv;
-        //if(get_count == 50)
-          //  break;
     }
 
     get_size = (get_size)/(1024.0*1024.0);
@@ -267,51 +200,98 @@ Void taskFxn(UArg a0, UArg a1)
     overhead_time = get_count * wst/1000000000.0;
     use_time = test_time - overhead_time;
     speed = get_size/use_time;
-    System_printf("get data error count %d \n", get_err_count);
-    System_printf("get data count %ld \n", get_count);
-    System_printf("get data size %f MB\n", get_size);
-    System_printf("test_time  %f s\n", test_time);
-    System_printf("overhead_time  %f s\n", overhead_time);
-    System_printf("use_time  %f s\n", use_time);
-    System_printf("speed  %f MB/s\n", speed);
+    MYPRINTF("get data error count %d \n", get_err_count);
+    MYPRINTF("get data count %ld \n", get_count);
+    MYPRINTF("get data size %f MB\n", get_size);
+    MYPRINTF("test_time  %f s\n", test_time);
+    MYPRINTF("overhead_time  %f s\n", overhead_time);
+    MYPRINTF("use_time  %f s\n", use_time);
+    MYPRINTF("speed  %f MB/s\n", speed);
+#ifndef  USE_UART_PRINT
     System_flush();
 #endif
-
-#if 0
-    char tz[128];
-    snprintf(tz, sizeof(tz), "Recive %d Packet\n start_time : %llu , end_time : %llu\n trans time is : %f m\n", get_count, start_time, end_time, (float) (end_time - start_time)/TEST_TIME_1MIN);
-    UART_write(uart_handle,tz,sizeof(tz));
-    System_printf("%s", tz);
-    snprintf(tz, sizeof(tz),"error count %d\n", err_count);
-    UART_write(uart_handle,tz,sizeof(tz));
-    System_printf("error count %d\n", err_count);
-
-    snprintf(tz, sizeof(tz),"rx err count count %d\n", rx_err_count_pkt);
-    UART_write(uart_handle,tz,sizeof(tz));
-    System_printf("rx err count pkt %d\n", rx_err_count_pkt);
-
-    snprintf(tz, sizeof(tz),"get error count %d\n", get_err_count);
-    UART_write(uart_handle,tz,sizeof(tz));
-    System_printf("get error count %d\n", get_err_count);
-
-    snprintf(tz, "get_count coullnt %d\n", get_count);
-    UART_write(uart_handle,tz,sizeof(tz));
-    System_printf("get_count count %ld\n", get_count);
-
-    snprintf(tz, sizeof(tz),"get data size %d MB\n", (get_count*256)/(1024*1024));
-    UART_write(uart_handle,tz,sizeof(tz));
-    System_printf("get data size %d MB\n", (get_count*256)/(1024*1024));
-
-    System_flush();
 #endif
 
 
-#if 1
+#ifdef  SRIO_TRANSMIT_PERFORMANCE_TEST
+    uint64_t s_count = 0;
+    uint32_t send_err_count = 0;
+    uint64_t send_count = 0;
+    double sen_size = 0;
+
     wst1 = _itoll(TSCH, TSCL);
 
-    //end_time = _itoll(TSCH, TSCL);
-    //if((end_time - start_time) > TEST_TIME)
-            //;
+    end_time = _itoll(TSCH, TSCL);
+    if((end_time - start_time) > TEST_TIME)
+            ;
+    for(i = 0; i < dataLen; i++)
+    {
+        data[i] = s_count + i;
+    }
+    s_count += i;
+    CACHE_wbL1d ((void *) data, dataLen*8, CACHE_WAIT);
+
+    if(re < 0){
+        i ++;
+    }
+    i ++;
+    wst2 = _itoll(TSCH, TSCL);
+    wst = wst2 - wst1;
+    MYPRINTF("wst time %ld cycle\n", wst);
+
+    s_count = 0;
+    MYPRINTF("start trans....\n");
+    start_time = _itoll(TSCH, TSCL);
+    while(1){
+        end_time = _itoll(TSCH, TSCL);
+        if((end_time - start_time) > TEST_TIME)
+            break;
+
+        for(i = 0; i < dataLen; i++)
+        {
+            data[i] = s_count + i;
+        }
+        s_count += i;
+        CACHE_wbL1d ((void *) data, dataLen*8, CACHE_WAIT);
+
+#ifdef SRIO_DEBUG_FPGA0
+        re = sendDataToBb(BB_FPGA_NO_0, data, dataLen*8);
+#elif defined SRIO_DEBUG_FPGA1
+        re = sendDataToBb(BB_FPGA_NO_1, data, dataLen*8);
+#else
+        re = sendDataToBb(BB_FPGA_NO_0, data, dataLen*8);
+
+#endif
+        if(re < 0){
+            send_err_count ++;
+            continue;
+        }
+        send_count ++;
+    }
+
+    sen_size = (send_count*dataLen*8)/(1024.0*1024.0);
+    test_time = (end_time - start_time)/1000000000.0;
+    overhead_time = send_count * wst/1000000000.0;
+    use_time = test_time - overhead_time;
+    speed = sen_size/use_time;
+    MYPRINTF("sen data error count %d \n", send_err_count);
+    MYPRINTF("sen data count %ld \n", send_count);
+    MYPRINTF("sen data size %f MB\n", sen_size);
+    MYPRINTF("test_time  %f s\n", test_time);
+    MYPRINTF("overhead_time  %f s\n", overhead_time);
+    MYPRINTF("use_time  %f s\n", use_time);
+    MYPRINTF("speed  %f MB/s\n", speed);
+
+#ifndef  USE_UART_PRINT
+    System_flush();
+#endif
+
+#endif
+
+#ifdef  SRIO_PROTOCOL_TEST
+
+    uint64_t prot_send_err_count = 0;
+    uint64_t prot_get_err_count = 0;
 
     ((FpkH_t *)data)->mark = 0xBADC;
     ((FpkH_t *)data)->flen = swap16(dataLen);
@@ -319,76 +299,88 @@ Void taskFxn(UArg a0, UArg a1)
     ((FpkH_t *)data)->bdinfo.src_adr = 1;
     ((FpkH_t *)data)->bdinfo.dst_adr = 0;
 
-
-    for(i = 0; i < (dataLen - sizeof(FpkH_t)); i++)
-    {
-        data[i + sizeof(FpkH_t)] = i;
-    }
-    s_count += i;
-    //CACHE_wbL1d ((void *) data, dataLen*8, CACHE_WAIT);
-    if(re < 0){
-        ;//send_err_count ++;
-    }
-    //i ++;
-    wst2 = _itoll(TSCH, TSCL);
-    wst = wst2 - wst1;
-    System_printf("wst time %ld cycle\n", wst);
-
-    start_time = _itoll(TSCH, TSCL);
     while(1){
-        end_time = _itoll(TSCH, TSCL);
-        if((end_time - start_time) > TEST_TIME)
-                    break;
-        //CACHE_invL1d ((void *) data, dataLen*8, CACHE_WAIT);
-
-        //for(i = 0; i < (dataLen - sizeof(FpkH_t)); i++)
-       // {
-       //     data[i + sizeof(FpkH_t)] = i;
-       // }
-        //for(i = 0; i < dataLen; i++)
-        //{
-        //    data[i] = s_count + i;
-       // }
-        s_count += i;
-        CACHE_wbL1d ((void *) data, dataLen, CACHE_WAIT);
+        for(i = 0; i < (dataLen - sizeof(FpkH_t)); i++)
+        {
+           data[i + sizeof(FpkH_t)] = i;
+        }
+#ifdef SRIO_DEBUG_FPGA0
+        re = sendDataToBb(BB_FPGA_NO_0, data, dataLen);
+#elif defined SRIO_DEBUG_FPGA1
+        re = sendDataToBb(BB_FPGA_NO_1, data, dataLen);
+#else
         re = sendDataToBb(BB_FPGA_NO_0, data, dataLen);
         if(re < 0){
-            send_err_count ++;
+            prot_send_err_count ++;
+            continue;
         }
-        send_count ++;
-    }
+        re = sendDataToBb(BB_FPGA_NO_1, data, dataLen);
+#endif
+        if(re < 0){
+            prot_send_err_count ++;
+            continue;
+        }
 
-
-    sen_size = (send_count*dataLen*8)/(1024.0*1024.0);
-    test_time = (end_time - start_time)/1000000000.0;
-    overhead_time = send_count * wst/1000000000.0;
-    use_time = test_time - overhead_time;
-    speed = sen_size/use_time;
-    System_printf("sen data error count %d \n", send_err_count);
-    System_printf("sen data count %ld \n", send_count);
-    System_printf("sen data size %f MB\n", sen_size);
-    System_printf("test_time  %f s\n", test_time);
-    System_printf("overhead_time  %f s\n", overhead_time);
-    System_printf("use_time  %f s\n", use_time);
-    System_printf("speed  %f MB/s\n", speed);
-
-
-    System_flush();
-
-
-
-    re = sendDataToCoreN(1, data, dataLen);
-    if(re < 0){
-        System_printf("sendDataToCoreN eror\n");
+#ifdef SRIO_DEBUG_FPGA0
+        re = getBbData(BB_FPGA_NO_0, rxbuf,&rxlen);
+#elif defined SRIO_DEBUG_FPGA1
+        re = getBbData(BB_FPGA_NO_1, rxbuf,&rxlen);
+#else
+        re = getBbData(BB_FPGA_NO_0, rxbuf,&rxlen);
+        if(re < 0){
+            prot_get_err_count ++;
+        }
+        re = getBbData(BB_FPGA_NO_1, rxbuf,&rxlen);
+#endif
+        if(re < 0){
+            prot_get_err_count ++;
+        }
+        Task_sleep(100);
     }
 #endif
+
+#ifdef  CORE_TO_CORE_TEST
+    re = sendDataToCoreN(1, data, dataLen);
+    if(re < 0){
+        MYPRINTF("sendDataToCoreN eror\n");
+    }
+
     Task_sleep(10);
+#endif
 
-    System_printf("exit taskFxn()\n");
-
+    MYPRINTF("exit taskFxn()\n");
+#ifndef  USE_UART_PRINT
     System_flush(); /* force SysMin output to console */
+#endif
     while(1);
 
+}
+
+void taskLed(UArg a0, UArg a1)
+{
+    PLATFORM_LED_OP  op;
+    LED_CLASS_E  class;
+
+    class = PLATFORM_USER_LED_CLASS;
+    while(1)
+    {
+        op = PLATFORM_LED_ON;
+        platform_led(15, op, class);
+        Task_sleep(1000);
+        op = PLATFORM_LED_OFF;
+        platform_led(15, op, class);
+        Task_sleep(1000);
+    }
+
+}
+
+
+void delay_ms(uint32_t n)
+{
+    int i,j;
+    for(i = 0; i < n; i++)
+        for(j = 0; j < 1000; j++)
+            ;
 }
 
 
@@ -399,42 +391,37 @@ Int main()
 { 
     Task_Handle task;
     Error_Block eb;
+    UART_HwAttrs     uartHwAttrsCfg;
 
-#if 0
+#if 1
     Board_STATUS stats;
     Board_initCfg cfg = 0;
-    Board_SoCInfo socInfo;
-    Board_IDInfo  idInfo;
 
-    cfg = BOARD_INIT_PLL | BOARD_INIT_DDR | BOARD_INIT_UART_STDIO | BOARD_INIT_ECC;
-
-    System_printf("enter main()\n");
+    cfg = BOARD_INIT_UART_STDIO ;
 
     stats = Board_init(cfg);
     if(stats != BOARD_SOK)
         System_printf("Board_init error %d \n", stats);
 
-    stats = Board_getSoCInfo(&socInfo);
-    if(stats != BOARD_SOK)
-        System_printf("Board_getSoCInfo error %d \n", stats);
+#if 1
+    UART_socGetInitCfg(0, &uartHwAttrsCfg);
+    uartHwAttrsCfg.enableInterrupt = 0;
+    UART_socSetInitCfg(0, &uartHwAttrsCfg);
 
-    System_printf("Board sysClock is : %d\n",socInfo.sysClock);
-
-    stats =  Board_getIDInfo(&idInfo);
-    if(stats != BOARD_SOK)
-        System_printf("Board_getIDInfo error %d \n", stats);
-
-    System_printf("Board Name is : %s\n",idInfo.boardName);
-    System_printf("Board sysClock is : %s\n",idInfo.configCodes);
-    System_printf("Board sysClock is : %s\n",idInfo.header);
-    System_printf("Board sysClock is : %s\n",idInfo.indEthMacID0);
-    System_printf("Board sysClock is : %s\n",idInfo.serialNum);
-    System_printf("Board sysClock is : %s\n",idInfo.version);
-    System_flush();
+    UART_stdioInit(0);
+    CSL_semClearError();
+    UART_mutex_printf("enter main()\n");
+#endif
 #endif
 
     Error_init(&eb);
-    task = Task_create(taskFxn, NULL, &eb);
+   task = Task_create(taskFxn, NULL, &eb);
+    if (task == NULL) {
+        System_printf("Task_create() failed!\n");
+        BIOS_exit(0);
+    }
+
+    task = Task_create(taskLed, NULL, &eb);
     if (task == NULL) {
         System_printf("Task_create() failed!\n");
         BIOS_exit(0);

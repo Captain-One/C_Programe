@@ -32,50 +32,26 @@ endif
 #
 # ======== library macros ========
 #
-ipc_SRC = $(GEN_SRC_DIR)/ipc
-ipc_LIB = $(GEN_SRC_DIR)/ipc.ae66
-utils_SRC = $(GEN_SRC_DIR)/utils
-utils_LIB = $(GEN_SRC_DIR)/utils.ae66
 sysbios_SRC = $(GEN_SRC_DIR)/sysbios
 sysbios_LIB = $(GEN_SRC_DIR)/sysbios/sysbios.ae66
 
 #
 # ======== dependencies ========
 #
-all: $(ipc_LIB) $(utils_LIB) $(sysbios_LIB)
-clean: .ipc_clean .utils_clean .sysbios_clean
+all: $(sysbios_LIB)
+clean: .sysbios_clean
 
 
 # ======== convenient build goals ========
-.PHONY: ipc
-ipc: $(GEN_SRC_DIR)/ipc.ae66
-.PHONY: utils
-utils: $(GEN_SRC_DIR)/utils.ae66
 .PHONY: sysbios
 sysbios: $(GEN_SRC_DIR)/sysbios/sysbios.ae66
 
 # CDT managed make executables depend on $(OBJS)
-OBJS += $(ipc_LIB) $(utils_LIB) $(sysbios_LIB)
+OBJS += $(sysbios_LIB)
 
 #
 # ======== rules ========
 #
-$(ipc_LIB): .force 
-	@echo making $@ ...
-	@$(MAKE) -C $(ipc_SRC)
-
-.ipc_clean:
-	@echo cleaning $(ipc_SRC) ...
-	-@$(MAKE) --no-print-directory -C $(ipc_SRC) clean
-
-$(utils_LIB): .force 
-	@echo making $@ ...
-	@$(MAKE) -C $(utils_SRC)
-
-.utils_clean:
-	@echo cleaning $(utils_SRC) ...
-	-@$(MAKE) --no-print-directory -C $(utils_SRC) clean
-
 $(sysbios_LIB): .force 
 	@echo making $@ ...
 	@$(MAKE) -C $(sysbios_SRC)

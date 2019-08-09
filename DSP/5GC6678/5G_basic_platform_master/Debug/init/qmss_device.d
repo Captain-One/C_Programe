@@ -16,12 +16,12 @@ init/qmss_device.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/qmss/qmss_
 init/qmss_device.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr_qm_config.h
 init/qmss_device.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr.h
 init/qmss_device.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
-init/qmss_device.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/std.h
+init/qmss_device.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/std.h
 init/qmss_device.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdarg.h
 init/qmss_device.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stddef.h
-init/qmss_device.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/std.h
-init/qmss_device.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/C66.h
-init/qmss_device.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/std.h
+init/qmss_device.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/std.h
+init/qmss_device.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/C66.h
+init/qmss_device.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/std.h
 init/qmss_device.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
 init/qmss_device.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/src/ip/qmss/V1/cslr_qm_config.h
 init/qmss_device.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
@@ -69,12 +69,12 @@ C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/qmss/qmss_qm.h:
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr_qm_config.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/std.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/std.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdarg.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stddef.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/std.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/C66.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/std.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/std.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/C66.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/std.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/src/ip/qmss/V1/cslr_qm_config.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 

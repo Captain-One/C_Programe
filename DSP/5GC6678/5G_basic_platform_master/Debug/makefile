@@ -26,6 +26,7 @@ ORDERED_OBJS += \
 "./init/srio_osal.obj" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
+-l"D:/pxqwork/project/5G-DSP/platform_lib_evmc6678l/lib/debug/ti.platform.evm6678l.ae66" \
 
 -include ../makefile.init
 
@@ -152,7 +153,7 @@ BIN_OUTPUTS__QUOTED += \
 
 # All Target
 all: $(OBJS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "5G_basic_platform_master.out"
+	@$(MAKE) --no-print-directory -Onone "5G_basic_platform_master.out" secondary-outputs
 
 # Tool invocations
 5G_basic_platform_master.out: $(OBJS) $(GEN_CMDS)
@@ -165,7 +166,7 @@ all: $(OBJS) $(GEN_CMDS)
 5G_basic_platform_master.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C6000 Hex Utility'
-	"C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/hex6x"  -o "5G_basic_platform_master.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/bin/hex6x" --entrypoint=_c_int00 --memwidth=32 --order=L --romwidth=32 --boot --bootorg=0x400 --ascii -o "5G_basic_platform_master.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
@@ -177,6 +178,8 @@ clean:
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '
+
+secondary-outputs: $(BIN_OUTPUTS)
 
 .PHONY: all clean dependents
 .SECONDARY:

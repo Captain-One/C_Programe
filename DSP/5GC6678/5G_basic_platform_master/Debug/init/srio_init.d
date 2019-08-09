@@ -2,15 +2,15 @@
 
 init/srio_init.obj: ../init/srio_init.c
 init/srio_init.obj: ../init/srio_init.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/std.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/std.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdarg.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/_types.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/cdefs.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/machine/_types.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stddef.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/std.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/C66.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/std.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/std.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/C66.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/std.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdint.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/_stdint40.h
 init/srio_init.obj: C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/stdint.h
@@ -79,87 +79,87 @@ init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_srio.h
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr_srio.h
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/srio/sriover.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/System.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/xdc.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/package.defs.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/Main_Module_GateProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Memory.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/Memory_HeapProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/ISystemSupport.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/ISystemSupport.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c64p/EventCombiner.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c64p/package/package.defs.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c66/tci66xx/CpIntc.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c66/tci66xx/package/package.defs.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/System.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/xdc.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types__prologue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/package.defs.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types__epilogue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error__prologue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/Main_Module_GateProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error__epilogue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Memory.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/Memory_HeapProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert__prologue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags__prologue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags__epilogue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert__epilogue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/ISystemSupport.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_SupportProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/ISystemSupport.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_Module_GateProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_SupportProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_Module_GateProxy.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c64p/EventCombiner.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c64p/package/package.defs.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c66/tci66xx/CpIntc.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c66/tci66xx/package/package.defs.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_bootcfg.h
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/src/ip/bootcfg/V4/csl_bootcfg.h
@@ -207,123 +207,135 @@ init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_device_i
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
 init/srio_init.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_srioAuxPhyLayer.h
 init/srio_init.obj: D:/pxqwork/project/5G-DSP/5G_basic_platform_master/init/srio_osal.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/System.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Semaphore.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Semaphore__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/package/package.defs.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Text.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITaskSupport.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/package/package.defs.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Clock.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITimer.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Swi.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/package/Clock_TimerProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITimer.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/package/Task_SupportProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITaskSupport.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Clock.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Event.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Event__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Clock.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Event__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Semaphore__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/BIOS.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/BIOS__prologue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/package/package.defs.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h
-init/srio_init.obj: C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/BIOS__epilogue.h
-init/srio_init.obj: C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/System.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore__prologue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/package.defs.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log__prologue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Text.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log__epilogue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task__prologue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITaskSupport.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/package/package.defs.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Clock.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITimer.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Swi.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Clock_TimerProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITimer.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Task_SupportProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITaskSupport.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task__epilogue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Clock.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event__prologue.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Clock.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event__epilogue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore__epilogue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__prologue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/package.defs.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__epilogue.h
+init/srio_init.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
 init/srio_init.obj: D:/pxqwork/project/5G-DSP/5G_basic_platform_master/init/srio_laneconfig.h
+init/srio_init.obj: D:/pxqwork/project/5G-DSP/5G_basic_platform_master/common/common.h
+init/srio_init.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/MessageQ.h
+init/srio_init.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/MultiProc.h
+init/srio_init.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/package/package.defs.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/srio_init.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/IMessageQTransport.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_init.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_init.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h
 
 ../init/srio_init.c: 
 ../init/srio_init.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/std.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/std.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdarg.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/_types.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/cdefs.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/machine/_types.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stddef.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/std.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/elf/C66.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/targets/std.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/std.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/elf/C66.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/targets/std.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/stdint.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/_stdint40.h: 
 C:/ti/ccs901/ccs/tools/compiler/ti-cgt-c6000_8.3.2/include/sys/stdint.h: 
@@ -392,87 +404,87 @@ C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_srio.h:
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr_srio.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/srio/sriover.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/System.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/xdc.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types__prologue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/package.defs.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types__epilogue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error__prologue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/Main_Module_GateProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error__epilogue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Memory.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/Memory_HeapProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert__prologue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags__prologue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags__epilogue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert__epilogue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/ISystemSupport.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/ISystemSupport.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_SupportProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c64p/EventCombiner.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c64p/package/package.defs.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c66/tci66xx/CpIntc.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/family/c66/tci66xx/package/package.defs.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/System.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/xdc.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types__prologue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types__epilogue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error__prologue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/Main_Module_GateProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error__epilogue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Memory.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/Memory_HeapProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert__prologue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags__prologue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags__epilogue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert__epilogue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/ISystemSupport.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_SupportProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/ISystemSupport.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_SupportProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c64p/EventCombiner.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c64p/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c66/tci66xx/CpIntc.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/family/c66/tci66xx/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_bootcfg.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/src/ip/bootcfg/V4/csl_bootcfg.h: 
@@ -520,108 +532,120 @@ C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_device_interrupt.h:
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_srioAuxPhyLayer.h: 
 D:/pxqwork/project/5G-DSP/5G_basic_platform_master/init/srio_osal.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/System.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Semaphore.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Semaphore__prologue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/package/package.defs.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log__prologue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Main.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Text.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log__epilogue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task__prologue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITaskSupport.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/package/package.defs.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Clock.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITimer.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Swi.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/package/Clock_TimerProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITimer.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/package/Task_SupportProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/interfaces/ITaskSupport.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task__epilogue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Clock.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Event.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Event__prologue.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Assert.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Diags.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Log.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Queue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Clock.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Task.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Event__epilogue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/knl/Semaphore__epilogue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/BIOS.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/BIOS__prologue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/package/package.defs.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IHeap.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/xdctools_3_51_01_18_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/BIOS__epilogue.h: 
-C:/ti/pdk/6678/bios_6_73_01_01/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/System.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore__prologue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log__prologue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Main.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Text.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log__epilogue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task__prologue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITaskSupport.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Clock.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITimer.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Swi.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Clock_TimerProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITimer.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Task_SupportProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITaskSupport.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task__epilogue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Clock.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event__prologue.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Diags.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Log.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Queue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Clock.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event__epilogue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore__epilogue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__prologue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__epilogue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
 D:/pxqwork/project/5G-DSP/5G_basic_platform_master/init/srio_laneconfig.h: 
+D:/pxqwork/project/5G-DSP/5G_basic_platform_master/common/common.h: 
+C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/MessageQ.h: 
+C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/MultiProc.h: 
+C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/IMessageQTransport.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/sdo/ipc/interfaces/ITransport.h: 

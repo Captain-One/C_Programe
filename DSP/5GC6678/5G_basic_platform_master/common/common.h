@@ -100,3 +100,28 @@ typedef struct FpkH_s {
 uint32_t l2_global_address (uint32_t addr);
 
 #endif /* COMMON_COMMON_H_ */
+
+#define  USE_UART_PRINT
+
+#ifdef  USE_UART_PRINT
+#define MYPRINTF     UART_mutex_printf
+#else
+#define MYPRINTF     System_printf
+#endif
+
+#define SRIO_DEBUG_FPGA0
+
+//#define SRIO_RECEIVE_PERFORMANCE_TEST
+//#define SRIO_TRANSMIT_PERFORMANCE_TEST
+//#define SRIO_RECEIVE_AND_TRANS_PERFORMANCE_TEST
+#define SRIO_PROTOCOL_TEST
+
+#ifdef SRIO_RECEIVE_AND_TRANS_PERFORMANCE_TEST
+#define SRIO_RECEIVE_PERFORMANCE_TEST
+#define SRIO_TRANSMIT_PERFORMANCE_TEST
+#endif
+
+#if defined(SRIO_RECEIVE_PERFORMANCE_TEST) || defined(SRIO_TRANSMIT_PERFORMANCE_TEST)
+#define SRIO_PERFORMANCE_TEST
+#endif
+

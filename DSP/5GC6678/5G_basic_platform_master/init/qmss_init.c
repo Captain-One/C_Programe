@@ -141,7 +141,7 @@ Int cppiInit(Void)
         System_printf("Cppi init error\n");
         return re_cppi;
     }
-#if 0
+#if 1
     initDone = MASTER_INIT_DONE;
     while(1)
     {

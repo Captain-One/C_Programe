@@ -15,7 +15,7 @@
 
 #define UART_SEMAPHORE        0
 
-extern const uint8_t core_ID;
+extern uint8_t core_ID;
 
 inline int32_t getSemaphore(uint8_t semNum)
 {

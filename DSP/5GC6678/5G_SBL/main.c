@@ -7,6 +7,10 @@
 #include <ti/csl/csl_ipcAux.h>
 #include <ti/csl/csl_cacheAux.h>
 
+#define SBL_VERSION                     "V0.0.1"
+#define COMPANY                         "CYHC"
+#define AUTHOR                          "Pu"
+
 #define MAGIC_ADDR                      0x0087FFFC
 #define BIN_FILE_START_ADDR             0x0000
 #define NAND_BUS_WIDTH                  8
@@ -48,6 +52,53 @@ Boot_table_s boot_table;
 int ext_buf_flag = 0;
 uint8_t ext_buf[8] = {0};
 
+void printLog(void)
+{
+    platform_write("            ## **\n");
+    platform_write("         ## ## ** **                   ");
+    platform_write("**********    **              **    ");
+    platform_write("**          **          **********\n");
+
+    platform_write("      ## ## ## ** ** **              ");
+    platform_write("**                **          **      ");
+    platform_write("**          **        **\n");
+
+    platform_write("   ## ## ## ## ** ** ** **         ");
+    platform_write("**                    **      **  ");
+    platform_write("      **          **      **\n");
+
+    platform_write("## ## ## ## ## ** ** ** ** **    ");
+    platform_write("**                        **  **  ");
+    platform_write("        **          **    **\n");
+
+    platform_write("## ## ## ## ## ** ** ** ** **    ");
+    platform_write("**                          **  ");
+    platform_write("          **************    **\n");
+
+    platform_write("** ** ** ** ** ## ## ## ## ##    ");
+    platform_write("**                          **   ");
+    platform_write("         **************    **\n");
+
+    platform_write("** ** ** ** ** ## ## ## ## ##    ");
+    platform_write("**                          **   ");
+    platform_write("         **          **    **\n");
+
+    platform_write("   ** ** ** ** ## ## ## ##         ");
+    platform_write("**                        **    ");
+    platform_write("        **          **      **\n");
+
+    platform_write("      ** ** ** ## ## ##       ");
+    platform_write("       **                      **  ");
+    platform_write("          **          **        **\n");
+
+    platform_write("         ** ** ## ##              ");
+    platform_write("     **********            **       ");
+    platform_write("     **          **          **********\n");
+
+    platform_write("            ** ##\n");
+
+
+}
 
 void Copy_To_DDR(void *dst, void *src, int len)
 {
@@ -222,15 +273,17 @@ int main(void)
     int i;
     void   (*exit)();
     uint32_t * maigic_addr;
-
+    char Version[10] = SBL_VERSION;
+    char Company[10] = COMPANY;
+    char Author[16] = AUTHOR;
 
     memset(&platform_info, 0, sizeof(platform_info));
 
     init_flag.pll = 1;
     init_flag.ddr = 1;
-    init_flag.phy = 0;
+    init_flag.phy = 1;
     init_flag.ecc = 1;
-    init_flag.tcsl = 0;
+    init_flag.tcsl = 1;
 
     init_config.plld = 0;
     init_config.pllm = 0;
@@ -252,57 +305,69 @@ int main(void)
     if(print_write_type != PLATFORM_WRITE_UART){
         return -3;
     }
-
-    platform_write("platform_init OK!\n");
+    printLog();
+    platform_write("\n\n********************************************\n");
+    platform_write("SBL Version : %s\n", Version);
+    platform_write("Build Data  : %s, %s\n",__DATE__, __TIME__);
+    platform_write("Author      : %s\n", Author);
+    platform_write("  Copyright   %s\n", Company);
+    platform_write("\n\n");
 
     platform_get_info(&platform_info);
     cpu_info = &platform_info.cpu;
 
-    platform_write("/************platform info************/\n");
-    platform_write("board name: %s\n", platform_info.board_name);
-    platform_write("board rev: %u\n", platform_info.board_rev);
-    platform_write("platform lib version: %s\n", platform_info.version);
-    platform_write("frequency: %u\n", platform_info.frequency);
-    platform_write("CPU info:\n    core count: %u\n    cpu revision ID: %u\n", cpu_info->core_count, cpu_info->revision_id);
-    platform_write("    Major Megamodule Revision ID: %u\n    Minor Megamodule Revision ID: %u\n", cpu_info->megamodule_revision_major, cpu_info->megamodule_revision_minor);
-    platform_write("    Major Silicon Revision ID: %u\n    Minor Silicon Revision ID: %u\n", cpu_info->silicon_revision_major, cpu_info->silicon_revision_minor);
+    platform_write("Platform_init OK!\n");
+    platform_write("************platform info************\n");
+    platform_write("Board name           : %s\n", platform_info.board_name);
+    platform_write("Board rev            : %u\n", platform_info.board_rev);
+    platform_write("Platform lib version : %s\n", platform_info.version);
+    platform_write("Frequency: %u MHz\n\n", platform_info.frequency);
+    platform_write("************CPU info************\n");
+    platform_write("Core count                      : %u\n", cpu_info->core_count);
+    platform_write("CPU revision ID                 : %u\n", cpu_info->revision_id);
+    platform_write("Major Megamodule Revision ID    : %u\n", cpu_info->megamodule_revision_major);
+    platform_write("Minor Megamodule Revision ID    : %u\n", cpu_info->megamodule_revision_minor);
+    platform_write("Major Silicon Revision ID       : %u\n", cpu_info->silicon_revision_major);
+    platform_write("Minor Silicon Revision ID       : %u\n", cpu_info->silicon_revision_minor);
     if(cpu_info->endian == PLATFORM_LE){
-        platform_write("    Endian: LE\n");
+        platform_write("CPU Endian                      : LE\n");
     }else{
-        platform_write("    Endian: BE\n");
+        platform_write("CPU Endian                      : BE\n\n");
     }
-    platform_write("/************************************/\n");
+    platform_write("************Start  Boot************\n");
 
     device_info = platform_device_open(PLATFORM_DEVID_MT29F2G08ABBEAH, 0);
     if(device_info == NULL){
         platform_write("Open NAND device Error\n");
         return 0;
     }
-    platform_write("Open NAND device OK!\nDevice info:\n");
-    platform_write("    Device ID: %u\n", device_info->device_id);
-    platform_write("    Manufacturer ID: %u\n", device_info->manufacturer_id);
-    platform_write("    Width: %u\n", device_info->width);
-    platform_write("    Block Count: %d\n", device_info->block_count);
-    platform_write("    Page Count: %d\n", device_info->page_count);
-    platform_write("    Page Size: %d\n", device_info->page_size);
-    platform_write("    Spare Size: %d\n", device_info->spare_size);
-
-
+    platform_write("Open NAND device OK!\n");
+#if 0
+    platform_write("************Device info************\n");
+    platform_write("Device ID: %u\n", device_info->device_id);
+    platform_write("Manufacturer ID: %u\n", device_info->manufacturer_id);
+    platform_write("Width: %u\n", device_info->width);
+    platform_write("Block Count: %d\n", device_info->block_count);
+    platform_write("Page Count: %d\n", device_info->page_count);
+    platform_write("Page Size: %d\n", device_info->page_size);
+    platform_write("Spare Size: %d\n", device_info->spare_size);
+#endif
     re = Data_Parse(device_info->handle);
     if(re < 0){
         platform_write("Data_Parse error\n");
+        return -1;
     }
-
+    platform_write("Data_Parse Ok!\n");
     status = platform_device_close(device_info->handle);
     if(status != Platform_EOK){
         platform_write("platform_device_close Error: %d\n", status);
     }
-    platform_write("platform_device_close OK!\n");
+    platform_write("Platform_device_close OK!\n");
 
     CSL_BootCfgUnlockKicker();
 
     platform_write("Have %d cores need wake up\n",my_boot_head->core_count);
-    platform_write("Start wake up......\n");
+    platform_write("Start wake up......\n\n");
 
     for(i = 1; i < my_boot_head->core_count; i++){
 #if 0
@@ -336,8 +401,10 @@ int main(void)
     CSL_BootCfgLockKicker();
 
     platform_write("All slave core wake up Done!\n");
-   // platform_write("Core 0 entry_point 0x%08x\n", my_boot_head->core_info[0].entry_point);
+    platform_write("Core 0 entry_point 0x%08x\n", my_boot_head->core_info[0].entry_point);
     platform_write("Core 0 Start Work......\n");
+
+
     if(my_boot_head->core_info[0].entry_point != 0){
         exit = (void (*)())(my_boot_head->core_info[0].entry_point);
         (*exit)();
@@ -346,3 +413,11 @@ int main(void)
     }
     return 0;
 }
+
+
+
+
+
+
+
+

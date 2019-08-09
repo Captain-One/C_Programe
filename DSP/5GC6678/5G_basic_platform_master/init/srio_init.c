@@ -45,6 +45,8 @@
 
 #include <srio_laneconfig.h>
 
+#include <common.h>
+
 #if !defined(CSL_CIC0_SRIO_INTDST0)
 #define CSL_CIC0_SRIO_INTDST0   CSL_INTC0_INTDST0
 #endif
@@ -264,9 +266,15 @@ int32_t SrioDevice_init (void)
     /* Set the sRIO shadow registers for 9/3/2/2 */
     CSL_SRIO_SetLSUShadowRegs (hSrio,0x19,0x19);
 
+#ifdef  SRIO_PERFORMANCE_TEST
+    CSL_SRIO_SetMAUSwappingMode(hSrio,3);
+    CSL_SRIO_SetLSUSwappingMode(hSrio,3);
+    CSL_SRIO_SetTXURXUSwappingMode(hSrio,3);
+#else
     CSL_SRIO_SetMAUSwappingMode(hSrio,0);
     CSL_SRIO_SetLSUSwappingMode(hSrio,0);
     CSL_SRIO_SetTXURXUSwappingMode(hSrio,0);
+#endif
 
     CSL_SRIO_SetSupervisorPerms(hSrio, 0x00AD, 0xAD);
 
@@ -531,6 +539,14 @@ int32_t SrioDevice_init (void)
         return -1;
 
     /* Initialization has been completed. */
+#if defined SRIO_DEBUG_FPGA0
+    while(CSL_SRIO_IsPortOk(hSrio, 0) == FALSE);
+#elif  defined SRIO_DEBUG_FPGA1
+    while(CSL_SRIO_IsPortOk(hSrio, 2) == FALSE);
+#else
+    while(CSL_SRIO_IsPortOk(hSrio, 0) == FALSE);
+    while(CSL_SRIO_IsPortOk(hSrio, 2) == FALSE);
+#endif
     return 0;
 }
 
@@ -627,7 +643,7 @@ Int  createControlSocket(Void)
        return -1;
     }
 
-    bindInfo.dio.outPortID      = 1;
+    bindInfo.dio.outPortID      = 2;
     /* Bind the DIO socket. */
     if (Srio_sockBind (fpga1ControlSocket, &bindInfo) < 0)
     {

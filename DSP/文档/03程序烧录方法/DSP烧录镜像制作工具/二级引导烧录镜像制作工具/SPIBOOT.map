@@ -12,7 +12,7 @@ PHYSICAL MEMORY PARAMETERS
 
 BOOT LOADER PARAMETERS
    Table Address: 0x0880, PAGE 0
-   Entry Point  : 0x10865740  (_c_int00)
+   Entry Point  : 0x10865e80  (_c_int00)
 
 
 OUTPUT TRANSLATION MAP
@@ -21,8 +21,8 @@ OUTPUT TRANSLATION MAP
 --------------------------------------------------------------------------------
    OUTPUT FILES: simple.btbl [b0..b31]
 
-   CONTENTS: 00000880..0000d27b   BOOT TABLE
-                            .text : btad=00000880  dest=10859dc0 size=0000c200
-                           .cinit : btad=0000ca8c  dest=10871dc8 size=00000170
-                           .const : btad=0000cc04  dest=10871160 size=00000610
-                          .switch : btad=0000d21c  dest=10871d60 size=00000054
+   CONTENTS: 00000880..0000ddf7   BOOT TABLE
+                            .text : btad=00000880  dest=10859dc0 size=0000c8c0
+                           .cinit : btad=0000d14c  dest=10872950 size=00000170
+                           .const : btad=0000d2c4  dest=10871820 size=00000acc
+                          .switch : btad=0000dd98  dest=108728e0 size=00000054

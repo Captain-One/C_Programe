@@ -10,8 +10,8 @@
 
 
 -l"D:\pxqwork\project\5G-DSP\5G_basic_platform_master\Debug\configPkg\package\cfg\app_pe66.oe66"
--l"D:\pxqwork\project\5G-DSP\5G_basic_platform_master\src\ipc\ipc.ae66"
--l"D:\pxqwork\project\5G-DSP\5G_basic_platform_master\src\utils\utils.ae66"
+-l"C:\ti\pdk\6678\ipc_3_50_03_04\packages\ti\sdo\ipc\lib\ipc\instrumented\ipc.ae66"
+-l"C:\ti\pdk\6678\ipc_3_50_03_04\packages\ti\sdo\utils\lib\utils\instrumented\utils.ae66"
 -l"D:\pxqwork\project\5G-DSP\5G_basic_platform_master\src\sysbios\sysbios.ae66"
 -l"C:\ti\pdk\6678\pdk_c667x_2_0_13\packages\ti\utils\profiling\lib\c66\release\ti.utils.profiling.ae66"
 -l"C:\ti\pdk\6678\pdk_c667x_2_0_13\packages\ti\board\lib\cyhc5GC6678\c66\release\ti.board.ae66"
@@ -24,8 +24,8 @@
 -l"C:\ti\pdk\6678\pdk_c667x_2_0_13\packages\ti\drv\srio\lib\c66\ti.drv.srio.ae66"
 -l"C:\ti\pdk\6678\pdk_c667x_2_0_13\packages\ti\drv\qmss\lib\c66\ti.drv.qmss.ae66"
 -l"C:\ti\pdk\6678\pdk_c667x_2_0_13\packages\ti\drv\cppi\lib\c66\ti.drv.cppi.ae66"
--l"C:\ti\pdk\6678\bios_6_73_01_01\packages\ti\targets\rts6000\lib\ti.targets.rts6000.ae66"
--l"C:\ti\pdk\6678\bios_6_73_01_01\packages\ti\targets\rts6000\lib\boot.ae66"
+-l"C:\ti\pdk\6678\bios_6_75_02_00\packages\ti\targets\rts6000\lib\ti.targets.rts6000.ae66"
+-l"C:\ti\pdk\6678\bios_6_75_02_00\packages\ti\targets\rts6000\lib\boot.ae66"
 
 --retain="*(xdc.meta)"
 
@@ -129,7 +129,7 @@ MEMORY
 
 /* Content from ti.sysbios (null): */
 
-/* Content from ti.sysbios.rts (ti/sysbios/rts/linkcmd.xdt): */
+/* Content from ti.sysbios.rts (null): */
 
 /* Content from ti.sysbios.rts.ti (ti/sysbios/rts/ti/linkcmd.xdt): */
 
@@ -158,8 +158,6 @@ ti_sysbios_family_c66_Cache_l2Size = 0;
 
 /* Content from ti.sysbios.utils (null): */
 
-/* Content from ti.sdo.ipc.gates (null): */
-
 /* Content from ti.sdo.ipc (ti/sdo/ipc/linkcmd.xdt): */
 
 SECTIONS
@@ -175,11 +173,11 @@ SECTIONS
 
 /* Content from ti.sdo.ipc.heaps (null): */
 
+/* Content from ti.sdo.ipc.gates (null): */
+
 /* Content from configPkg (null): */
 
 /* Content from xdc.services.io (null): */
-
-/* Content from ti.sdo.ipc.family.ti81xx (null): */
 
 /* Content from ti.ipc.remoteproc (ti/ipc/remoteproc/linkcmd.xdt): */
 
