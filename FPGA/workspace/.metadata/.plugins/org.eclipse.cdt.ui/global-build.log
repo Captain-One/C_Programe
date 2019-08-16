@@ -1,0 +1,555 @@
+17:05:20 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+08:59:23 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+08:59:39 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+08:59:54 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+09:00:10 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+09:00:15 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+09:04:50 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+09:05:00 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+09:05:33 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+09:06:18 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+10:40:18 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+../src/app.c:140:6: error: 'TaskCreate' redeclared as different kind of symbol
+ void TaskCreate(void *p_arg)
+      ^~~~~~~~~~
+../src/app.c:138:9: note: previous declaration of 'TaskCreate' was here
+ OS_TCB  TaskCreate;
+         ^~~~~~~~~~
+../src/app.c: In function 'TaskCreate':
+../src/app.c:151:12: error: subscripted value is neither array nor pointer nor vector
+      &Task1[0],
+            ^
+../src/app.c:165:12: error: subscripted value is neither array nor pointer nor vector
+      &Task2[0],
+            ^
+../src/app.c: In function 'MainTask':
+../src/app.c:188:17: error: subscripted value is neither array nor pointer nor vector
+      &TaskCreate[0],
+                 ^
+../src/app.c:183:18: warning: passing argument 1 of 'OSTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+     OSTaskCreate(&TaskCreate,
+                  ^
+In file included from ../src/app.c:68:0:
+../../ucos_bsp/psu_cortexa53_0/include/Source/os.h:1644:15: note: expected 'OS_TCB * {aka struct os_tcb *}' but argument is of type 'void (*)(void *)'
+ void          OSTaskCreate              (OS_TCB                *p_tcb,
+               ^~~~~~~~~~~~
+make: *** [src/subdir.mk:23: src/app.o] Error 1
+10:40:36 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+../src/app.c:140:6: error: 'TaskCreate' redeclared as different kind of symbol
+ void TaskCreate(void *p_arg)
+      ^~~~~~~~~~
+../src/app.c:138:9: note: previous declaration of 'TaskCreate' was here
+ OS_TCB  TaskCreate;
+         ^~~~~~~~~~
+../src/app.c: In function 'MainTask':
+../src/app.c:188:17: error: subscripted value is neither array nor pointer nor vector
+      &TaskCreate[0],
+                 ^
+../src/app.c:183:18: warning: passing argument 1 of 'OSTaskCreate' from incompatible pointer type [-Wincompatible-pointer-types]
+     OSTaskCreate(&TaskCreate,
+                  ^
+In file included from ../src/app.c:68:0:
+../../ucos_bsp/psu_cortexa53_0/include/Source/os.h:1644:15: note: expected 'OS_TCB * {aka struct os_tcb *}' but argument is of type 'void (*)(void *)'
+ void          OSTaskCreate              (OS_TCB                *p_tcb,
+               ^~~~~~~~~~~~
+make: *** [src/subdir.mk:23: src/app.o] Error 1
+10:40:57 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+../src/app.c: In function 'MainTask':
+../src/app.c:188:17: error: subscripted value is neither array nor pointer nor vector
+      &TaskCreate[0],
+                 ^
+make: *** [src/subdir.mk:23: src/app.o] Error 1
+10:41:07 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+'Finished building: ../src/app.c'
+' '
+'Building target: test_ucos.elf'
+'Invoking: ARM v8 gcc linker'
+aarch64-none-elf-gcc -Wl,-T -Wl,../src/lscript.ld -L../../ucos_bsp/psu_cortexa53_0/lib -o "test_ucos.elf"  ./src/app.o   -Wl,--start-group,-lucos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: test_ucos.elf'
+' '
+'Invoking: ARM v8 Print Size'
+aarch64-none-elf-size test_ucos.elf  |tee "test_ucos.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  86412	   4444	  46540	 137396	  218b4	test_ucos.elf
+'Finished building: test_ucos.elf.size'
+' '
+10:41:13 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+10:51:17 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+10:52:17 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+'Finished building: ../src/app.c'
+' '
+'Building target: test_ucos.elf'
+'Invoking: ARM v8 gcc linker'
+aarch64-none-elf-gcc -Wl,-T -Wl,../src/lscript.ld -L../../ucos_bsp/psu_cortexa53_0/lib -o "test_ucos.elf"  ./src/app.o   -Wl,--start-group,-lucos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: test_ucos.elf'
+' '
+'Invoking: ARM v8 Print Size'
+aarch64-none-elf-size test_ucos.elf  |tee "test_ucos.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  86412	   4444	  46540	 137396	  218b4	test_ucos.elf
+'Finished building: test_ucos.elf.size'
+' '
+10:52:23 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+10:58:12 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+11:04:41 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+14:03:22 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+../src/app.c: In function 'Task1':
+../src/app.c:128:3: error: too many arguments to function 'UCOS_Print'
+   UCOS_Print("task 1 create sem error %d\r\n", os_err);
+   ^~~~~~~~~~
+In file included from ../src/app.c:69:0:
+../../ucos_bsp/psu_cortexa53_0/include/ucos_bsp.h:134:6: note: declared here
+ void UCOS_Print (const CPU_CHAR *p_string);
+      ^~~~~~~~~~
+make: *** [src/subdir.mk:23: src/app.o] Error 1
+14:04:14 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+'Finished building: ../src/app.c'
+' '
+'Building target: test_ucos.elf'
+'Invoking: ARM v8 gcc linker'
+aarch64-none-elf-gcc -Wl,-T -Wl,../src/lscript.ld -L../../ucos_bsp/psu_cortexa53_0/lib -o "test_ucos.elf"  ./src/app.o   -Wl,--start-group,-lucos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: test_ucos.elf'
+' '
+'Invoking: ARM v8 Print Size'
+aarch64-none-elf-size test_ucos.elf  |tee "test_ucos.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  88188	   4444	  46620	 139252	  21ff4	test_ucos.elf
+'Finished building: test_ucos.elf.size'
+' '
+14:16:11 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+../src/app.c: In function 'Task1':
+../src/app.c:137:5: error: 'eles' undeclared (first use in this function)
+    }eles{
+     ^~~~
+../src/app.c:137:5: note: each undeclared identifier is reported only once for each function it appears in
+../src/app.c:137:9: error: expected ';' before '{' token
+    }eles{
+         ^
+../src/app.c: In function 'Task2':
+../src/app.c:164:5: error: 'eles' undeclared (first use in this function)
+    }eles{
+     ^~~~
+../src/app.c:164:9: error: expected ';' before '{' token
+    }eles{
+         ^
+make: *** [src/subdir.mk:23: src/app.o] Error 1
+14:16:26 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+../src/app.c: In function 'Task2':
+../src/app.c:164:5: error: 'eles' undeclared (first use in this function)
+    }eles{
+     ^~~~
+../src/app.c:164:5: note: each undeclared identifier is reported only once for each function it appears in
+../src/app.c:164:9: error: expected ';' before '{' token
+    }eles{
+         ^
+make: *** [src/subdir.mk:23: src/app.o] Error 1
+14:16:31 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+'Finished building: ../src/app.c'
+' '
+'Building target: test_ucos.elf'
+'Invoking: ARM v8 gcc linker'
+aarch64-none-elf-gcc -Wl,-T -Wl,../src/lscript.ld -L../../ucos_bsp/psu_cortexa53_0/lib -o "test_ucos.elf"  ./src/app.o   -Wl,--start-group,-lucos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: test_ucos.elf'
+' '
+'Invoking: ARM v8 Print Size'
+aarch64-none-elf-size test_ucos.elf  |tee "test_ucos.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  88460	   4444	  46604	 139508	  220f4	test_ucos.elf
+'Finished building: test_ucos.elf.size'
+' '
+14:18:41 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+14:22:56 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/app.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/app.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/app.d" -MT"src/app.o" -o "src/app.o" "../src/app.c"
+'Finished building: ../src/app.c'
+' '
+'Building target: test_ucos.elf'
+'Invoking: ARM v8 gcc linker'
+aarch64-none-elf-gcc -Wl,-T -Wl,../src/lscript.ld -L../../ucos_bsp/psu_cortexa53_0/lib -o "test_ucos.elf"  ./src/app.o   -Wl,--start-group,-lucos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: test_ucos.elf'
+' '
+'Invoking: ARM v8 Print Size'
+aarch64-none-elf-size test_ucos.elf  |tee "test_ucos.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  88468	   4444	  46596	 139508	  220f4	test_ucos.elf
+'Finished building: test_ucos.elf.size'
+' '
+14:23:00 **** Incremental Build of configuration Debug for project test_ucos ****
+make all 
+make: Nothing to be done for 'all'.
+14:49:13 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/ad9528/ad9528.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/ad9528/ad9528.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/ad9528/ad9528.d" -MT"src/device/ad9528/ad9528.o" -o "src/device/ad9528/ad9528.o" "../src/device/ad9528/ad9528.c"
+../src/device/ad9528/ad9528.c:13:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/ad9528/subdir.mk:20: src/device/ad9528/ad9528.o] Error 1
+14:49:32 **** Clean-only build of configuration Debug for project test_ucos ****
+make clean 
+rm -rf  ./src/device/ad9528/ad9528.o  ./src/app.o  ./src/device/ad9528/ad9528.d  ./src/app.d  test_ucos.elf.size  test_ucos.elf
+rm: 无法删除‘test_ucos.elf’: Permission denied
+make: [makefile:51: clean] Error 1 (ignored)
+' '
+14:49:32 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Invoking: ARM v8 Print Size'
+aarch64-none-elf-size test_ucos.elf  |tee "test_ucos.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  88468	   4444	  46596	 139508	  220f4	test_ucos.elf
+'Finished building: test_ucos.elf.size'
+' '
+15:17:54 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/ad9528/ad9528.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/ad9528/ad9528.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/ad9528/ad9528.d" -MT"src/device/ad9528/ad9528.o" -o "src/device/ad9528/ad9528.o" "../src/device/ad9528/ad9528.c"
+../src/device/ad9528/ad9528.c:13:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/ad9528/subdir.mk:20: src/device/ad9528/ad9528.o] Error 1
+15:18:21 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/cdcm6208/cdcm6208.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/cdcm6208/cdcm6208.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/cdcm6208/cdcm6208.d" -MT"src/device/cdcm6208/cdcm6208.o" -o "src/device/cdcm6208/cdcm6208.o" "../src/device/cdcm6208/cdcm6208.c"
+../src/device/cdcm6208/cdcm6208.c:3:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/cdcm6208/subdir.mk:20: src/device/cdcm6208/cdcm6208.o] Error 1
+15:18:29 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/dac8550/dac8550.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/dac8550/dac8550.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/dac8550/dac8550.d" -MT"src/device/dac8550/dac8550.o" -o "src/device/dac8550/dac8550.o" "../src/device/dac8550/dac8550.c"
+../src/device/dac8550/dac8550.c:2:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/dac8550/subdir.mk:20: src/device/dac8550/dac8550.o] Error 1
+15:18:38 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:19:34 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:19:41 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:20:02 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:22:35 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:22:46 **** Clean-only build of configuration Debug for project test_ucos ****
+make clean 
+rm -rf  ./src/device/lmx2594/lmx2594.o  ./src/device/dac8550/dac8550.o  ./src/device/cdcm6208/cdcm6208.o  ./src/device/adrv9009/talise.o ./src/device/adrv9009/talise_agc.o ./src/device/adrv9009/talise_arm.o ./src/device/adrv9009/talise_cals.o ./src/device/adrv9009/talise_error.o ./src/device/adrv9009/talise_gpio.o ./src/device/adrv9009/talise_hal.o ./src/device/adrv9009/talise_jesd204.o ./src/device/adrv9009/talise_radioctrl.o ./src/device/adrv9009/talise_rx.o ./src/device/adrv9009/talise_tx.o ./src/device/adrv9009/talise_user.o  ./src/device/adi_hal/axi_adc_core.o ./src/device/adi_hal/axi_adxcvr.o ./src/device/adi_hal/axi_dac_core.o ./src/device/adi_hal/axi_dmac.o ./src/device/adi_hal/axi_jesd204_rx.o ./src/device/adi_hal/axi_jesd204_tx.o ./src/device/adi_hal/clk_axi_clkgen.o ./src/device/adi_hal/no_os_hal.o ./src/device/adi_hal/platform_drivers.o ./src/device/adi_hal/util.o ./src/device/adi_hal/xilinx_transceiver.o  ./src/device/ad9528/ad9528.o  ./src/app.o  ./src/device/lmx2594/lmx2594.d  ./src/device/dac8550/dac8550.d  ./src/device/cdcm6208/cdcm6208.d  ./src/device/adrv9009/talise.d ./src/device/adrv9009/talise_agc.d ./src/device/adrv9009/talise_arm.d ./src/device/adrv9009/talise_cals.d ./src/device/adrv9009/talise_error.d ./src/device/adrv9009/talise_gpio.d ./src/device/adrv9009/talise_hal.d ./src/device/adrv9009/talise_jesd204.d ./src/device/adrv9009/talise_radioctrl.d ./src/device/adrv9009/talise_rx.d ./src/device/adrv9009/talise_tx.d ./src/device/adrv9009/talise_user.d  ./src/device/adi_hal/axi_adc_core.d ./src/device/adi_hal/axi_adxcvr.d ./src/device/adi_hal/axi_dac_core.d ./src/device/adi_hal/axi_dmac.d ./src/device/adi_hal/axi_jesd204_rx.d ./src/device/adi_hal/axi_jesd204_tx.d ./src/device/adi_hal/clk_axi_clkgen.d ./src/device/adi_hal/no_os_hal.d ./src/device/adi_hal/platform_drivers.d ./src/device/adi_hal/util.d ./src/device/adi_hal/xilinx_transceiver.d  ./src/device/ad9528/ad9528.d  ./src/app.d  test_ucos.elf.size  test_ucos.elf
+rm: 无法删除‘test_ucos.elf’: Permission denied
+make: [makefile:56: clean] Error 1 (ignored)
+' '
+15:22:47 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:24:35 **** Clean-only build of configuration Debug for project test_ucos ****
+make clean 
+rm -rf  ./src/device/lmx2594/lmx2594.o  ./src/device/dac8550/dac8550.o  ./src/device/common/device_struct.o  ./src/device/cdcm6208/cdcm6208.o  ./src/device/adrv9009/talise.o ./src/device/adrv9009/talise_agc.o ./src/device/adrv9009/talise_arm.o ./src/device/adrv9009/talise_cals.o ./src/device/adrv9009/talise_error.o ./src/device/adrv9009/talise_gpio.o ./src/device/adrv9009/talise_hal.o ./src/device/adrv9009/talise_jesd204.o ./src/device/adrv9009/talise_radioctrl.o ./src/device/adrv9009/talise_rx.o ./src/device/adrv9009/talise_tx.o ./src/device/adrv9009/talise_user.o  ./src/device/adi_hal/axi_adc_core.o ./src/device/adi_hal/axi_adxcvr.o ./src/device/adi_hal/axi_dac_core.o ./src/device/adi_hal/axi_dmac.o ./src/device/adi_hal/axi_jesd204_rx.o ./src/device/adi_hal/axi_jesd204_tx.o ./src/device/adi_hal/clk_axi_clkgen.o ./src/device/adi_hal/no_os_hal.o ./src/device/adi_hal/platform_drivers.o ./src/device/adi_hal/util.o ./src/device/adi_hal/xilinx_transceiver.o  ./src/device/ad9528/ad9528.o  ./src/app.o  ./src/device/lmx2594/lmx2594.d  ./src/device/dac8550/dac8550.d  ./src/device/common/device_struct.d  ./src/device/cdcm6208/cdcm6208.d  ./src/device/adrv9009/talise.d ./src/device/adrv9009/talise_agc.d ./src/device/adrv9009/talise_arm.d ./src/device/adrv9009/talise_cals.d ./src/device/adrv9009/talise_error.d ./src/device/adrv9009/talise_gpio.d ./src/device/adrv9009/talise_hal.d ./src/device/adrv9009/talise_jesd204.d ./src/device/adrv9009/talise_radioctrl.d ./src/device/adrv9009/talise_rx.d ./src/device/adrv9009/talise_tx.d ./src/device/adrv9009/talise_user.d  ./src/device/adi_hal/axi_adc_core.d ./src/device/adi_hal/axi_adxcvr.d ./src/device/adi_hal/axi_dac_core.d ./src/device/adi_hal/axi_dmac.d ./src/device/adi_hal/axi_jesd204_rx.d ./src/device/adi_hal/axi_jesd204_tx.d ./src/device/adi_hal/clk_axi_clkgen.d ./src/device/adi_hal/no_os_hal.d ./src/device/adi_hal/platform_drivers.d ./src/device/adi_hal/util.d ./src/device/adi_hal/xilinx_transceiver.d  ./src/device/ad9528/ad9528.d  ./src/app.d  test_ucos.elf.size  test_ucos.elf
+rm: 无法删除‘test_ucos.elf’: Permission denied
+make: [makefile:57: clean] Error 1 (ignored)
+' '
+15:24:36 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:25:45 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+15:28:26 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:24:41 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:25:13 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:28:43 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:32:52 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:36:56 **** Clean-only build of configuration Debug for project test_ucos ****
+make clean 
+rm -rf  ./src/device/lmx2594/lmx2594.o  ./src/device/dac8550/dac8550.o  ./src/device/cdcm6208/cdcm6208.o  ./src/device/adrv9009/talise.o ./src/device/adrv9009/talise_agc.o ./src/device/adrv9009/talise_arm.o ./src/device/adrv9009/talise_cals.o ./src/device/adrv9009/talise_error.o ./src/device/adrv9009/talise_gpio.o ./src/device/adrv9009/talise_hal.o ./src/device/adrv9009/talise_jesd204.o ./src/device/adrv9009/talise_radioctrl.o ./src/device/adrv9009/talise_rx.o ./src/device/adrv9009/talise_tx.o ./src/device/adrv9009/talise_user.o  ./src/device/adi_hal/axi_adc_core.o ./src/device/adi_hal/axi_adxcvr.o ./src/device/adi_hal/axi_dac_core.o ./src/device/adi_hal/axi_dmac.o ./src/device/adi_hal/axi_jesd204_rx.o ./src/device/adi_hal/axi_jesd204_tx.o ./src/device/adi_hal/clk_axi_clkgen.o ./src/device/adi_hal/no_os_hal.o ./src/device/adi_hal/platform_drivers.o ./src/device/adi_hal/util.o ./src/device/adi_hal/xilinx_transceiver.o  ./src/device/ad9528/ad9528.o  ./src/app.o  ./src/device/lmx2594/lmx2594.d  ./src/device/dac8550/dac8550.d  ./src/device/cdcm6208/cdcm6208.d  ./src/device/adrv9009/talise.d ./src/device/adrv9009/talise_agc.d ./src/device/adrv9009/talise_arm.d ./src/device/adrv9009/talise_cals.d ./src/device/adrv9009/talise_error.d ./src/device/adrv9009/talise_gpio.d ./src/device/adrv9009/talise_hal.d ./src/device/adrv9009/talise_jesd204.d ./src/device/adrv9009/talise_radioctrl.d ./src/device/adrv9009/talise_rx.d ./src/device/adrv9009/talise_tx.d ./src/device/adrv9009/talise_user.d  ./src/device/adi_hal/axi_adc_core.d ./src/device/adi_hal/axi_adxcvr.d ./src/device/adi_hal/axi_dac_core.d ./src/device/adi_hal/axi_dmac.d ./src/device/adi_hal/axi_jesd204_rx.d ./src/device/adi_hal/axi_jesd204_tx.d ./src/device/adi_hal/clk_axi_clkgen.d ./src/device/adi_hal/no_os_hal.d ./src/device/adi_hal/platform_drivers.d ./src/device/adi_hal/util.d ./src/device/adi_hal/xilinx_transceiver.d  ./src/device/ad9528/ad9528.d  ./src/app.d  test_ucos.elf.size  test_ucos.elf
+rm: 无法删除‘test_ucos.elf’: Permission denied
+make: [makefile:56: clean] Error 1 (ignored)
+' '
+16:36:56 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:38:23 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:52:45 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:55:33 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+16:57:45 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+17:00:11 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+17:04:34 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+17:04:38 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+17:11:22 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+17:22:19 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1

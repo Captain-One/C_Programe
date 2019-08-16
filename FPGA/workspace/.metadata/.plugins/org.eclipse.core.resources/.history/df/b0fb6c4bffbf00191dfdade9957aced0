@@ -1,0 +1,16 @@
+
+#ifndef __DEVICE_SRTUCT_H
+#define __DEVICE_SRTUCT_H
+
+typedef struct {
+	struct gpio_desc *gpio_resetb;
+	struct gpio_desc *gpio_sysref_req;
+	struct spi_desc *spi_desc;
+	ad9528spiSettings_t *spiSettings;
+	ad9528pll1Settings_t *pll1Settings;
+	ad9528pll2Settings_t *pll2Settings;
+	ad9528outputSettings_t *outputSettings;
+	ad9528sysrefSettings_t *sysrefSettings;
+} ad9528Device_t;
+
+#endif

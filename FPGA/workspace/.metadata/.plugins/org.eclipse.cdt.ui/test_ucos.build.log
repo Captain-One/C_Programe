@@ -1,0 +1,13 @@
+17:22:19 **** Auto Build of configuration Debug for project test_ucos ****
+make all 
+'Building file: ../src/device/lmx2594/lmx2594.c'
+'Invoking: ARM v8 gcc compiler'
+aarch64-none-elf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/device/lmx2594/lmx2594.o" -I../../ucos_bsp/psu_cortexa53_0/include -MMD -MP -MF"src/device/lmx2594/lmx2594.d" -MT"src/device/lmx2594/lmx2594.o" -o "src/device/lmx2594/lmx2594.o" "../src/device/lmx2594/lmx2594.c"
+../src/device/lmx2594/lmx2594.c:5:10: fatal error: parameters.h: No such file or directory
+ #include "parameters.h"
+          ^~~~~~~~~~~~~~
+compilation terminated.
+make: *** [src/device/lmx2594/subdir.mk:20: src/device/lmx2594/lmx2594.o] Error 1
+
+17:22:20 Build Finished (took 366ms)
+

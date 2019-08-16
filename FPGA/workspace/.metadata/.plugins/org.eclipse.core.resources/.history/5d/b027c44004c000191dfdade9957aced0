@@ -1,0 +1,29 @@
+/*
+ * device_common.c
+ *
+ *  Created on: 2019Äê8ÔÂ16ÈÕ
+ *      Author: Pu
+ */
+
+#include  <Source/os.h>
+
+adiHalErr_t Device_setTimeout_ms(uint32_t timeOut_ms)
+{
+	_desired_time_to_elapse_ms = timeOut_ms;
+
+	return ADIHAL_OK;
+}
+
+/**
+ * \brief Verify if the desired time has elapsed
+ */
+adiHalErr_t Device_hasTimeoutExpired()
+{
+	OSTimeDly(1000);
+
+	_desired_time_to_elapse_ms--;
+	if (_desired_time_to_elapse_ms > 0)
+		return ADIHAL_OK;
+
+	return ADIHAL_ERR;
+}
