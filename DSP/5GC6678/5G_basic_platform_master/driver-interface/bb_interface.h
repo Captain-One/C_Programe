@@ -59,8 +59,9 @@ typedef struct _
 
 Int writeBbReg(Int bbfpgaNo, Void *buf);
 Int sendDataToBb(Int bbfpgaNo, Void *buf, Int len);
-Int getBbData(Int bbfpgaNo, Void *buf, uint32_t *len);
+Int getBbData(Int bbfpgaNo, Void *buf, uint16_t *len);
 Int configSrioParameterToFPGA(Int bbfpgaNo);
 Int writeReadIndex(Int bbfpgaNo, uint32_t readIndex);
+void bbInterfaceVariableInit(void);
 
 #endif /* DRIVER_INTERFACE_BB_INTERFACE_H_ */

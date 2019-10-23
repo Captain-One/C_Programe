@@ -11,8 +11,22 @@
 #include <xdc/std.h>
 #include <ti/ipc/MessageQ.h>
 
+#define swap16(s) ((((s) & 0xff) << 8) | (((s) >> 8) & 0xff))
+#define swap32(l) (((l) >> 24) | \
+          (((l) & 0x00ff0000) >> 8)  | \
+          (((l) & 0x0000ff00) << 8)  | \
+          ((l) << 24))
+
+
+#define swp8(data)      (((data) << 4 )| ((data) >> 4))
+#define swp16(data)     ((((data) << 8) & 0xFF00) | (((data) >> 8) & 0x00FF))
+#define swp32(data)     ((swp16(data) << 16) | swp16((data) >> 16))
+#define swp64(data)     ((swp32(data) << 32) | swp32((data) >> 32))
+
 #define CORE_NUM                8
 #define MASTER_CORE             0
+
+#define RUN_MULTI_CORE          0
 
 #define MASTER_MSGQ_NAME         "masterMsgQ";
 
@@ -81,22 +95,25 @@ typedef union carrier_u {
     uint16_t carrier_u16;
 } CARRIER_t;
 
+/*****************SRTUCT******************/
 #pragma pack(1)
-//定义板卡信息数据类型
-typedef struct {
-    uint8_t src_adr;      //源地址
-    uint8_t dst_adr;  //目的地址
-    uint32_t Res;    //
-} BDinfo_t;
 
-//定义父包头结构
-typedef struct FpkH_s {
-    uint16_t mark;  //父包头标志，大端模式，固定为0xDCBA
-    uint16_t flen;  //父包总长度
-    uint16_t type;  //包类型
-    BDinfo_t bdinfo;    //板间信息
-} FpkH_t;
+typedef struct packet_header_{
+    uint16_t    mark;   //mark 0xDCBA
+    uint16_t    len;    //packet len
+    uint16_t    type;   //packet type
+    uint8_t     src;    //packet source addr 0:PL, 1:HL
+    uint8_t     dst;    //packet destination  addr 0:PL, 1:HL
+    uint64_t    res;    //reserved
+}packetHeader_t;
+
+typedef struct packet_{
+    packetHeader_t   header;   //packet header
+    uint8_t          payload[0];  //payload
+}packet_t;
+
 #pragma pack()
+
 uint32_t l2_global_address (uint32_t addr);
 
 #endif /* COMMON_COMMON_H_ */
@@ -109,7 +126,7 @@ uint32_t l2_global_address (uint32_t addr);
 #define MYPRINTF     System_printf
 #endif
 
-#define SRIO_DEBUG_FPGA0
+#define SRIO_DEBUG_FPGA1
 
 //#define SRIO_RECEIVE_PERFORMANCE_TEST
 //#define SRIO_TRANSMIT_PERFORMANCE_TEST

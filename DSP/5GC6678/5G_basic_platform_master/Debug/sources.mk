@@ -127,4 +127,6 @@ SUBDIRS := \
 common \
 driver-interface \
 init \
+init/ndk_init \
+yaffs2 \
 

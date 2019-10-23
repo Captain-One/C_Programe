@@ -11,6 +11,7 @@
 
 #include <ti/sysbios/family/c64p/EventCombiner.h>
 #include <ti/sysbios/family/c66/tci66xx/CpIntc.h>
+#include <ti/sysbios/knl/Task.h>
 
 /* CSL BootCfg Module */
 #include <ti/csl/csl_bootcfg.h>
@@ -46,6 +47,8 @@
 #include <srio_laneconfig.h>
 
 #include <common.h>
+#include <bb_interface.h>
+#include <ti/csl/csl_gpioAux.h>
 
 #if !defined(CSL_CIC0_SRIO_INTDST0)
 #define CSL_CIC0_SRIO_INTDST0   CSL_INTC0_INTDST0
@@ -167,6 +170,9 @@ Int srioInit(Void)
     appCfg.u.appManagedCfg.srioPktDmaTxPrio = Srio_PktDma_Prio_Low;
 #endif
 
+    //初始化收发包读写指针变量
+    bbInterfaceVariableInit();
+
     if (enable_srio () < 0)
     {
         System_printf ("Error: SRIO PSC Initialization Failed\n");
@@ -244,6 +250,11 @@ int32_t SrioDevice_init (void)
     uint32_t            srio_primary_ID = srio_device_ID1;
     uint32_t            srio_secondary_ID = srio_device_ID3;
 
+    CSL_GpioHandle  hGpio;
+
+    hGpio = CSL_GPIO_open (0);
+
+    CSL_GPIO_clearOutputData(hGpio, 9);  //fpga1 srio 复位脚 先拉低
 
     /* Get the CSL SRIO Handle. */
     hSrio = CSL_SRIO_Open (0);
@@ -539,13 +550,35 @@ int32_t SrioDevice_init (void)
         return -1;
 
     /* Initialization has been completed. */
+
+
+    CSL_GPIO_setOutputData(hGpio, 9);  //触发fpga1 srio复位
+    Task_sleep(2); //拉高1ms就够了
+    CSL_GPIO_clearOutputData(hGpio, 9);  //拉低fpga1 srio复位
+
+    Task_sleep(100);
+
 #if defined SRIO_DEBUG_FPGA0
-    while(CSL_SRIO_IsPortOk(hSrio, 0) == FALSE);
+    while(CSL_SRIO_IsPortOk(hSrio, 0) == FALSE){
+        Task_sleep(10);
+    }
 #elif  defined SRIO_DEBUG_FPGA1
-    while(CSL_SRIO_IsPortOk(hSrio, 2) == FALSE);
+    while(CSL_SRIO_IsPortOk(hSrio, 2) == FALSE){
+        CSL_GPIO_setOutputData(hGpio, 9);  //触发fpga1 srio复位
+        Task_sleep(2); //延时100ms
+        CSL_GPIO_clearOutputData(hGpio, 9);  //拉低fpga1 srio复位
+        Task_sleep(100);
+    }
 #else
-    while(CSL_SRIO_IsPortOk(hSrio, 0) == FALSE);
-    while(CSL_SRIO_IsPortOk(hSrio, 2) == FALSE);
+    while(CSL_SRIO_IsPortOk(hSrio, 0) == FALSE){
+        Task_sleep(10);
+    }
+    while(CSL_SRIO_IsPortOk(hSrio, 2) == FALSE){
+        CSL_GPIO_setOutputData(hGpio, 9);  //触发fpga1 srio复位
+        Task_sleep(2); //延时100ms
+        CSL_GPIO_clearOutputData(hGpio, 9);  //拉低fpga1 srio复位
+        Task_sleep(100);
+    }
 #endif
     return 0;
 }
@@ -621,14 +654,14 @@ Int  createControlSocket(Void)
    bindInfo.dio.doorbellBit    = 0;
 
 
-    fpga0ControlSocket = Srio_sockOpen (hAppManagedSrioDrv, Srio_SocketType_DIO, TRUE);
+    fpga0ControlSocket = Srio_sockOpen (hAppManagedSrioDrv, Srio_SocketType_DIO, FALSE);  //不阻塞
     if (fpga0ControlSocket == NULL)
     {
         System_printf ("Error: DIO Control Socket open failed\n");
         return -1;
     }
 
-    fpga1ControlSocket = Srio_sockOpen (hAppManagedSrioDrv, Srio_SocketType_DIO, TRUE);
+    fpga1ControlSocket = Srio_sockOpen (hAppManagedSrioDrv, Srio_SocketType_DIO, FALSE); //不阻塞
     if (fpga1ControlSocket == NULL)
     {
         System_printf ("Error: DIO Control Socket open failed\n");

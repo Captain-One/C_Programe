@@ -12,5 +12,5 @@
 	<templateProperties value="id=com.ti.rtsc.SYSBIOS.example_52,type=rtsc,products=com.ti.rtsc.SYSBIOS,buildProfile=release,isHybrid=true,configuroOptions=--compileOptions &quot;-g&quot;"/>
 	<filesToOpen value=""/>
 	<isTargetManual value="false"/>
-	<connection value="common/targetdb/connections/SEEDXDS560V2USB_Connection.xml"/>
+	<connection value="common/targetdb/connections/SD560V2USB_Connection.xml"/>
 </projectOptions>

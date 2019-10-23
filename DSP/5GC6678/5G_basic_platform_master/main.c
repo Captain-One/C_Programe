@@ -50,6 +50,10 @@
 
 #include <c6x.h>
 
+//#include <ti/ndk/inc/stkmain.h>
+//#include <ti/ndk/inc/netmain.h>
+//#include <ti/ndk/inc/socket.h>
+
 #define swap16(s) ((((s) & 0xff) << 8) | (((s) >> 8) & 0xff))
 #define swap32(l) (((l) >> 24) | \
           (((l) & 0x00ff0000) >> 8)  | \
@@ -58,6 +62,7 @@
 
 String const core_name = "CORE0";
 UInt16 const core_id = 0;
+uint8_t core_ID = 0;
 
 #define SEND_DATA_LEN      (1024)
 
@@ -70,7 +75,6 @@ uint8_t data[SEND_DATA_LEN] = {0};
 
 uint32_t dataLen = SEND_DATA_LEN;
 
-uint8_t core_ID = 0;
 
 
 #define TEST_TIME_1MIN  60000000000UL
@@ -91,18 +95,45 @@ Void taskFxn(UArg a0, UArg a1)
     Int status;
     Int i;
     Int re;
-    uint32_t rxlen;
+    uint16_t rxlen;
 
-    MYPRINTF("enter taskFxn()\n");
-    MYPRINTF("enter taskFxn()\n");
+   // MYPRINTF("enter taskFxn()\n");
+   // MYPRINTF("enter taskFxn()\n");
     status = sysInit();
-    if(status < 0){
-        MYPRINTF("Core %d sysInit error\n", core_id);
-        System_exit(-1);
+   // if(status < 0){
+    //    MYPRINTF("Core %d sysInit error\n", core_id);
+    //    System_exit(-1);
+   // }
+
+    while(1){
+        Task_sleep(1000);
     }
 
+#if 0
+    uint8_t  data[6000];
+    uint8_t *ppbuf;
+    uint64_t *pwriteIndex;
+    uint16_t datalen = 600;
+
+    ppbuf = (uint8_t *)0x80000800;
+    ppbuf[0] = 0xDC;
+    ppbuf[1] = 0xBA;
+    ppbuf[2] = 0x02;
+    ppbuf[3] = 0x58;
+    ppbuf[4] = 0x01;
+    ppbuf[5] = 0x00;
+    ppbuf[6] = 0x01;
+    ppbuf[7] = 0x00;
+    for(i = 8; i < datalen; i++){
+        ppbuf[i] = i;
+    }
+    pwriteIndex = (uint64_t *)DSP_SRIO_FPGA0_CFG_REG_BASE_ADDR;
+    *pwriteIndex = 0x80000F00 >> 8;
+#endif
+   // re =  getBbData(0,data, &datalen);
+
 #ifdef SRIO_DEBUG_FPGA0
-    re = configSrioParameterToFPGA(BB_FPGA_NO_0);
+    re = configSrioParameterToFPGA(BB_FPGA_NO_1);
 #elif defined SRIO_DEBUG_FPGA1
     re = configSrioParameterToFPGA(BB_FPGA_NO_1);
 #else
@@ -293,20 +324,27 @@ Void taskFxn(UArg a0, UArg a1)
     uint64_t prot_send_err_count = 0;
     uint64_t prot_get_err_count = 0;
 
-    ((FpkH_t *)data)->mark = 0xBADC;
-    ((FpkH_t *)data)->flen = swap16(dataLen);
-    ((FpkH_t *)data)->type = swap16(0x1009);
-    ((FpkH_t *)data)->bdinfo.src_adr = 1;
-    ((FpkH_t *)data)->bdinfo.dst_adr = 0;
+    ((packet_t *)data)->header.mark = 0xBADC;
+    ((packet_t *)data)->header.len = swap16(20);
+    ((packet_t *)data)->header.type = swap16(0x100);
+    ((packet_t *)data)->header.src = 1;
+    ((packet_t *)data)->header.dst = 0;
+    rxbuf = malloc(1024);
+
+    for(i = 0; i < (20 - sizeof(packet_t)); i++)
+    {
+       data[i + sizeof(packet_t)] = i;
+    }
+
+    uint64_t  send_pkt = 0;
+    uint64_t  get_pkt = 0;
 
     while(1){
-        for(i = 0; i < (dataLen - sizeof(FpkH_t)); i++)
-        {
-           data[i + sizeof(FpkH_t)] = i;
-        }
+
 #ifdef SRIO_DEBUG_FPGA0
-        re = sendDataToBb(BB_FPGA_NO_0, data, dataLen);
+        re = sendDataToBb(BB_FPGA_NO_1, data, dataLen);
 #elif defined SRIO_DEBUG_FPGA1
+        while(1){
         re = sendDataToBb(BB_FPGA_NO_1, data, dataLen);
 #else
         re = sendDataToBb(BB_FPGA_NO_0, data, dataLen);
@@ -320,11 +358,13 @@ Void taskFxn(UArg a0, UArg a1)
             prot_send_err_count ++;
             continue;
         }
+        send_pkt++;
 
 #ifdef SRIO_DEBUG_FPGA0
         re = getBbData(BB_FPGA_NO_0, rxbuf,&rxlen);
 #elif defined SRIO_DEBUG_FPGA1
-        re = getBbData(BB_FPGA_NO_1, rxbuf,&rxlen);
+        while(1){
+        re = getBbData(BB_FPGA_NO_1, rxbuf, &rxlen);
 #else
         re = getBbData(BB_FPGA_NO_0, rxbuf,&rxlen);
         if(re < 0){
@@ -335,7 +375,14 @@ Void taskFxn(UArg a0, UArg a1)
         if(re < 0){
             prot_get_err_count ++;
         }
-        Task_sleep(100);
+        if(re > 0){
+            get_pkt++;
+            break;
+        }
+        }
+
+       }
+        Task_sleep(10);
     }
 #endif
 
@@ -393,7 +440,7 @@ Int main()
     Error_Block eb;
     UART_HwAttrs     uartHwAttrsCfg;
 
-#if 1
+#if 0
     Board_STATUS stats;
     Board_initCfg cfg = 0;
 
@@ -421,11 +468,7 @@ Int main()
         BIOS_exit(0);
     }
 
-    task = Task_create(taskLed, NULL, &eb);
-    if (task == NULL) {
-        System_printf("Task_create() failed!\n");
-        BIOS_exit(0);
-    }
+
 
     BIOS_start();    /* does not return */
     return(0);

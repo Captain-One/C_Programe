@@ -300,6 +300,15 @@ init/srio_osal.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
 init/srio_osal.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/srio/sriover.h
 init/srio_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/cfg/global.h
 init/srio_osal.obj: D:/pxqwork/project/5G-DSP/5G_basic_platform_master/Debug/configPkg/package/cfg/app_pe66.h
+init/srio_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/HeapMem.h
+init/srio_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/GateMutex.h
+init/srio_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/srio_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/srio_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/package/package.defs.h
+init/srio_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/srio_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/srio_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h
+init/srio_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h
 init/srio_osal.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_chip.h
 init/srio_osal.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr_chip.h
 init/srio_osal.obj: C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h
@@ -624,6 +633,15 @@ C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h:
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/drv/srio/sriover.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/cfg/global.h: 
 D:/pxqwork/project/5G-DSP/5G_basic_platform_master/Debug/configPkg/package/cfg/app_pe66.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/HeapMem.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/GateMutex.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/csl_chip.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/cslr_chip.h: 
 C:/ti/pdk/6678/pdk_c667x_2_0_13/packages/ti/csl/tistdtypes.h: 

@@ -91,21 +91,26 @@ init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/p
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/cfg/global.h
 init/qmss_osal.obj: D:/pxqwork/project/5G-DSP/5G_basic_platform_master/Debug/configPkg/package/cfg/app_pe66.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/HeapMem.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__prologue.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/package.defs.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/package/package.defs.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Memory.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/package/HeapMem_Module_GateProxy.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__epilogue.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/package/HeapMem_Module_GateProxy.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/GateMutex.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/package/package.defs.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
 init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
@@ -170,24 +175,6 @@ init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/packa
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
 init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITaskSupport.h
 init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task__epilogue.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Task_SupportProxy.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__prologue.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/package.defs.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
-init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__epilogue.h
-init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h
 init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
@@ -213,6 +200,41 @@ init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.
 init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
 init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event__epilogue.h
 init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore__epilogue.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__prologue.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/package.defs.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__epilogue.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Task_SupportProxy.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__prologue.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/package.defs.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h
+init/qmss_osal.obj: C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__epilogue.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h
+init/qmss_osal.obj: C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h
 init/qmss_osal.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/GateMP.h
 init/qmss_osal.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/Ipc.h
 init/qmss_osal.obj: C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/ListMP.h
@@ -333,21 +355,26 @@ C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/package/Memory_HeapPr
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/cfg/global.h: 
 D:/pxqwork/project/5G-DSP/5G_basic_platform_master/Debug/configPkg/package/cfg/app_pe66.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/HeapMem.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__prologue.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Memory.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/package/HeapMem_Module_GateProxy.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__epilogue.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/heaps/package/HeapMem_Module_GateProxy.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/GateMutex.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/gates/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Assert.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
 C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
@@ -412,24 +439,6 @@ C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Task_SupportProxy
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
 C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/ITaskSupport.h: 
 C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task__epilogue.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Task_SupportProxy.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__prologue.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/package.defs.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
-C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__epilogue.h: 
-C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h: 
 C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
@@ -455,6 +464,41 @@ C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h:
 C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
 C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Event__epilogue.h: 
 C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore__epilogue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__prologue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IHeap.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IGateProvider.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/BIOS__epilogue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/package/BIOS_RtsGateProxy.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Task.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/package/Task_SupportProxy.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__prologue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/package.defs.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Error.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IModule.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/Types.h: 
+C:/ti/ccs901/xdctools_3_55_00_11_core/packages/xdc/runtime/IInstance.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/interfaces/IHwi.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/Hwi__epilogue.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/hal/package/Hwi_HwiProxy.h: 
+C:/ti/pdk/6678/bios_6_75_02_00/packages/ti/sysbios/knl/Semaphore.h: 
 C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/GateMP.h: 
 C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/Ipc.h: 
 C:/ti/pdk/6678/ipc_3_50_03_04/packages/ti/ipc/ListMP.h: 
