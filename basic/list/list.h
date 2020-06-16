@@ -29,6 +29,6 @@ typedef struct list_{
 void List_Init(List_t *list);
 void List_Destroy(List_t *list);
 int List_Insert_Next(List_t *list, List_Node_t *list_node,void *data);
-int List_Remove_Next(List_t *list, List_Node_t *list_node,void *data);
+int List_Remove_Next(List_t *list, List_Node_t *list_node,void **data);
 
 #endif

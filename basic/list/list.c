@@ -42,7 +42,7 @@ int List_Insert_Next(List_t *list, List_Node_t *list_node,void *data)
 	return 0;
 }
 
-int List_Remove_Next(List_t *list, List_Node_t *list_node,void *data)
+int List_Remove_Next(List_t *list, List_Node_t *list_node,void **data)
 {
 	List_Node_t *old_node;
 	if(list->node_num)
@@ -71,7 +71,7 @@ int List_Remove_Next(List_t *list, List_Node_t *list_node,void *data)
 			}
 			list_node->next = list_node->next->next;
 		}
-		data = old_node->data;
+		*data = old_node->data;
 		free(old_node);
 	}else{
 		return -1;
